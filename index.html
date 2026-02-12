@@ -445,6 +445,7 @@
                         message += '\n\n';
                     } else {
                         message = '';
+                        hasErrors = true;
                     }
                     message += '⚠️ エラー: 同じ区間で同じゼッケン番号が複数回出現しています\n\n';
                     result.bibNumberDuplicates.forEach(dup => {
@@ -454,7 +455,7 @@
                 }
                 
                 // エラーがない場合は成功メッセージ
-                if (!hasErrors && (!result.bibNumberDuplicates || result.bibNumberDuplicates.length === 0)) {
+                if (!hasErrors) {
                     message = `計算完了: ${result.fileCount}ファイル、${result.bibData.length}ゼッケン`;
                 }
                 

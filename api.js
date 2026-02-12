@@ -41,12 +41,12 @@ const GitHubAPI = {
             const files = await response.json();
             
             // CSVファイルのみをフィルタリング し、さらに有効なファイル名のみを残す
+            // Note: Calculator.isValidFileNameと同じ検証ロジック（依存関係の都合で重複）
             const csvFiles = files.filter(file => {
                 if (file.type !== 'file' || !file.name.endsWith('.csv')) {
                     return false;
                 }
-                // ファイル名の有効性チェック（Calculator.isValidFileNameを使用）
-                // Calculatorが定義される前に呼ばれる可能性があるため、直接検証ロジックを実装
+                // ファイル名の有効性チェック: (PC|CO)数字(START|GOAL)を_で接続
                 const baseName = file.name.replace('.csv', '');
                 const sections = baseName.split('_');
                 
