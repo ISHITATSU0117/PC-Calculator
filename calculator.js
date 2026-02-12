@@ -168,9 +168,10 @@ const Calculator = {
         });
 
         // ゼッケン番号の重複を検出するための構造
-        // key: "section_type_bibNumber", value: [filename1, filename2, ...]
-        const bibDuplicates = {};
+        // key: "section_type_bibNumber", value: [{filename, time}, ...]
+        const bibOccurrences = {};
 
+        // まず全てのデータを収集
         for (const [filename, records] of Object.entries(parsedData)) {
             records.forEach(record => {
                 const bibNumber = record.number;
@@ -183,7 +184,7 @@ const Calculator = {
 
                 const bibData = bibMap.get(bibNumber);
 
-                // このファイルがどの区間に対応するか判定
+                // すべての区間についてセクションデータを初期化
                 sections.forEach(section => {
                     if (!bibData.sections[section.section]) {
                         bibData.sections[section.section] = {
@@ -192,71 +193,67 @@ const Calculator = {
                             duration: null
                         };
                     }
+                });
 
-                    const sectionData = bibData.sections[section.section];
-
+                // このファイルがどの区間に対応するか判定
+                sections.forEach(section => {
                     if (filename === section.startFile) {
                         const key = `${section.section}_START`;
-                        const isDuplicate = overlappingIntervals.has(key);
+                        const bibKey = `${section.section}_START_${bibNumber}`;
                         
-                        // 重複していない場合のみ時刻を設定
-                        if (!isDuplicate) {
-                            // ゼッケン番号の重複をチェック
-                            const bibKey = `${section.section}_START_${bibNumber}`;
-                            if (!bibDuplicates[bibKey]) {
-                                bibDuplicates[bibKey] = [];
-                            }
-                            bibDuplicates[bibKey].push(filename);
-                            
-                            // 同じゼッケンが同じ区間に複数回出現していない場合のみ設定
-                            if (bibDuplicates[bibKey].length === 1) {
-                                sectionData.startTime = record.time;
-                            } else {
-                                // 重複が検出されたら時刻をクリア
-                                sectionData.startTime = null;
-                            }
+                        if (!bibOccurrences[bibKey]) {
+                            bibOccurrences[bibKey] = [];
                         }
+                        bibOccurrences[bibKey].push({ filename, time: record.time });
                     }
                     if (filename === section.goalFile) {
                         const key = `${section.section}_GOAL`;
-                        const isDuplicate = overlappingIntervals.has(key);
+                        const bibKey = `${section.section}_GOAL_${bibNumber}`;
                         
-                        // 重複していない場合のみ時刻を設定
-                        if (!isDuplicate) {
-                            // ゼッケン番号の重複をチェック
-                            const bibKey = `${section.section}_GOAL_${bibNumber}`;
-                            if (!bibDuplicates[bibKey]) {
-                                bibDuplicates[bibKey] = [];
-                            }
-                            bibDuplicates[bibKey].push(filename);
-                            
-                            // 同じゼッケンが同じ区間に複数回出現していない場合のみ設定
-                            if (bibDuplicates[bibKey].length === 1) {
-                                sectionData.goalTime = record.time;
-                            } else {
-                                // 重複が検出されたら時刻をクリア
-                                sectionData.goalTime = null;
-                            }
+                        if (!bibOccurrences[bibKey]) {
+                            bibOccurrences[bibKey] = [];
                         }
+                        bibOccurrences[bibKey].push({ filename, time: record.time });
                     }
                 });
             });
         }
 
-        // ゼッケン番号の重複情報を収集
+        // 重複をチェックして時刻を設定
         const bibNumberDuplicates = [];
-        for (const [key, files] of Object.entries(bibDuplicates)) {
-            if (files.length > 1) {
-                const parts = key.split('_');
-                const section = parts[0] + parts[1]; // e.g., "PC1"
-                const type = parts[2]; // "START" or "GOAL"
-                const bibNumber = parts[3];
+        for (const [bibKey, occurrences] of Object.entries(bibOccurrences)) {
+            const parts = bibKey.split('_');
+            const section = parts[0] + parts[1]; // e.g., "PC1"
+            const type = parts[2]; // "START" or "GOAL"
+            const bibNumber = parts[3];
+            
+            const intervalKey = `${section}_${type}`;
+            const isOverlapping = overlappingIntervals.has(intervalKey);
+            
+            // 重複している区間はスキップ
+            if (isOverlapping) {
+                continue;
+            }
+            
+            // ゼッケン番号が重複している場合
+            if (occurrences.length > 1) {
                 bibNumberDuplicates.push({
                     section: section,
                     type: type,
                     bibNumber: bibNumber,
-                    files: files
+                    files: occurrences.map(o => o.filename)
                 });
+                // 重複の場合は時刻を設定しない（nullのまま）
+            } else if (occurrences.length === 1) {
+                // 重複がない場合のみ時刻を設定
+                const bibData = bibMap.get(bibNumber);
+                const sectionData = bibData.sections[section];
+                
+                if (type === 'START') {
+                    sectionData.startTime = occurrences[0].time;
+                } else if (type === 'GOAL') {
+                    sectionData.goalTime = occurrences[0].time;
+                }
             }
         }
 
