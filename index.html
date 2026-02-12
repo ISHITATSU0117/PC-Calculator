@@ -359,12 +359,23 @@
             const toggleIcon = document.getElementById('toggleIcon');
             
             if (configForm.classList.contains('collapsed')) {
-                // 展開する
-                configForm.style.maxHeight = configForm.scrollHeight + 'px';
+                // 展開する - まず高さを計算してから設定
+                const height = configForm.scrollHeight;
+                configForm.style.maxHeight = height + 'px';
                 configForm.classList.remove('collapsed');
                 toggleIcon.classList.remove('collapsed');
+                
+                // アニメーション完了後にmaxHeightを削除（動的コンテンツ対応）
+                setTimeout(() => {
+                    if (!configForm.classList.contains('collapsed')) {
+                        configForm.style.maxHeight = 'none';
+                    }
+                }, 300);
             } else {
-                // 折りたたむ
+                // 折りたたむ - まず現在の高さを設定してからアニメーション
+                configForm.style.maxHeight = configForm.scrollHeight + 'px';
+                // 強制的にリフローを発生させる
+                configForm.offsetHeight;
                 configForm.style.maxHeight = '0';
                 configForm.classList.add('collapsed');
                 toggleIcon.classList.add('collapsed');

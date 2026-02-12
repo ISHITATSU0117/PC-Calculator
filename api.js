@@ -46,6 +46,9 @@ const GitHubAPI = {
             );
             
             // 各ファイルのコミット情報を取得
+            // Note: これはN個のファイルに対してN個のAPIリクエストを発行しますが、
+            // Promise.allにより並列実行されるため、シーケンシャルなN+1問題よりは効率的です
+            // GitHub APIのレート制限: 認証済み5000req/h、未認証60req/h
             const filesWithCommits = await Promise.all(
                 csvFiles.map(async (file) => {
                     try {
