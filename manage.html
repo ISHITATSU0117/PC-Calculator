@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ファイル管理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #5568d3;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        button.danger {
+            background: #dc3545;
+        }
+
+        button.danger:hover:not(:disabled) {
+            background: #c82333;
+        }
+
+        .file-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .file-card {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .file-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .file-card.selected {
+            background: #e3f2fd;
+            border-color: #1976d2;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .file-icon {
+            font-size: 40px;
+        }
+
+        .file-details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .file-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .file-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .status {
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .empty-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .empty-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .empty-hint {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .bulk-actions {
+            background: #fff8e1;
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .selection-info {
+            font-weight: 500;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← 管理画面に戻る</a>
+            <h1>📁 ファイル管理</h1>
+            <div style="width: 100px;"></div> <!-- スペーサー -->
+        </header>
+
+        <div class="controls">
+            <button onclick="loadFiles()">🔄 更新</button>
+            <button class="danger" onclick="deleteSelected()" id="deleteBtn" disabled>🗑️ 選択を削除</button>
+        </div>
+
+        <div id="statusArea"></div>
+
+        <div id="bulkActions" class="bulk-actions" style="display:none;">
+            <div class="selection-info">
+                <span id="selectionCount">0</span> 個のファイルを選択中
+            </div>
+            <button onclick="selectAll()">すべて選択</button>
+        </div>
+
+        <div id="fileList" class="loading">
+            <div class="spinner"></div>
+            <div>ファイルを読み込んでいます...</div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script>
+        let files = [];
+        let selectedFiles = new Set();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFiles();
+        });
+
+        // ファイル一覧を読み込み
+        async function loadFiles() {
+            const listDiv = document.getElementById('fileList');
+            listDiv.innerHTML = '<div class="loading"><div class="spinner"></div><div>ファイルを読み込んでいます...</div></div>';
+            
+            selectedFiles.clear();
+            updateBulkActions();
+
+            // 設定チェック
+            if (!ConfigManager.isConfigured()) {
+                showStatus('GitHub設定が完了していません', 'error');
+                listDiv.innerHTML = '<div class="empty-state"><div class="empty-icon">⚙️</div><div class="empty-text">GitHub設定が必要です</div><div class="empty-hint">管理画面で設定してください</div></div>';
+                return;
+            }
+
+            try {
+                files = await GitHubAPI.listCSVFiles();
+
+                if (files.length === 0) {
+                    listDiv.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-text">ファイルがありません</div><div class="empty-hint">アップロードページからCSVファイルをアップロードしてください</div></div>';
+                    return;
+                }
+
+                displayFiles();
+                showStatus(`${files.length} 個のファイルを読み込みました`, 'success');
+            } catch (error) {
+                console.error('ファイル読み込みエラー:', error);
+                showStatus(`エラー: ${error.message}`, 'error');
+                listDiv.innerHTML = '<div class="empty-state"><div class="empty-icon">❌</div><div class="empty-text">読み込みに失敗しました</div></div>';
+            }
+        }
+
+        // ファイル一覧を表示
+        function displayFiles() {
+            const listDiv = document.getElementById('fileList');
+            let html = '<div class="file-grid">';
+
+            files.forEach((file, index) => {
+                const uploadDate = new Date(file.commit?.author?.date || file.updated_at || Date.now());
+                const dateStr = uploadDate.toLocaleString('ja-JP', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                const sizeKB = (file.size / 1024).toFixed(2);
+                const isSelected = selectedFiles.has(file.name);
+
+                html += `
+                    <div class="file-card ${isSelected ? 'selected' : ''}" id="file-${index}">
+                        <div class="checkbox-container">
+                            <input type="checkbox" 
+                                   onchange="toggleSelection('${file.name}', ${index})" 
+                                   ${isSelected ? 'checked' : ''}>
+                        </div>
+                        <div class="file-info">
+                            <div class="file-icon">📄</div>
+                            <div class="file-details">
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-meta">
+                                    <span>📅 ${dateStr}</span>
+                                    <span>💾 ${sizeKB} KB</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <button class="action-btn" onclick="downloadFile('${file.name}', '${file.download_url}')">
+                                ⬇️ ダウンロード
+                            </button>
+                            <button class="action-btn danger" onclick="deleteFile('${file.name}', '${file.sha}')">
+                                🗑️ 削除
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            listDiv.innerHTML = html;
+
+            // 一括操作エリアを表示
+            document.getElementById('bulkActions').style.display = files.length > 0 ? 'flex' : 'none';
+        }
+
+        // 選択の切り替え
+        function toggleSelection(fileName, index) {
+            if (selectedFiles.has(fileName)) {
+                selectedFiles.delete(fileName);
+            } else {
+                selectedFiles.add(fileName);
+            }
+
+            const card = document.getElementById(`file-${index}`);
+            if (selectedFiles.has(fileName)) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+
+            updateBulkActions();
+        }
+
+        // すべて選択
+        function selectAll() {
+            if (selectedFiles.size === files.length) {
+                // すべて選択解除
+                selectedFiles.clear();
+            } else {
+                // すべて選択
+                files.forEach(file => selectedFiles.add(file.name));
+            }
+            displayFiles();
+            updateBulkActions();
+        }
+
+        // 一括操作エリアを更新
+        function updateBulkActions() {
+            document.getElementById('selectionCount').textContent = selectedFiles.size;
+            document.getElementById('deleteBtn').disabled = selectedFiles.size === 0;
+        }
+
+        // 選択したファイルを削除
+        async function deleteSelected() {
+            if (selectedFiles.size === 0) return;
+
+            const confirmed = confirm(`${selectedFiles.size} 個のファイルを削除しますか？`);
+            if (!confirmed) return;
+
+            showStatus('削除中...', 'info');
+
+            let successCount = 0;
+            let errorCount = 0;
+
+            for (const fileName of selectedFiles) {
+                const file = files.find(f => f.name === fileName);
+                if (!file) continue;
+
+                try {
+                    await GitHubAPI.deleteCSVFile(fileName, file.sha);
+                    successCount++;
+                } catch (error) {
+                    console.error(`${fileName}の削除失敗:`, error);
+                    errorCount++;
+                }
+            }
+
+            // 結果表示
+            if (errorCount === 0) {
+                showStatus(`✅ ${successCount} 個のファイルを削除しました`, 'success');
+            } else {
+                showStatus(`⚠️ 一部のファイルの削除に失敗しました (成功: ${successCount}, 失敗: ${errorCount})`, 'warning');
+            }
+
+            // リストを再読み込み
+            await loadFiles();
+        }
+
+        // ファイルを削除
+        async function deleteFile(fileName, sha) {
+            const confirmed = confirm(`${fileName}を削除しますか？`);
+            if (!confirmed) return;
+
+            // 設定チェック
+            const config = ConfigManager.load();
+            if (!config.token) {
+                showStatus('Personal Access Tokenが設定されていません', 'error');
+                return;
+            }
+
+            showStatus(`${fileName}を削除中...`, 'info');
+
+            try {
+                await GitHubAPI.deleteCSVFile(fileName, sha);
+                showStatus(`✅ ${fileName}を削除しました`, 'success');
+                await loadFiles();
+            } catch (error) {
+                console.error('削除エラー:', error);
+                showStatus(`❌ 削除に失敗しました: ${error.message}`, 'error');
+            }
+        }
+
+        // ファイルをダウンロード
+        async function downloadFile(fileName, downloadUrl) {
+            try {
+                const response = await fetch(downloadUrl);
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error('ダウンロードエラー:', error);
+                showStatus(`ダウンロードに失敗しました: ${error.message}`, 'error');
+            }
+        }
+
+        // ステータスメッセージ表示
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('statusArea');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+    </script>
+</body>
+</html>

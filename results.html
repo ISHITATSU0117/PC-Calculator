@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通過時間計測 - 結果表示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .last-update {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .results-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #1976d2;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th.section-header {
+            background: #1565c0;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e3f2fd;
+        }
+
+        td.time {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        td.duration {
+            font-weight: bold;
+            color: #1976d2;
+            font-size: 16px;
+        }
+
+        td.empty {
+            color: #999;
+            font-style: italic;
+        }
+
+        .bib-number {
+            font-weight: bold;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1976d2;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .info-message {
+            background: #fff3e0;
+            color: #e65100;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .last-update {
+                background: transparent;
+                border: 1px solid #1976d2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 通過時間計測結果</h1>
+            <p class="subtitle">ゼッケン番号ごとの区間通過時間</p>
+            <div id="lastUpdateDisplay" class="last-update">読み込み中...</div>
+        </header>
+
+        <div class="results-container">
+            <div id="resultsTable" class="loading">
+                <div class="spinner"></div>
+                <div class="loading-text">データを読み込んでいます...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="calculator.js"></script>
+    <script>
+        // ページ読み込み時に自動的に結果を表示
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAndDisplayResults();
+        });
+
+        // 結果を読み込んで表示
+        async function loadAndDisplayResults() {
+            // 最終計算時刻を表示
+            displayLastCalculationTime();
+
+            // 設定チェック
+            if (!ConfigManager.isConfigured()) {
+                showError('GitHub設定が完了していません。管理者に連絡してください。');
+                return;
+            }
+
+            try {
+                // 計算実行
+                const result = await Calculator.calculate();
+
+                if (result.success) {
+                    displayResults(result.bibData, result.sections);
+                } else {
+                    showError(`計算エラー: ${result.error}`);
+                }
+            } catch (error) {
+                showError(`エラーが発生しました: ${error.message}`);
+            }
+        }
+
+        // 最終計算時刻を表示
+        function displayLastCalculationTime() {
+            const lastCalc = ConfigManager.getLastCalculation();
+            const display = document.getElementById('lastUpdateDisplay');
+            
+            if (lastCalc) {
+                const date = new Date(lastCalc);
+                const formatted = date.toLocaleString('ja-JP', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                display.textContent = `最終更新: ${formatted}`;
+            } else {
+                display.textContent = '最終更新: 未計算';
+            }
+        }
+
+        // 結果を表示
+        function displayResults(bibData, sections) {
+            if (bibData.length === 0) {
+                document.getElementById('resultsTable').innerHTML = 
+                    '<div class="no-data">データがありません<br><small>CSVファイルをアップロードしてください</small></div>';
+                return;
+            }
+
+            let html = '<table><thead><tr>';
+            html += '<th rowspan="2" class="section-header">ゼッケン</th>';
+
+            // 区間ヘッダー
+            sections.forEach(section => {
+                html += `<th colspan="3" class="section-header">${section.section}</th>`;
+            });
+            html += '</tr><tr>';
+
+            // START/GOAL/通過時間ヘッダー
+            sections.forEach(() => {
+                html += '<th>START</th><th>GOAL</th><th>通過時間(秒)</th>';
+            });
+            html += '</tr></thead><tbody>';
+
+            // データ行
+            bibData.forEach(bib => {
+                html += '<tr>';
+                html += `<td class="bib-number">${bib.bibNumber}</td>`;
+
+                sections.forEach(section => {
+                    const sectionData = bib.sections[section.section];
+                    if (sectionData) {
+                        const startTime = sectionData.startTime || '';
+                        const goalTime = sectionData.goalTime || '';
+                        const duration = sectionData.duration || '';
+
+                        html += `<td class="time">${startTime || '<span class="empty">-</span>'}</td>`;
+                        html += `<td class="time">${goalTime || '<span class="empty">-</span>'}</td>`;
+                        html += `<td class="duration">${duration || '<span class="empty">-</span>'}</td>`;
+                    } else {
+                        html += '<td class="empty">-</td><td class="empty">-</td><td class="empty">-</td>';
+                    }
+                });
+
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+
+            document.getElementById('resultsTable').innerHTML = html;
+        }
+
+        // エラー表示
+        function showError(message) {
+            document.getElementById('resultsTable').innerHTML = 
+                `<div class="error-message">❌ ${message}</div>`;
+        }
+
+        // 定期的に再読み込み（オプション）
+        // setInterval(loadAndDisplayResults, 120000); // 2分ごと
+    </script>
+</body>
+</html>

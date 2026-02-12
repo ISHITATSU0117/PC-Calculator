@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSVファイルアップロード</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #5568d3;
+        }
+
+        .upload-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .file-input-area {
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            background: white;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .file-input-area:hover {
+            background: #f8f9ff;
+            border-color: #5568d3;
+        }
+
+        .file-input-area.dragover {
+            background: #e3f2fd;
+            border-color: #1976d2;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .upload-hint {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .file-list {
+            margin-top: 20px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-icon {
+            font-size: 24px;
+        }
+
+        .file-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .file-size {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+
+        .remove-btn:hover {
+            background: #c82333;
+        }
+
+        .upload-button {
+            width: 100%;
+            padding: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .upload-button:hover:not(:disabled) {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .upload-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .status {
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            transition: width 0.3s;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            color: #1976d2;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #555;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 管理画面に戻る</a>
+        
+        <header>
+            <h1>📤 CSVファイルアップロード</h1>
+            <p class="subtitle">計測データをGitHubにアップロードします</p>
+        </header>
+
+        <div class="info-box">
+            <h3>📋 ファイル命名規則</h3>
+            <p>
+                <strong>例:</strong> PC1START.csv, PC1GOAL_PC2START.csv, CO1GOAL.csv<br>
+                形式: (PC|CO)(数字)(START|GOAL).csv<br>
+                複数区間: "_"で連結（例: PC1GOAL_PC2START.csv）
+            </p>
+        </div>
+
+        <div class="upload-section">
+            <div class="file-input-area" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">クリックまたはドラッグ＆ドロップでファイルを選択</div>
+                <div class="upload-hint">複数のCSVファイルを同時に選択できます</div>
+            </div>
+            <input type="file" id="fileInput" accept=".csv" multiple>
+
+            <div id="fileList" class="file-list"></div>
+
+            <button class="upload-button" id="uploadButton" onclick="uploadFiles()" disabled>
+                アップロード開始
+            </button>
+
+            <div id="uploadStatus"></div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script>
+        let selectedFiles = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 設定チェック
+            if (!ConfigManager.isConfigured()) {
+                showStatus('GitHub設定が完了していません。管理画面で設定してください。', 'warning');
+            }
+
+            const config = ConfigManager.load();
+            if (!config.token) {
+                showStatus('Personal Access Tokenが設定されていません。アップロードには認証が必要です。', 'warning');
+            }
+
+            // ファイル選択イベント
+            document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+            // ドラッグ＆ドロップ
+            const dropZone = document.getElementById('dropZone');
+            
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('dragover');
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('dragover');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('dragover');
+                
+                const files = Array.from(e.dataTransfer.files).filter(f => f.name.endsWith('.csv'));
+                if (files.length > 0) {
+                    addFiles(files);
+                }
+            });
+        });
+
+        // ファイル選択処理
+        function handleFileSelect(event) {
+            const files = Array.from(event.target.files);
+            addFiles(files);
+        }
+
+        // ファイルを追加
+        function addFiles(files) {
+            files.forEach(file => {
+                // 重複チェック
+                if (!selectedFiles.find(f => f.name === file.name)) {
+                    selectedFiles.push(file);
+                }
+            });
+            updateFileList();
+        }
+
+        // ファイルリストを更新
+        function updateFileList() {
+            const listDiv = document.getElementById('fileList');
+            const uploadBtn = document.getElementById('uploadButton');
+
+            if (selectedFiles.length === 0) {
+                listDiv.innerHTML = '';
+                uploadBtn.disabled = true;
+                return;
+            }
+
+            let html = '';
+            selectedFiles.forEach((file, index) => {
+                const sizeKB = (file.size / 1024).toFixed(2);
+                html += `
+                    <div class="file-item">
+                        <div class="file-info">
+                            <div class="file-icon">📄</div>
+                            <div class="file-details">
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-size">${sizeKB} KB</div>
+                            </div>
+                        </div>
+                        <button class="remove-btn" onclick="removeFile(${index})">削除</button>
+                    </div>
+                `;
+            });
+
+            listDiv.innerHTML = html;
+            uploadBtn.disabled = false;
+        }
+
+        // ファイルを削除
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            updateFileList();
+        }
+
+        // アップロード実行
+        async function uploadFiles() {
+            if (selectedFiles.length === 0) return;
+
+            // 設定チェック
+            if (!ConfigManager.isConfigured()) {
+                showStatus('GitHub設定が完了していません', 'error');
+                return;
+            }
+
+            const config = ConfigManager.load();
+            if (!config.token) {
+                showStatus('Personal Access Tokenが設定されていません', 'error');
+                return;
+            }
+
+            const uploadBtn = document.getElementById('uploadButton');
+            uploadBtn.disabled = true;
+            showStatus('アップロード中...', 'info');
+
+            let successCount = 0;
+            let errorCount = 0;
+            const total = selectedFiles.length;
+
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const file = selectedFiles[i];
+                
+                try {
+                    showStatus(`アップロード中... (${i + 1}/${total}) ${file.name}`, 'info');
+                    
+                    const content = await readFileContent(file);
+                    await GitHubAPI.uploadCSVFile(file.name, content);
+                    
+                    successCount++;
+                } catch (error) {
+                    console.error(`${file.name}のアップロード失敗:`, error);
+                    errorCount++;
+                }
+            }
+
+            // 結果表示
+            if (errorCount === 0) {
+                showStatus(`✅ すべてのファイルをアップロードしました (${successCount}/${total})`, 'success');
+                selectedFiles = [];
+                updateFileList();
+                document.getElementById('fileInput').value = '';
+            } else {
+                showStatus(`⚠️ 一部のファイルのアップロードに失敗しました (成功: ${successCount}, 失敗: ${errorCount})`, 'warning');
+            }
+
+            uploadBtn.disabled = false;
+        }
+
+        // ファイルの内容を読み取る
+        function readFileContent(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = (e) => reject(e);
+                reader.readAsText(file);
+            });
+        }
+
+        // ステータスメッセージ表示
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('uploadStatus');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+    </script>
+</body>
+</html>
