@@ -208,9 +208,6 @@
 
         // 結果を読み込んで表示
         async function loadAndDisplayResults() {
-            // 最終計算時刻を表示
-            displayLastCalculationTime();
-
             // 設定チェック
             if (!ConfigManager.isConfigured()) {
                 showError('GitHub設定が完了していません。管理者に連絡してください。');
@@ -223,6 +220,8 @@
 
                 if (result.success) {
                     displayResults(result.bibData, result.sections);
+                    // 計算完了後に最終計算時刻を表示
+                    displayLastCalculationTime();
                 } else {
                     showError(`計算エラー: ${result.error}`);
                 }
@@ -246,9 +245,9 @@
                     minute: '2-digit',
                     second: '2-digit'
                 });
-                display.textContent = `最終更新: ${formatted}`;
+                display.textContent = `計算実行時刻: ${formatted}`;
             } else {
-                display.textContent = '最終更新: 未計算';
+                display.textContent = '計算実行時刻: 未計算';
             }
         }
 
