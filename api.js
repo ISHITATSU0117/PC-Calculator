@@ -40,10 +40,26 @@ const GitHubAPI = {
             
             const files = await response.json();
             
-            // CSVファイルのみをフィルタリング
-            const csvFiles = files.filter(file => 
-                file.type === 'file' && file.name.endsWith('.csv')
-            );
+            // CSVファイルのみをフィルタリング し、さらに有効なファイル名のみを残す
+            const csvFiles = files.filter(file => {
+                if (file.type !== 'file' || !file.name.endsWith('.csv')) {
+                    return false;
+                }
+                // ファイル名の有効性チェック（Calculator.isValidFileNameを使用）
+                // Calculatorが定義される前に呼ばれる可能性があるため、直接検証ロジックを実装
+                const baseName = file.name.replace('.csv', '');
+                const sections = baseName.split('_');
+                
+                // 各セクションが正しい形式かチェック
+                for (const section of sections) {
+                    if (!section.match(/^(PC|CO)\d+(START|GOAL)$/i)) {
+                        console.log(`無効なファイル名をスキップ: ${file.name}`);
+                        return false;
+                    }
+                }
+                
+                return sections.length > 0;
+            });
             
             // 各ファイルのコミット情報を取得
             // Note: これはN個のファイルに対してN個のAPIリクエストを発行しますが、

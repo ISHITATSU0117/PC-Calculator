@@ -1,6 +1,28 @@
 // CSV解析と計算ロジック
 
 const Calculator = {
+    // ファイル名が有効かどうかをチェック
+    // 有効な形式: (PC|CO)数字(START|GOAL) を_で接続したもののみ
+    // 例: PC1START.csv, PC1GOAL_PC2START.csv
+    isValidFileName(filename) {
+        // 拡張子を除去
+        const baseName = filename.replace('.csv', '');
+        
+        // "_" で分割
+        const sections = baseName.split('_');
+        
+        // 各セクションが正しい形式かチェック
+        for (const section of sections) {
+            // PC or CO + 数字 + START or GOAL の形式のみ許可
+            if (!section.match(/^(PC|CO)\d+(START|GOAL)$/i)) {
+                return false;
+            }
+        }
+        
+        // すべてのセクションが有効なら true
+        return sections.length > 0;
+    },
+
     // CSVをパース
     parseCSV(filename, content) {
         const lines = content.trim().split('\n');
@@ -136,8 +158,18 @@ const Calculator = {
     },
 
     // ゼッケンごとのデータを構築
-    buildBibData(parsedData, sections) {
+    buildBibData(parsedData, sections, overlaps) {
         const bibMap = new Map();
+        
+        // 重複している区間をSetに格納（高速検索用）
+        const overlappingIntervals = new Set();
+        overlaps.forEach(overlap => {
+            overlappingIntervals.add(`${overlap.section}_${overlap.type}`);
+        });
+
+        // ゼッケン番号の重複を検出するための構造
+        // key: "section_type_bibNumber", value: [filename1, filename2, ...]
+        const bibDuplicates = {};
 
         for (const [filename, records] of Object.entries(parsedData)) {
             records.forEach(record => {
@@ -164,13 +196,68 @@ const Calculator = {
                     const sectionData = bibData.sections[section.section];
 
                     if (filename === section.startFile) {
-                        sectionData.startTime = record.time;
+                        const key = `${section.section}_START`;
+                        const isDuplicate = overlappingIntervals.has(key);
+                        
+                        // 重複していない場合のみ時刻を設定
+                        if (!isDuplicate) {
+                            // ゼッケン番号の重複をチェック
+                            const bibKey = `${section.section}_START_${bibNumber}`;
+                            if (!bibDuplicates[bibKey]) {
+                                bibDuplicates[bibKey] = [];
+                            }
+                            bibDuplicates[bibKey].push(filename);
+                            
+                            // 同じゼッケンが同じ区間に複数回出現していない場合のみ設定
+                            if (bibDuplicates[bibKey].length === 1) {
+                                sectionData.startTime = record.time;
+                            } else {
+                                // 重複が検出されたら時刻をクリア
+                                sectionData.startTime = null;
+                            }
+                        }
                     }
                     if (filename === section.goalFile) {
-                        sectionData.goalTime = record.time;
+                        const key = `${section.section}_GOAL`;
+                        const isDuplicate = overlappingIntervals.has(key);
+                        
+                        // 重複していない場合のみ時刻を設定
+                        if (!isDuplicate) {
+                            // ゼッケン番号の重複をチェック
+                            const bibKey = `${section.section}_GOAL_${bibNumber}`;
+                            if (!bibDuplicates[bibKey]) {
+                                bibDuplicates[bibKey] = [];
+                            }
+                            bibDuplicates[bibKey].push(filename);
+                            
+                            // 同じゼッケンが同じ区間に複数回出現していない場合のみ設定
+                            if (bibDuplicates[bibKey].length === 1) {
+                                sectionData.goalTime = record.time;
+                            } else {
+                                // 重複が検出されたら時刻をクリア
+                                sectionData.goalTime = null;
+                            }
+                        }
                     }
                 });
             });
+        }
+
+        // ゼッケン番号の重複情報を収集
+        const bibNumberDuplicates = [];
+        for (const [key, files] of Object.entries(bibDuplicates)) {
+            if (files.length > 1) {
+                const parts = key.split('_');
+                const section = parts[0] + parts[1]; // e.g., "PC1"
+                const type = parts[2]; // "START" or "GOAL"
+                const bibNumber = parts[3];
+                bibNumberDuplicates.push({
+                    section: section,
+                    type: type,
+                    bibNumber: bibNumber,
+                    files: files
+                });
+            }
         }
 
         // ゼッケン番号でソート
@@ -180,7 +267,7 @@ const Calculator = {
             return aNum - bNum;
         });
 
-        return bibData;
+        return { bibData, bibNumberDuplicates };
     },
 
     // 通過時間を計算
@@ -228,7 +315,8 @@ const Calculator = {
                     error: 'CSVファイルが見つかりません',
                     bibData: [],
                     sections: [],
-                    overlaps: []
+                    overlaps: [],
+                    bibNumberDuplicates: []
                 };
             }
 
@@ -244,8 +332,8 @@ const Calculator = {
             // 区間情報を構築
             const sections = this.buildSections(parsedData);
 
-            // ゼッケンごとのデータを構築
-            const bibData = this.buildBibData(parsedData, sections);
+            // ゼッケンごとのデータを構築（重複情報も含む）
+            const { bibData, bibNumberDuplicates } = this.buildBibData(parsedData, sections, overlaps);
 
             // 通過時間を計算
             this.calculateDurations(bibData, sections);
@@ -258,7 +346,8 @@ const Calculator = {
                 bibData: bibData,
                 sections: sections,
                 fileCount: Object.keys(csvData).length,
-                overlaps: overlaps
+                overlaps: overlaps,
+                bibNumberDuplicates: bibNumberDuplicates
             };
         } catch (error) {
             console.error('計算エラー:', error);
@@ -267,7 +356,8 @@ const Calculator = {
                 error: error.message,
                 bibData: [],
                 sections: [],
-                overlaps: []
+                overlaps: [],
+                bibNumberDuplicates: []
             };
         }
     }
