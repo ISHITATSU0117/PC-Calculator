@@ -17,6 +17,19 @@ const GitHubAPI = {
         return headers;
     },
     
+    // UTF-8文字列をBase64にエンコード
+    utf8ToBase64(str) {
+        // TextEncoderを使用してUTF-8バイト列に変換
+        const encoder = new TextEncoder();
+        const bytes = encoder.encode(str);
+        // バイト列を文字列に変換してBase64エンコード
+        let binary = '';
+        bytes.forEach(byte => {
+            binary += String.fromCharCode(byte);
+        });
+        return btoa(binary);
+    },
+    
     // CSVファイル一覧を取得
     async listCSVFiles() {
         const config = ConfigManager.load();
@@ -118,7 +131,7 @@ const GitHubAPI = {
         
         const body = {
             message: `Upload ${fileName}`,
-            content: btoa(unescape(encodeURIComponent(content))),  // UTF-8をBase64にエンコード
+            content: this.utf8ToBase64(content),
             branch: config.branch
         };
         
@@ -228,7 +241,7 @@ const GitHubAPI = {
         const content = JSON.stringify(results, null, 2);
         const body = {
             message: 'Update calculation results',
-            content: btoa(unescape(encodeURIComponent(content))),
+            content: this.utf8ToBase64(content),
             branch: config.branch
         };
         
