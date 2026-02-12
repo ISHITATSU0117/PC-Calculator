@@ -2,6 +2,8 @@
 
 const CONFIG = {
     // GitHub設定
+    // デフォルト設定: すべてのユーザーが同じリポジトリの結果を閲覧できるようにする
+    // 管理者は管理画面でこれらの値を上書きできます
     GITHUB_OWNER: 'ishitatsu0117',  // デフォルト: 'ishitatsu0117'
     GITHUB_REPO: 'PC-Calculator',   // デフォルト: 'PC-Calculator'
     GITHUB_BRANCH: 'main',
