@@ -222,5 +222,69 @@ const Calculator = {
                 sections: []
             };
         }
+    },
+    
+    // 計算を実行してGitHubに結果を保存
+    async calculateAndSave() {
+        try {
+            const result = await this.calculate();
+            
+            if (result.success) {
+                // 結果データに計算時刻を追加
+                const resultsData = {
+                    calculatedAt: new Date().toISOString(),
+                    fileCount: result.fileCount,
+                    bibData: result.bibData,
+                    sections: result.sections
+                };
+                
+                // GitHubに結果を保存
+                await GitHubAPI.saveCalculationResults(resultsData);
+            }
+            
+            return result;
+        } catch (error) {
+            console.error('計算・保存エラー:', error);
+            return {
+                success: false,
+                error: error.message,
+                bibData: [],
+                sections: []
+            };
+        }
+    },
+    
+    // 保存された結果を取得（なければ計算する）
+    async getResults() {
+        try {
+            // 保存された結果を取得
+            const savedResults = await GitHubAPI.getCalculationResults();
+            
+            if (savedResults) {
+                return {
+                    success: true,
+                    bibData: savedResults.bibData,
+                    sections: savedResults.sections,
+                    fileCount: savedResults.fileCount,
+                    calculatedAt: savedResults.calculatedAt,
+                    fromCache: true
+                };
+            }
+            
+            // 保存された結果がない場合は計算する
+            const result = await this.calculate();
+            return {
+                ...result,
+                fromCache: false
+            };
+        } catch (error) {
+            console.error('結果取得エラー:', error);
+            return {
+                success: false,
+                error: error.message,
+                bibData: [],
+                sections: []
+            };
+        }
     }
 };

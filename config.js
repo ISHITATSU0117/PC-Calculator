@@ -10,6 +10,9 @@ const CONFIG = {
     // 自動更新設定
     AUTO_REFRESH_INTERVAL: 120000,  // 120秒（2分）
     
+    // 結果ファイル名
+    RESULTS_FILE: 'calculation_results.json',
+    
     // ローカルストレージキー
     STORAGE_KEYS: {
         GITHUB_TOKEN: 'github_token',

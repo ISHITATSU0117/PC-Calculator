@@ -199,5 +199,87 @@ const GitHubAPI = {
             console.error('ファイル情報取得エラー:', error);
             throw error;
         }
+    },
+    
+    // 計算結果を保存
+    async saveCalculationResults(results) {
+        const config = ConfigManager.load();
+        if (!config.token) {
+            throw new Error('GitHub Personal Access Tokenが設定されていません');
+        }
+        
+        const fileName = CONFIG.RESULTS_FILE;
+        const url = `${this.getBaseUrl(config.owner, config.repo)}/${fileName}`;
+        const headers = this.getHeaders(config.token);
+        headers['Content-Type'] = 'application/json';
+        
+        // 既存ファイルのSHAを取得（更新の場合に必要）
+        let sha = null;
+        try {
+            const response = await fetch(url, { headers: this.getHeaders(config.token) });
+            if (response.ok) {
+                const existing = await response.json();
+                sha = existing.sha;
+            }
+        } catch (error) {
+            // ファイルが存在しない場合は新規作成
+        }
+        
+        const content = JSON.stringify(results, null, 2);
+        const body = {
+            message: 'Update calculation results',
+            content: btoa(unescape(encodeURIComponent(content))),
+            branch: config.branch
+        };
+        
+        if (sha) {
+            body.sha = sha;
+        }
+        
+        try {
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: headers,
+                body: JSON.stringify(body)
+            });
+            
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`結果保存失敗: ${errorData.message || response.status}`);
+            }
+            
+            return await response.json();
+        } catch (error) {
+            console.error('結果保存エラー:', error);
+            throw error;
+        }
+    },
+    
+    // 計算結果を取得
+    async getCalculationResults() {
+        const config = ConfigManager.load();
+        const fileName = CONFIG.RESULTS_FILE;
+        const url = `${this.getBaseUrl(config.owner, config.repo)}/${fileName}?ref=${config.branch}`;
+        const headers = this.getHeaders(config.token);
+        
+        try {
+            const response = await fetch(url, { headers });
+            
+            if (!response.ok) {
+                if (response.status === 404) {
+                    // 結果ファイルがまだ存在しない
+                    return null;
+                }
+                throw new Error(`HTTPエラー: ${response.status}`);
+            }
+            
+            const fileData = await response.json();
+            const content = atob(fileData.content.replace(/\n/g, ''));
+            
+            return JSON.parse(content);
+        } catch (error) {
+            console.error('結果取得エラー:', error);
+            return null;
+        }
     }
 };

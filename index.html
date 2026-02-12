@@ -351,10 +351,10 @@
 
             showStatus('calcStatus', '計算を実行中...', 'info');
 
-            const result = await Calculator.calculate();
+            const result = await Calculator.calculateAndSave();
 
             if (result.success) {
-                showStatus('calcStatus', `計算完了: ${result.fileCount}ファイル、${result.bibData.length}ゼッケン`, 'success');
+                showStatus('calcStatus', `計算完了: ${result.fileCount}ファイル、${result.bibData.length}ゼッケン（結果をGitHubに保存しました）`, 'success');
             } else {
                 showStatus('calcStatus', `エラー: ${result.error}`, 'error');
             }

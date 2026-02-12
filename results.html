@@ -54,6 +54,22 @@
             font-size: 14px;
             font-weight: 500;
         }
+        
+        .shared-results-info {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin: 15px auto;
+            max-width: 600px;
+            font-size: 13px;
+            text-align: center;
+            border: 1px solid #a5d6a7;
+        }
+        
+        .shared-results-info strong {
+            font-weight: 600;
+        }
 
         .results-container {
             overflow-x: auto;
@@ -187,6 +203,10 @@
             <h1>📊 通過時間計測結果</h1>
             <p class="subtitle">ゼッケン番号ごとの区間通過時間</p>
             <div id="lastUpdateDisplay" class="last-update">読み込み中...</div>
+            <div class="shared-results-info">
+                ℹ️ <strong>全員が同じ結果を表示しています</strong><br>
+                管理画面で計算が実行されると、全ユーザーが同じ結果データを確認できます
+            </div>
         </header>
 
         <div class="results-container">
@@ -208,9 +228,6 @@
 
         // 結果を読み込んで表示
         async function loadAndDisplayResults() {
-            // 最終計算時刻を表示
-            displayLastCalculationTime();
-
             // 設定チェック
             if (!ConfigManager.isConfigured()) {
                 showError('GitHub設定が完了していません。管理者に連絡してください。');
@@ -218,17 +235,41 @@
             }
 
             try {
-                // 計算実行
-                const result = await Calculator.calculate();
+                // 保存された結果を取得（なければ計算）
+                const result = await Calculator.getResults();
 
                 if (result.success) {
                     displayResults(result.bibData, result.sections);
+                    
+                    // 計算時刻を表示
+                    if (result.calculatedAt) {
+                        displayCalculationTime(result.calculatedAt, result.fromCache);
+                    } else {
+                        displayLastCalculationTime();
+                    }
                 } else {
                     showError(`計算エラー: ${result.error}`);
                 }
             } catch (error) {
                 showError(`エラーが発生しました: ${error.message}`);
             }
+        }
+
+        // 計算時刻を表示
+        function displayCalculationTime(isoTime, fromCache) {
+            const display = document.getElementById('lastUpdateDisplay');
+            const date = new Date(isoTime);
+            const formatted = date.toLocaleString('ja-JP', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            const cacheStatus = fromCache ? ' (共有データ)' : ' (新規計算)';
+            display.textContent = `最終更新: ${formatted}${cacheStatus}`;
         }
 
         // 最終計算時刻を表示
