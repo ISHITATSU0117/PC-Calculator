@@ -208,25 +208,26 @@
 
         // 結果を読み込んで表示
         async function loadAndDisplayResults() {
-            // 設定チェック
-            if (!ConfigManager.isConfigured()) {
-                showError('GitHub設定が完了していません。管理者に連絡してください。');
-                return;
-            }
-
             try {
+                // 設定チェック
+                if (!ConfigManager.isConfigured()) {
+                    showError('GitHub設定が完了していません。管理者に連絡してください。');
+                    return;
+                }
+
                 // 計算実行
                 const result = await Calculator.calculate();
 
                 if (result.success) {
                     displayResults(result.bibData, result.sections);
-                    // 計算完了後に最終計算時刻を表示
-                    displayLastCalculationTime();
                 } else {
                     showError(`計算エラー: ${result.error}`);
                 }
             } catch (error) {
                 showError(`エラーが発生しました: ${error.message}`);
+            } finally {
+                // 計算完了後または失敗時に最終計算時刻を表示
+                displayLastCalculationTime();
             }
         }
 
