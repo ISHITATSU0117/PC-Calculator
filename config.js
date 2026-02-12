@@ -2,8 +2,8 @@
 
 const CONFIG = {
     // GitHub設定
-    GITHUB_OWNER: '',  // 例: 'username'
-    GITHUB_REPO: '',   // 例: 'csv-data'
+    GITHUB_OWNER: 'ishitatsu0117',  // デフォルト: 'ishitatsu0117'
+    GITHUB_REPO: 'PC-Calculator',   // デフォルト: 'PC-Calculator'
     GITHUB_BRANCH: 'main',
     CSV_DIRECTORY: 'csv',  // CSVファイルを保存するディレクトリ
     
