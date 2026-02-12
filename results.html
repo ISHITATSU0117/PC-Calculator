@@ -211,12 +211,6 @@
             // 最終計算時刻を表示
             displayLastCalculationTime();
 
-            // 設定チェック
-            if (!ConfigManager.isConfigured()) {
-                showError('GitHub設定が完了していません。管理者に連絡してください。');
-                return;
-            }
-
             try {
                 // 計算実行
                 const result = await Calculator.calculate();
