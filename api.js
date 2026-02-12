@@ -41,9 +41,31 @@ const GitHubAPI = {
             const files = await response.json();
             
             // CSVファイルのみをフィルタリング
-            return files.filter(file => 
+            const csvFiles = files.filter(file => 
                 file.type === 'file' && file.name.endsWith('.csv')
             );
+            
+            // 各ファイルのコミット情報を取得
+            const filesWithCommits = await Promise.all(
+                csvFiles.map(async (file) => {
+                    try {
+                        const commitUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/commits?path=${config.csvDir}/${file.name}&page=1&per_page=1`;
+                        const commitResponse = await fetch(commitUrl, { headers });
+                        
+                        if (commitResponse.ok) {
+                            const commits = await commitResponse.json();
+                            if (commits.length > 0) {
+                                file.lastCommit = commits[0];
+                            }
+                        }
+                    } catch (error) {
+                        console.error(`コミット情報取得エラー (${file.name}):`, error);
+                    }
+                    return file;
+                })
+            );
+            
+            return filesWithCommits;
         } catch (error) {
             console.error('ファイル一覧取得エラー:', error);
             throw error;

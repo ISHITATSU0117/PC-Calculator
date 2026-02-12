@@ -93,6 +93,48 @@ const Calculator = {
         return sections;
     },
 
+    // ファイル名の区間重複をチェック
+    checkOverlap(parsedData) {
+        const overlaps = [];
+        const files = Object.keys(parsedData);
+        
+        // 各ファイルのすべての区間情報を取得
+        const fileIntervals = {};
+        for (const filename of files) {
+            const fileInfo = this.parseFileName(filename);
+            if (fileInfo.length > 0) {
+                fileIntervals[filename] = fileInfo;
+            }
+        }
+        
+        // すべてのファイルペアをチェック
+        for (let i = 0; i < files.length; i++) {
+            for (let j = i + 1; j < files.length; j++) {
+                const file1 = files[i];
+                const file2 = files[j];
+                const intervals1 = fileIntervals[file1] || [];
+                const intervals2 = fileIntervals[file2] || [];
+                
+                // 各ファイル内の区間同士を比較
+                for (const int1 of intervals1) {
+                    for (const int2 of intervals2) {
+                        // 同じ区間かつ同じタイプ（START/GOAL）の場合は重複
+                        if (int1.section === int2.section && int1.type === int2.type) {
+                            overlaps.push({
+                                file1: file1,
+                                file2: file2,
+                                section: int1.section,
+                                type: int1.type
+                            });
+                        }
+                    }
+                }
+            }
+        }
+        
+        return overlaps;
+    },
+
     // ゼッケンごとのデータを構築
     buildBibData(parsedData, sections) {
         const bibMap = new Map();
@@ -185,7 +227,8 @@ const Calculator = {
                     success: false,
                     error: 'CSVファイルが見つかりません',
                     bibData: [],
-                    sections: []
+                    sections: [],
+                    overlaps: []
                 };
             }
 
@@ -194,6 +237,9 @@ const Calculator = {
             for (const [filename, content] of Object.entries(csvData)) {
                 parsedData[filename] = this.parseCSV(filename, content);
             }
+
+            // 区間の重複をチェック
+            const overlaps = this.checkOverlap(parsedData);
 
             // 区間情報を構築
             const sections = this.buildSections(parsedData);
@@ -211,7 +257,8 @@ const Calculator = {
                 success: true,
                 bibData: bibData,
                 sections: sections,
-                fileCount: Object.keys(csvData).length
+                fileCount: Object.keys(csvData).length,
+                overlaps: overlaps
             };
         } catch (error) {
             console.error('計算エラー:', error);
@@ -219,7 +266,8 @@ const Calculator = {
                 success: false,
                 error: error.message,
                 bibData: [],
-                sections: []
+                sections: [],
+                overlaps: []
             };
         }
     }
