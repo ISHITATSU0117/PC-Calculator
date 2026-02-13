@@ -167,6 +167,16 @@
             font-size: 14px;
         }
 
+        .info-message .info-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .info-message .info-content {
+            line-height: 1.6;
+        }
+
         @media print {
             body {
                 background: white;
@@ -224,7 +234,7 @@
                     if (errorMsg === 'CSVファイルが見つかりません') {
                         showInfo('データはまだアップロードされていません', 
                                 'CSVファイルをアップロードすると、ここに結果が表示されます。');
-                    } else if (errorMsg.includes('Failed to fetch') || errorMsg.includes('fetch')) {
+                    } else if (errorMsg === 'Failed to fetch' || errorMsg.startsWith('TypeError: Failed to fetch')) {
                         showInfo('データを読み込めませんでした', 
                                 'ネットワーク接続を確認するか、しばらくしてからページを再読み込みしてください。<br>' +
                                 'CSVファイルがまだアップロードされていない場合もこのメッセージが表示されます。');
@@ -236,7 +246,8 @@
                 }
             } catch (error) {
                 // 予期しないエラー
-                showError(error.message || 'エラーが発生しました');
+                showInfo('エラーが発生しました', 
+                        'ページを再読み込みしてください。問題が続く場合は管理者に連絡してください。');
             }
         }
 
@@ -322,8 +333,8 @@
         function showInfo(title, message) {
             document.getElementById('resultsTable').innerHTML = 
                 `<div class="info-message">
-                    <div style="font-size: 20px; margin-bottom: 10px; font-weight: bold;">ℹ️ ${title}</div>
-                    <div style="line-height: 1.6;">${message}</div>
+                    <div class="info-title">ℹ️ ${title}</div>
+                    <div class="info-content">${message}</div>
                  </div>`;
         }
 
