@@ -263,15 +263,23 @@
             let html = '<table><thead><tr>';
             html += '<th rowspan="2" class="section-header">ゼッケン</th>';
 
-            // 区間ヘッダー
+            // 区間ヘッダー（設定タイム付き）
             sections.forEach(section => {
-                html += `<th colspan="3" class="section-header">${section.section}</th>`;
+                // 設定タイムを取得
+                const settingTime = bibData[0]?.sections[section.section]?.settingTime;
+                let sectionTitle = section.section;
+                if (settingTime !== null && settingTime !== undefined) {
+                    // 秒を hh:mm:ss.00 形式に変換
+                    const timeStr = Calculator.secondsToTimeString(settingTime);
+                    sectionTitle = `${section.section} ${timeStr}`;
+                }
+                html += `<th colspan="4" class="section-header">${sectionTitle}</th>`;
             });
             html += '</tr><tr>';
 
-            // START/GOAL/通過時間ヘッダー
+            // START/GOAL/通過時間/差分ヘッダー
             sections.forEach(() => {
-                html += '<th>START</th><th>GOAL</th><th>通過時間(秒)</th>';
+                html += '<th>START</th><th>GOAL</th><th>通過時間(秒)</th><th>差分</th>';
             });
             html += '</tr></thead><tbody>';
 
@@ -286,12 +294,26 @@
                         const startTime = sectionData.startTime || '';
                         const goalTime = sectionData.goalTime || '';
                         const duration = sectionData.duration || '';
+                        const difference = sectionData.difference;
 
                         html += `<td class="time">${startTime || '<span class="empty">-</span>'}</td>`;
                         html += `<td class="time">${goalTime || '<span class="empty">-</span>'}</td>`;
                         html += `<td class="duration">${duration || '<span class="empty">-</span>'}</td>`;
+                        
+                        // 差分の表示
+                        if (difference !== null && difference !== undefined) {
+                            const diffValue = parseFloat(difference);
+                            let diffClass = 'duration';
+                            let diffDisplay = difference;
+                            if (diffValue > 0) {
+                                diffDisplay = '+' + difference;
+                            }
+                            html += `<td class="${diffClass}">${diffDisplay}</td>`;
+                        } else {
+                            html += '<td class="empty">-</td>';
+                        }
                     } else {
-                        html += '<td class="empty">-</td><td class="empty">-</td><td class="empty">-</td>';
+                        html += '<td class="empty">-</td><td class="empty">-</td><td class="empty">-</td><td class="empty">-</td>';
                     }
                 });
 

@@ -6,6 +6,7 @@ const CONFIG = {
     GITHUB_REPO: 'PC-Calculator',   // 固定値
     GITHUB_BRANCH: 'main',          // 固定値
     CSV_DIRECTORY: 'csv',           // 固定値
+    SETTING_DIRECTORY: 'setting',   // 固定値
     
     // 自動更新設定
     AUTO_REFRESH_INTERVAL: 120000,  // 120秒（2分）
@@ -26,7 +27,8 @@ const ConfigManager = {
             owner: CONFIG.GITHUB_OWNER,  // 固定値を使用
             repo: CONFIG.GITHUB_REPO,    // 固定値を使用
             branch: CONFIG.GITHUB_BRANCH, // 固定値を使用
-            csvDir: CONFIG.CSV_DIRECTORY  // 固定値を使用
+            csvDir: CONFIG.CSV_DIRECTORY,  // 固定値を使用
+            settingDir: CONFIG.SETTING_DIRECTORY  // 固定値を使用
         };
         return stored;
     },

@@ -240,5 +240,107 @@ const GitHubAPI = {
             console.error('ファイル情報取得エラー:', error);
             throw error;
         }
+    },
+
+    // セクション設定を取得
+    async getSectionSettings() {
+        const config = ConfigManager.load();
+        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.settingDir}/section.csv?ref=${config.branch}`;
+        const headers = this.getHeaders(config.token);
+        
+        try {
+            const response = await fetch(url, { headers });
+            
+            if (!response.ok) {
+                if (response.status === 404) {
+                    // ファイルが存在しない場合は空のマップを返す
+                    return new Map();
+                }
+                throw new Error(`HTTPエラー: ${response.status}`);
+            }
+            
+            const fileData = await response.json();
+            
+            // Base64デコード
+            const content = atob(fileData.content.replace(/\n/g, ''));
+            
+            // CSVをパースしてMapに変換
+            const lines = content.trim().split('\n');
+            const settingsMap = new Map();
+            
+            // ヘッダーをスキップして各行を処理
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+                
+                const parts = line.split(',');
+                if (parts.length >= 2) {
+                    const section = parts[0].trim();
+                    const time = parseFloat(parts[1].trim());
+                    if (section && !isNaN(time)) {
+                        settingsMap.set(section, time);
+                    }
+                }
+            }
+            
+            return settingsMap;
+        } catch (error) {
+            console.error('セクション設定取得エラー:', error);
+            // エラーの場合も空のマップを返す（設定がない場合と同じ扱い）
+            return new Map();
+        }
+    },
+
+    // セクション設定ファイルをアップロード（作成または更新）
+    async uploadSectionSettings(content) {
+        const config = ConfigManager.load();
+        if (!config.token) {
+            throw new Error('GitHub Personal Access Tokenが設定されていません');
+        }
+        
+        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.settingDir}/section.csv`;
+        const headers = this.getHeaders(config.token);
+        headers['Content-Type'] = 'application/json';
+        
+        // 既存ファイルのSHAを取得（更新の場合に必要）
+        let sha = null;
+        try {
+            const existingUrl = `${this.getBaseUrl(config.owner, config.repo)}/${config.settingDir}/section.csv?ref=${config.branch}`;
+            const existingResponse = await fetch(existingUrl, { headers: this.getHeaders(config.token) });
+            if (existingResponse.ok) {
+                const existingData = await existingResponse.json();
+                sha = existingData.sha;
+            }
+        } catch (error) {
+            // ファイルが存在しない場合は新規作成
+        }
+        
+        const body = {
+            message: 'Upload section.csv',
+            content: btoa(unescape(encodeURIComponent(content))),  // UTF-8をBase64にエンコード
+            branch: config.branch
+        };
+        
+        if (sha) {
+            body.sha = sha;  // 更新の場合はSHAが必要
+        }
+        
+        try {
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: headers,
+                body: JSON.stringify(body)
+            });
+            
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`アップロード失敗: ${errorData.message || response.status}`);
+            }
+            
+            return await response.json();
+        } catch (error) {
+            console.error('アップロードエラー:', error);
+            throw error;
+        }
     }
 };
