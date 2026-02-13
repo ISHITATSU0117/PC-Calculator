@@ -458,11 +458,15 @@
 
         function applyFilter(bibNumber) {
             const table = document.querySelector('#resultsTable table');
-            if (!table) return;
+            const filterStatus = document.getElementById('filterStatus');
+            
+            if (!table) {
+                filterStatus.textContent = 'データが読み込まれていません';
+                return;
+            }
 
             const tbody = table.querySelector('tbody');
             const rows = tbody.querySelectorAll('tr');
-            const filterStatus = document.getElementById('filterStatus');
 
             let visibleCount = 0;
             rows.forEach(row => {
@@ -484,11 +488,15 @@
 
         function clearFilter() {
             const table = document.querySelector('#resultsTable table');
-            if (!table) return;
+            const filterStatus = document.getElementById('filterStatus');
+            
+            if (!table) {
+                filterStatus.textContent = 'データが読み込まれていません';
+                return;
+            }
 
             const tbody = table.querySelector('tbody');
             const rows = tbody.querySelectorAll('tr');
-            const filterStatus = document.getElementById('filterStatus');
 
             rows.forEach(row => {
                 row.style.display = '';
