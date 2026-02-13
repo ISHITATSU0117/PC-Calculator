@@ -40,10 +40,51 @@ const GitHubAPI = {
             
             const files = await response.json();
             
-            // CSVファイルのみをフィルタリング
-            return files.filter(file => 
-                file.type === 'file' && file.name.endsWith('.csv')
+            // CSVファイルのみをフィルタリング し、さらに有効なファイル名のみを残す
+            // Note: Calculator.isValidFileNameと同じ検証ロジック（依存関係の都合で重複）
+            const csvFiles = files.filter(file => {
+                if (file.type !== 'file' || !file.name.endsWith('.csv')) {
+                    return false;
+                }
+                // ファイル名の有効性チェック: (PC|CO)数字(START|GOAL)を_で接続
+                const baseName = file.name.replace('.csv', '');
+                const sections = baseName.split('_');
+                
+                // 各セクションが正しい形式かチェック
+                for (const section of sections) {
+                    if (!section.match(/^(PC|CO)\d+(START|GOAL)$/i)) {
+                        console.log(`無効なファイル名をスキップ: ${file.name}`);
+                        return false;
+                    }
+                }
+                
+                return sections.length > 0;
+            });
+            
+            // 各ファイルのコミット情報を取得
+            // Note: これはN個のファイルに対してN個のAPIリクエストを発行しますが、
+            // Promise.allにより並列実行されるため、シーケンシャルなN+1問題よりは効率的です
+            // GitHub APIのレート制限: 認証済み5000req/h、未認証60req/h
+            const filesWithCommits = await Promise.all(
+                csvFiles.map(async (file) => {
+                    try {
+                        const commitUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/commits?path=${config.csvDir}/${file.name}&page=1&per_page=1`;
+                        const commitResponse = await fetch(commitUrl, { headers });
+                        
+                        if (commitResponse.ok) {
+                            const commits = await commitResponse.json();
+                            if (commits.length > 0) {
+                                file.lastCommit = commits[0];
+                            }
+                        }
+                    } catch (error) {
+                        console.error(`コミット情報取得エラー (${file.name}):`, error);
+                    }
+                    return file;
+                })
             );
+            
+            return filesWithCommits;
         } catch (error) {
             console.error('ファイル一覧取得エラー:', error);
             throw error;

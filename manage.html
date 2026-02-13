@@ -335,7 +335,7 @@
             let html = '<div class="file-grid">';
 
             files.forEach((file, index) => {
-                const uploadDate = new Date(file.commit?.author?.date || file.updated_at || Date.now());
+                const uploadDate = new Date(file.lastCommit?.commit?.author?.date || Date.now());
                 const dateStr = uploadDate.toLocaleString('ja-JP', {
                     year: 'numeric',
                     month: '2-digit',

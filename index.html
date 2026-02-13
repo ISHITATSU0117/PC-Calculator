@@ -174,11 +174,36 @@
             font-size: 18px;
             color: #333;
             margin-bottom: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+        }
+
+        .config-section h2:hover {
+            color: #1976d2;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.collapsed {
+            transform: rotate(-90deg);
         }
 
         .config-form {
             display: grid;
             gap: 15px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+
+        .config-form.collapsed {
+            max-height: 0 !important;
+            opacity: 0;
+            margin-top: 0;
         }
 
         .form-group {
@@ -210,6 +235,8 @@
             padding: 12px;
             border-radius: 6px;
             font-size: 14px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         .status.info {
@@ -240,8 +267,11 @@
 
         <!-- 設定セクション -->
         <div class="config-section">
-            <h2>⚙️ GitHub設定</h2>
-            <div class="config-form">
+            <h2 onclick="toggleConfigSection()">
+                <span>⚙️ GitHub設定</span>
+                <span class="toggle-icon collapsed" id="toggleIcon">▼</span>
+            </h2>
+            <div class="config-form collapsed" id="configForm">
                 <div class="form-group">
                     <label>GitHubユーザー名/組織名</label>
                     <input type="text" id="githubOwner" placeholder="例: username">
@@ -311,7 +341,46 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadConfigToForm();
             checkAutoRefreshStatus();
+            initializeConfigSection();
         });
+
+        // 設定セクションの初期化（最初は折りたたむ）
+        function initializeConfigSection() {
+            const configForm = document.getElementById('configForm');
+            const toggleIcon = document.getElementById('toggleIcon');
+            // 初期状態は折りたたまれている
+            configForm.classList.add('collapsed');
+            toggleIcon.classList.add('collapsed');
+        }
+
+        // 設定セクションの展開/折りたたみ
+        function toggleConfigSection() {
+            const configForm = document.getElementById('configForm');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (configForm.classList.contains('collapsed')) {
+                // 展開する - まず高さを計算してから設定
+                const height = configForm.scrollHeight;
+                configForm.style.maxHeight = height + 'px';
+                configForm.classList.remove('collapsed');
+                toggleIcon.classList.remove('collapsed');
+                
+                // アニメーション完了後にmaxHeightを削除（動的コンテンツ対応）
+                setTimeout(() => {
+                    if (!configForm.classList.contains('collapsed')) {
+                        configForm.style.maxHeight = 'none';
+                    }
+                }, 300);
+            } else {
+                // 折りたたむ - まず現在の高さを設定してからアニメーション
+                configForm.style.maxHeight = configForm.scrollHeight + 'px';
+                // 強制的にリフローを発生させる
+                configForm.offsetHeight;
+                configForm.style.maxHeight = '0';
+                configForm.classList.add('collapsed');
+                toggleIcon.classList.add('collapsed');
+            }
+        }
 
         // 設定をフォームに読み込む
         function loadConfigToForm() {
@@ -354,7 +423,43 @@
             const result = await Calculator.calculate();
 
             if (result.success) {
-                showStatus('calcStatus', `計算完了: ${result.fileCount}ファイル、${result.bibData.length}ゼッケン`, 'success');
+                let message = `計算完了: ${result.fileCount}ファイル、${result.bibData.length}ゼッケン`;
+                let statusType = 'success';
+                let hasErrors = false;
+                
+                // 区間重複エラーがある場合
+                if (result.overlaps && result.overlaps.length > 0) {
+                    statusType = 'error';
+                    hasErrors = true;
+                    message = '⚠️ エラー: ファイル名で区間の重複があります\n\n';
+                    result.overlaps.forEach(overlap => {
+                        message += `• ${overlap.file1} と ${overlap.file2} で ${overlap.section}${overlap.type} が重複しています\n`;
+                    });
+                    message += '\n重複している区間の時刻は表示されません。\n同じ区間の同じタイプ（START/GOAL）は1つのファイルにのみ含めてください。';
+                }
+                
+                // ゼッケン番号重複エラーがある場合
+                if (result.bibNumberDuplicates && result.bibNumberDuplicates.length > 0) {
+                    statusType = 'error';
+                    if (hasErrors) {
+                        message += '\n\n';
+                    } else {
+                        message = '';
+                        hasErrors = true;
+                    }
+                    message += '⚠️ エラー: 同じ区間で同じゼッケン番号が複数回出現しています\n\n';
+                    result.bibNumberDuplicates.forEach(dup => {
+                        message += `• ゼッケン ${dup.bibNumber} が ${dup.section}${dup.type} で複数回出現: ${dup.files.join(', ')}\n`;
+                    });
+                    message += '\n重複しているゼッケンの時刻は表示されません。';
+                }
+                
+                // エラーがない場合は成功メッセージ
+                if (!hasErrors) {
+                    message = `計算完了: ${result.fileCount}ファイル、${result.bibData.length}ゼッケン`;
+                }
+                
+                showStatus('calcStatus', message, statusType);
             } else {
                 showStatus('calcStatus', `エラー: ${result.error}`, 'error');
             }
