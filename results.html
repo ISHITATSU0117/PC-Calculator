@@ -167,6 +167,86 @@
             font-size: 14px;
         }
 
+        .filter-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .filter-input {
+            padding: 10px 15px;
+            border: 2px solid #1976d2;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 200px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .filter-input:focus {
+            border-color: #1565c0;
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+        }
+
+        .filter-button {
+            padding: 10px 24px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .filter-button:hover {
+            background: #1565c0;
+        }
+
+        .filter-button:active {
+            transform: translateY(1px);
+        }
+
+        .clear-button {
+            padding: 10px 24px;
+            background: #757575;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .clear-button:hover {
+            background: #616161;
+        }
+
+        .clear-button:active {
+            transform: translateY(1px);
+        }
+
+        .filter-status {
+            font-size: 14px;
+            color: #1976d2;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
         @media print {
             body {
                 background: white;
@@ -189,6 +269,20 @@
             <div id="lastUpdateDisplay" class="last-update">読み込み中...</div>
         </header>
 
+        <div class="filter-container">
+            <label for="bibFilter" class="filter-label">🔍 ゼッケン番号:</label>
+            <input 
+                type="number" 
+                id="bibFilter" 
+                class="filter-input" 
+                placeholder="番号を入力"
+                min="1"
+            >
+            <button id="filterButton" class="filter-button">フィルター</button>
+            <button id="clearButton" class="clear-button">クリア</button>
+            <span id="filterStatus" class="filter-status"></span>
+        </div>
+
         <div class="results-container">
             <div id="resultsTable" class="loading">
                 <div class="spinner"></div>
@@ -203,6 +297,7 @@
     <script>
         // ページ読み込み時に自動的に結果を表示
         document.addEventListener('DOMContentLoaded', () => {
+            setupFilter(); // フィルター機能を初期化
             loadAndDisplayResults();
         });
 
@@ -328,6 +423,80 @@
         function showError(message) {
             document.getElementById('resultsTable').innerHTML = 
                 `<div class="error-message">❌ ${message}</div>`;
+        }
+
+        // フィルター機能
+        let allRows = []; // すべての行を保存
+
+        function setupFilter() {
+            const filterButton = document.getElementById('filterButton');
+            const clearButton = document.getElementById('clearButton');
+            const filterInput = document.getElementById('bibFilter');
+            const filterStatus = document.getElementById('filterStatus');
+
+            // フィルターボタンのクリックイベント
+            filterButton.addEventListener('click', () => {
+                const filterValue = filterInput.value.trim();
+                if (!filterValue) {
+                    filterStatus.textContent = '番号を入力してください';
+                    return;
+                }
+                applyFilter(filterValue);
+            });
+
+            // クリアボタンのクリックイベント
+            clearButton.addEventListener('click', () => {
+                clearFilter();
+                filterInput.value = '';
+            });
+
+            // Enterキーでフィルター実行
+            filterInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    filterButton.click();
+                }
+            });
+        }
+
+        function applyFilter(bibNumber) {
+            const table = document.querySelector('#resultsTable table');
+            if (!table) return;
+
+            const tbody = table.querySelector('tbody');
+            const rows = tbody.querySelectorAll('tr');
+            const filterStatus = document.getElementById('filterStatus');
+
+            let visibleCount = 0;
+            rows.forEach(row => {
+                const bibCell = row.querySelector('.bib-number');
+                if (bibCell && bibCell.textContent.trim() === bibNumber) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            if (visibleCount > 0) {
+                filterStatus.textContent = `${visibleCount}件表示中`;
+            } else {
+                filterStatus.textContent = '該当するゼッケンが見つかりません';
+            }
+        }
+
+        function clearFilter() {
+            const table = document.querySelector('#resultsTable table');
+            if (!table) return;
+
+            const tbody = table.querySelector('tbody');
+            const rows = tbody.querySelectorAll('tr');
+            const filterStatus = document.getElementById('filterStatus');
+
+            rows.forEach(row => {
+                row.style.display = '';
+            });
+
+            filterStatus.textContent = '';
         }
 
         // 定期的に再読み込み（オプション）
