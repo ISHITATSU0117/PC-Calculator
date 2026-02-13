@@ -283,6 +283,45 @@ const Calculator = {
         });
     },
 
+    // 秒を時刻形式（hh:mm:ss.00）に変換
+    secondsToTimeString(seconds) {
+        if (seconds === null || seconds === undefined || isNaN(seconds)) {
+            return '-';
+        }
+        
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        
+        const hh = String(hours).padStart(2, '0');
+        const mm = String(minutes).padStart(2, '0');
+        const ss = secs.toFixed(2).padStart(5, '0');
+        
+        return `${hh}:${mm}:${ss}`;
+    },
+
+    // 差分を計算（実際の通過時間 - 設定時間）
+    calculateDifferences(bibData, sections, sectionSettings) {
+        bibData.forEach(bib => {
+            sections.forEach(section => {
+                const sectionData = bib.sections[section.section];
+                const settingTime = sectionSettings.get(section.section);
+                
+                // 設定タイムは常に設定
+                sectionData.settingTime = settingTime !== undefined ? settingTime : null;
+                
+                // 差分の計算
+                if (sectionData && sectionData.duration !== null && settingTime !== undefined && settingTime !== null) {
+                    const actualTime = parseFloat(sectionData.duration);
+                    const difference = actualTime - settingTime;
+                    sectionData.difference = difference.toFixed(2);
+                } else {
+                    sectionData.difference = null;
+                }
+            });
+        });
+    },
+
     // 時刻を秒に変換（HH:MM:SS.ms 形式）
     timeToSeconds(timeStr) {
         try {
@@ -341,6 +380,12 @@ const Calculator = {
             // 通過時間を計算
             this.calculateDurations(bibData, sections);
 
+            // セクション設定を取得
+            const sectionSettings = await GitHubAPI.getSectionSettings();
+
+            // 差分を計算
+            this.calculateDifferences(bibData, sections, sectionSettings);
+
             // 最終計算時刻を保存
             ConfigManager.saveLastCalculation();
 
@@ -350,7 +395,8 @@ const Calculator = {
                 sections: sections,
                 fileCount: Object.keys(csvData).length,
                 overlaps: overlaps,
-                bibNumberDuplicates: bibNumberDuplicates
+                bibNumberDuplicates: bibNumberDuplicates,
+                sectionSettings: sectionSettings
             };
         } catch (error) {
             console.error('計算エラー:', error);
