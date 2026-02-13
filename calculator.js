@@ -257,11 +257,11 @@ const Calculator = {
             }
         }
 
-        // ゼッケン番号でソート
+        // ゼッケン番号でソート（若番が下に来るように降順）
         const bibData = Array.from(bibMap.values()).sort((a, b) => {
             const aNum = parseInt(a.bibNumber);
             const bNum = parseInt(b.bibNumber);
-            return aNum - bNum;
+            return bNum - aNum;  // 降順に変更
         });
 
         return { bibData, bibNumberDuplicates };
@@ -292,6 +292,12 @@ const Calculator = {
             const hours = parseInt(parts[0]);
             const minutes = parseInt(parts[1]);
             const seconds = parseFloat(parts[2]);
+
+            // NaNチェック
+            if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+                console.error('時刻変換エラー: 無効な数値', timeStr);
+                return null;
+            }
 
             return hours * 3600 + minutes * 60 + seconds;
         } catch (error) {
