@@ -289,6 +289,7 @@ Personal Access Token（PAT）のセキュリティ
 - A: プルリクエストをmainブランチにマージする必要があります
 - A: マージ後、GitHub Actionsのデプロイ完了（1〜3分）を待ってください
 - A: ブラウザのキャッシュをクリア（`Ctrl+Shift+R` / `Cmd+Shift+R`）してください
+- マージ方法: [HOW_TO_MERGE_PR_JA.md](HOW_TO_MERGE_PR_JA.md) を参照
 - 詳細: [DEPLOYMENT.md](DEPLOYMENT.md) を参照
 
 ### デバッグ方法

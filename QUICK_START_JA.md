@@ -2,6 +2,9 @@
 
 ## ❓ 変更がwebページに反映されない場合
 
+> 💡 **"Merge pull request" ボタンの場所がわからない方へ**  
+> 詳しい手順は [マージ方法の詳細ガイド（HOW_TO_MERGE_PR_JA.md）](HOW_TO_MERGE_PR_JA.md) をご覧ください。
+
 ### 簡単な答え：
 
 **PRをmainブランチにマージしてください。マージ後、1〜3分で自動的にデプロイされます。**
@@ -9,8 +12,9 @@
 ### 手順：
 
 1. **GitHubでPRをマージ** ⬅️ これが最も重要！
-   - PRページを開く
-   - 「Merge pull request」をクリック
+   - PRページを開く（わからない場合は [詳細ガイド](HOW_TO_MERGE_PR_JA.md) 参照）
+   - ページ一番下までスクロール
+   - 緑色の「Merge pull request」ボタンをクリック
    - 「Confirm merge」をクリック
 
 2. **デプロイ完了を待つ（1〜3分）**

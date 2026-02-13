@@ -19,11 +19,15 @@
 
 ### 1. プルリクエストをマージする
 
+> 💡 **マージボタンの場所がわからない方へ**  
+> 詳しい手順とスクリーンショット付きの説明は [HOW_TO_MERGE_PR_JA.md](HOW_TO_MERGE_PR_JA.md) をご覧ください。
+
 ```bash
 # GitHubのウェブインターフェースで:
 # 1. PRページに移動
-# 2. "Merge pull request" ボタンをクリック
-# 3. "Confirm merge" をクリック
+# 2. ページを一番下までスクロール
+# 3. 緑色の "Merge pull request" ボタンをクリック
+# 4. "Confirm merge" をクリック
 ```
 
 ### 2. デプロイメントの完了を待つ
