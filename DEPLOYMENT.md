@@ -8,7 +8,7 @@
 
 1. **プルリクエスト（PR）はまだマージされていません**
    - PRの変更はmainブランチにマージされるまで、公開サイトには反映されません
-   - 現在のPRブランチ: `copilot/fix-webpage-reflection-issue`
+   - PRブランチの変更は公開サイトには表示されません
    - 公開サイト: mainブランチの内容のみ
 
 2. **GitHub Actionsワークフローの確認**
@@ -94,8 +94,8 @@
 git clone https://github.com/ISHITATSU0117/PC-Calculator.git
 cd PC-Calculator
 
-# PRブランチをチェックアウト
-git checkout copilot/fix-webpage-reflection-issue
+# PRブランチをチェックアウト（ブランチ名は適宜変更してください）
+git checkout <your-pr-branch-name>
 
 # ローカルサーバーを起動
 # Pythonを使用する場合:

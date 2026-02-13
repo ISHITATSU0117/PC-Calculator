@@ -71,8 +71,8 @@ webページに反映される 🎉
 git clone https://github.com/ISHITATSU0117/PC-Calculator.git
 cd PC-Calculator
 
-# PRブランチに切り替え
-git checkout copilot/fix-webpage-reflection-issue
+# PRブランチに切り替え（ブランチ名は適宜変更してください）
+git checkout <your-pr-branch-name>
 
 # ローカルサーバー起動
 python -m http.server 8000
