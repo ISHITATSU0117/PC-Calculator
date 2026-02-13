@@ -305,21 +305,18 @@ const Calculator = {
         bibData.forEach(bib => {
             sections.forEach(section => {
                 const sectionData = bib.sections[section.section];
-                if (sectionData && sectionData.duration !== null) {
-                    const settingTime = sectionSettings.get(section.section);
-                    if (settingTime !== undefined && settingTime !== null) {
-                        const actualTime = parseFloat(sectionData.duration);
-                        const difference = actualTime - settingTime;
-                        sectionData.difference = difference.toFixed(2);
-                        sectionData.settingTime = settingTime;
-                    } else {
-                        // 設定がない場合は差分なし
-                        sectionData.difference = null;
-                        sectionData.settingTime = null;
-                    }
+                const settingTime = sectionSettings.get(section.section);
+                
+                // 設定タイムは常に設定
+                sectionData.settingTime = settingTime !== undefined ? settingTime : null;
+                
+                // 差分の計算
+                if (sectionData && sectionData.duration !== null && settingTime !== undefined && settingTime !== null) {
+                    const actualTime = parseFloat(sectionData.duration);
+                    const difference = actualTime - settingTime;
+                    sectionData.difference = difference.toFixed(2);
                 } else {
                     sectionData.difference = null;
-                    sectionData.settingTime = sectionSettings.get(section.section) || null;
                 }
             });
         });

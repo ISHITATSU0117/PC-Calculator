@@ -303,12 +303,11 @@
                         // 差分の表示
                         if (difference !== null && difference !== undefined) {
                             const diffValue = parseFloat(difference);
-                            let diffClass = 'duration';
                             let diffDisplay = difference;
                             if (diffValue > 0) {
                                 diffDisplay = '+' + difference;
                             }
-                            html += `<td class="${diffClass}">${diffDisplay}</td>`;
+                            html += `<td class="duration">${diffDisplay}</td>`;
                         } else {
                             html += '<td class="empty">-</td>';
                         }
