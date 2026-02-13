@@ -271,7 +271,7 @@
                 if (settingTime !== null && settingTime !== undefined) {
                     // 秒を hh:mm:ss.00 形式に変換
                     const timeStr = Calculator.secondsToTimeString(settingTime);
-                    sectionTitle = `${section.section} ${timeStr}`;
+                    sectionTitle = `${section.section} (${timeStr})`;
                 }
                 html += `<th colspan="4" class="section-header">${sectionTitle}</th>`;
             });

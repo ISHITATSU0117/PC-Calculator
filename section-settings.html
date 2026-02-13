@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>区間設定管理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #5568d3;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        button.success {
+            background: #28a745;
+        }
+
+        button.success:hover:not(:disabled) {
+            background: #218838;
+        }
+
+        .settings-table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        td input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        td input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e3f2fd;
+        }
+
+        .action-cell {
+            text-align: center;
+            width: 100px;
+        }
+
+        .delete-btn {
+            padding: 6px 12px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #c82333;
+        }
+
+        .status {
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .empty-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            color: #1976d2;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #555;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← 管理画面に戻る</a>
+            <h1>⚙️ 区間設定管理</h1>
+            <div style="width: 100px;"></div> <!-- スペーサー -->
+        </header>
+
+        <div class="info-box">
+            <h3>📋 区間設定について</h3>
+            <p>
+                各区間の目標タイム（秒単位）を設定できます。<br>
+                設定したタイムは結果画面で実際の通過時間との差分表示に使用されます。
+            </p>
+        </div>
+
+        <div class="controls">
+            <button onclick="loadSettings()">🔄 再読み込み</button>
+            <button onclick="addRow()">➕ 行を追加</button>
+            <button class="success" onclick="saveSettings()">💾 保存</button>
+        </div>
+
+        <div id="statusArea"></div>
+
+        <div class="settings-table-container">
+            <div id="settingsTable" class="loading">
+                <div class="spinner"></div>
+                <div>設定を読み込んでいます...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script>
+        let settings = [];
+        let nextId = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSettings();
+        });
+
+        // 設定を読み込み
+        async function loadSettings() {
+            const tableDiv = document.getElementById('settingsTable');
+            tableDiv.innerHTML = '<div class="loading"><div class="spinner"></div><div>設定を読み込んでいます...</div></div>';
+            
+            // 設定チェック
+            if (!ConfigManager.isConfigured()) {
+                showStatus('GitHub設定が完了していません', 'error');
+                tableDiv.innerHTML = '<div class="empty-state"><div class="empty-icon">⚙️</div><div>GitHub設定が必要です</div></div>';
+                return;
+            }
+
+            try {
+                const settingsMap = await GitHubAPI.getSectionSettings();
+                
+                // Mapを配列に変換
+                settings = [];
+                nextId = 0;
+                settingsMap.forEach((time, section) => {
+                    settings.push({
+                        id: nextId++,
+                        section: section,
+                        time: time
+                    });
+                });
+
+                // 区間名でソート（PC1, PC2, ..., CO1, CO2, ...）
+                settings.sort((a, b) => {
+                    const matchA = a.section.match(/^(PC|CO)(\d+)$/);
+                    const matchB = b.section.match(/^(PC|CO)(\d+)$/);
+                    
+                    if (matchA && matchB) {
+                        if (matchA[1] !== matchB[1]) {
+                            return matchA[1] === 'PC' ? -1 : 1;
+                        }
+                        return parseInt(matchA[2]) - parseInt(matchB[2]);
+                    }
+                    return a.section.localeCompare(b.section);
+                });
+
+                displaySettings();
+                
+                if (settings.length === 0) {
+                    showStatus('区間設定がありません。行を追加して設定を作成してください。', 'info');
+                } else {
+                    showStatus(`${settings.length} 件の設定を読み込みました`, 'success');
+                }
+            } catch (error) {
+                console.error('設定読み込みエラー:', error);
+                showStatus(`エラー: ${error.message}`, 'error');
+                tableDiv.innerHTML = '<div class="empty-state"><div class="empty-icon">❌</div><div>読み込みに失敗しました</div></div>';
+            }
+        }
+
+        // 設定を表示
+        function displaySettings() {
+            const tableDiv = document.getElementById('settingsTable');
+            
+            if (settings.length === 0) {
+                tableDiv.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📝</div>
+                        <div>区間設定がありません</div>
+                        <div style="font-size: 14px; margin-top: 10px;">「行を追加」ボタンから設定を追加してください</div>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '<table><thead><tr>';
+            html += '<th>区間名</th>';
+            html += '<th>目標タイム（秒）</th>';
+            html += '<th class="action-cell">操作</th>';
+            html += '</tr></thead><tbody>';
+
+            settings.forEach((setting, index) => {
+                html += '<tr>';
+                html += `<td><input type="text" value="${setting.section}" onchange="updateSetting(${index}, 'section', this.value)" placeholder="例: PC1"></td>`;
+                html += `<td><input type="number" step="0.01" value="${setting.time}" onchange="updateSetting(${index}, 'time', this.value)" placeholder="例: 25.00"></td>`;
+                html += `<td class="action-cell"><button class="delete-btn" onclick="deleteRow(${index})">🗑️ 削除</button></td>`;
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            tableDiv.innerHTML = html;
+        }
+
+        // 設定を更新
+        function updateSetting(index, field, value) {
+            if (field === 'section') {
+                settings[index].section = value.trim();
+            } else if (field === 'time') {
+                const parsedValue = parseFloat(value);
+                settings[index].time = isNaN(parsedValue) ? 0 : parsedValue;
+            }
+        }
+
+        // 行を追加
+        function addRow() {
+            settings.push({
+                id: nextId++,
+                section: '',
+                time: 0
+            });
+            displaySettings();
+            showStatus('新しい行を追加しました。区間名とタイムを入力してください。', 'info');
+        }
+
+        // 行を削除
+        function deleteRow(index) {
+            const setting = settings[index];
+            const confirmed = confirm(`${setting.section || '(空)'} を削除しますか？`);
+            if (!confirmed) return;
+
+            settings.splice(index, 1);
+            displaySettings();
+            showStatus('行を削除しました。保存ボタンを押して確定してください。', 'warning');
+        }
+
+        // 設定を保存
+        async function saveSettings() {
+            // 設定チェック
+            const config = ConfigManager.load();
+            if (!config.token) {
+                showStatus('Personal Access Tokenが設定されていません', 'error');
+                return;
+            }
+
+            // バリデーション
+            for (let i = 0; i < settings.length; i++) {
+                const setting = settings[i];
+                if (!setting.section || setting.section.trim() === '') {
+                    showStatus(`エラー: ${i + 1}行目の区間名が空です`, 'error');
+                    return;
+                }
+                if (isNaN(setting.time) || setting.time < 0) {
+                    showStatus(`エラー: ${i + 1}行目のタイムが無効です`, 'error');
+                    return;
+                }
+            }
+
+            showStatus('保存中...', 'info');
+
+            try {
+                // CSV形式に変換
+                let csvContent = 'section,time\n';
+                settings.forEach(setting => {
+                    const timeValue = isNaN(setting.time) ? 0 : setting.time;
+                    csvContent += `${setting.section},${timeValue.toFixed(2)}\n`;
+                });
+
+                // GitHubにアップロード
+                await GitHubAPI.uploadSectionSettings(csvContent);
+                
+                showStatus('✅ 設定を保存しました', 'success');
+            } catch (error) {
+                console.error('保存エラー:', error);
+                showStatus(`❌ 保存に失敗しました: ${error.message}`, 'error');
+            }
+        }
+
+        // ステータスメッセージ表示
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('statusArea');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+    </script>
+</body>
+</html>
