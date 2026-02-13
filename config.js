@@ -13,10 +13,6 @@ const CONFIG = {
     // ローカルストレージキー
     STORAGE_KEYS: {
         GITHUB_TOKEN: 'github_token',
-        GITHUB_OWNER: 'github_owner',
-        GITHUB_REPO: 'github_repo',
-        GITHUB_BRANCH: 'github_branch',
-        CSV_DIRECTORY: 'csv_directory',
         LAST_CALCULATION: 'last_calculation_time'
     }
 };
