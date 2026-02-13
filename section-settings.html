@@ -369,7 +369,8 @@
             if (field === 'section') {
                 settings[index].section = value.trim();
             } else if (field === 'time') {
-                settings[index].time = parseFloat(value);
+                const parsedValue = parseFloat(value);
+                settings[index].time = isNaN(parsedValue) ? 0 : parsedValue;
             }
         }
 
@@ -423,7 +424,8 @@
                 // CSV形式に変換
                 let csvContent = 'section,time\n';
                 settings.forEach(setting => {
-                    csvContent += `${setting.section},${setting.time.toFixed(2)}\n`;
+                    const timeValue = isNaN(setting.time) ? 0 : setting.time;
+                    csvContent += `${setting.section},${timeValue.toFixed(2)}\n`;
                 });
 
                 // GitHubにアップロード
