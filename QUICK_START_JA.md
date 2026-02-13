@@ -110,5 +110,4 @@ A: [Actionsタブ](https://github.com/ISHITATSU0117/PC-Calculator/actions)でエ
 
 ---
 
-**作成日**: 2026年2月  
-**最終更新**: 2026年2月
+**作成日**: 2026年2月13日
