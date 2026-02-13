@@ -1,0 +1,4 @@
+measurer,type,time,number
+測定者1,START,09:00:00,101
+測定者1,START,09:00:15,102
+測定者1,START,09:00:30,103
