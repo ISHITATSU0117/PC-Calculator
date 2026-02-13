@@ -223,9 +223,9 @@ const Calculator = {
         const bibNumberDuplicates = [];
         for (const [bibKey, occurrences] of Object.entries(bibOccurrences)) {
             const parts = bibKey.split('_');
-            const section = parts[0] + parts[1]; // e.g., "PC1"
-            const type = parts[2]; // "START" or "GOAL"
-            const bibNumber = parts[3];
+            const section = parts[0]; // e.g., "PC1"
+            const type = parts[1]; // "START" or "GOAL"
+            const bibNumber = parts[2];
             
             const intervalKey = `${section}_${type}`;
             const isOverlapping = overlappingIntervals.has(intervalKey);
