@@ -218,10 +218,25 @@
                 if (result.success) {
                     displayResults(result.bibData, result.sections);
                 } else {
-                    showError(`計算エラー: ${result.error}`);
+                    // エラーメッセージに応じた表示
+                    const errorMsg = result.error || '';
+                    
+                    if (errorMsg === 'CSVファイルが見つかりません') {
+                        showInfo('データはまだアップロードされていません', 
+                                'CSVファイルをアップロードすると、ここに結果が表示されます。');
+                    } else if (errorMsg.includes('Failed to fetch') || errorMsg.includes('fetch')) {
+                        showInfo('データを読み込めませんでした', 
+                                'ネットワーク接続を確認するか、しばらくしてからページを再読み込みしてください。<br>' +
+                                'CSVファイルがまだアップロードされていない場合もこのメッセージが表示されます。');
+                    } else if (errorMsg === 'GitHub設定が完了していません') {
+                        showError('GitHub設定が必要です。管理者に連絡してください。');
+                    } else {
+                        showError(errorMsg);
+                    }
                 }
             } catch (error) {
-                showError(`エラーが発生しました: ${error.message}`);
+                // 予期しないエラー
+                showError(error.message || 'エラーが発生しました');
             }
         }
 
@@ -242,7 +257,7 @@
                 });
                 display.textContent = `最終更新: ${formatted}`;
             } else {
-                display.textContent = '最終更新: 未計算';
+                display.textContent = '最終更新: データ取得中';
             }
         }
 
@@ -301,6 +316,15 @@
         function showError(message) {
             document.getElementById('resultsTable').innerHTML = 
                 `<div class="error-message">❌ ${message}</div>`;
+        }
+
+        // 情報メッセージ表示
+        function showInfo(title, message) {
+            document.getElementById('resultsTable').innerHTML = 
+                `<div class="info-message">
+                    <div style="font-size: 20px; margin-bottom: 10px; font-weight: bold;">ℹ️ ${title}</div>
+                    <div style="line-height: 1.6;">${message}</div>
+                 </div>`;
         }
 
         // 定期的に再読み込み（オプション）
