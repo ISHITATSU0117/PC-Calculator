@@ -208,16 +208,13 @@
 
         // 結果を読み込んで表示
         async function loadAndDisplayResults() {
-            // 最終計算時刻を表示
-            displayLastCalculationTime();
-
-            // 設定チェック
-            if (!ConfigManager.isConfigured()) {
-                showError('GitHub設定が完了していません。管理者に連絡してください。');
-                return;
-            }
-
             try {
+                // 設定チェック
+                if (!ConfigManager.isConfigured()) {
+                    showError('GitHub設定が完了していません。管理者に連絡してください。');
+                    return;
+                }
+
                 // 計算実行
                 const result = await Calculator.calculate();
 
@@ -228,6 +225,9 @@
                 }
             } catch (error) {
                 showError(`エラーが発生しました: ${error.message}`);
+            } finally {
+                // 計算完了後または失敗時に最終計算時刻を表示
+                displayLastCalculationTime();
             }
         }
 
@@ -246,9 +246,9 @@
                     minute: '2-digit',
                     second: '2-digit'
                 });
-                display.textContent = `最終更新: ${formatted}`;
+                display.textContent = `計算実行時刻: ${formatted}`;
             } else {
-                display.textContent = '最終更新: 未計算';
+                display.textContent = '計算実行時刻: 未計算';
             }
         }
 
