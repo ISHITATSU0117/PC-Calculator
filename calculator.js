@@ -171,6 +171,7 @@ const Calculator = {
             });
 
             // section.csvに設定されていないファイルを記録
+            // ファイル内のすべての区間がsection.csvに設定されていない場合のみエラー
             if (!matched) {
                 unmatchedFiles.push(filename);
             }
