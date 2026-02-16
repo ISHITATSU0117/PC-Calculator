@@ -328,7 +328,7 @@ const GitHubAPI = {
                     const time = parseFloat(parts[1].trim());
                     const group = parseInt(parts[2].trim());
                     
-                    if (section && !isNaN(time) && !isNaN(group) && group > 0) {
+                    if (section && section.length > 0 && !isNaN(time) && !isNaN(group) && group > 0) {
                         sections.push({
                             section: section,
                             time: time,

@@ -125,7 +125,7 @@ const Calculator = {
             const sectionName = config.section;
             
             // PCGセクションの場合は特別処理
-            if (sectionName.startsWith('PCG')) {
+            if (sectionName.toUpperCase().startsWith('PCG')) {
                 sections.push({
                     category: 'PCG',
                     number: config.group,
@@ -346,7 +346,10 @@ const Calculator = {
                         !s.isPCG && s.group === section.group
                     ).sort((a, b) => a.number - b.number);
                     
-                    if (groupSections.length >= 2) {
+                    if (groupSections.length < 2) {
+                        // PCG計算には最低2つのPC区間が必要
+                        console.warn(`PCG ${section.section}: グループ ${section.group} には ${groupSections.length} 個のPC区間しかありません。PCG計算には最低2個必要です。`);
+                    } else {
                         const firstSection = groupSections[0];
                         const lastSection = groupSections[groupSections.length - 1];
                         
