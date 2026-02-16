@@ -508,8 +508,9 @@ const Calculator = {
 
             // 最終計算時刻を保存
             ConfigManager.saveLastCalculation();
-
-            return {
+            
+            // 計算結果を保存
+            const calculationResults = {
                 success: true,
                 bibData: bibData,
                 sections: sections,
@@ -519,6 +520,9 @@ const Calculator = {
                 sectionSettings: sectionSettings,
                 unmatchedFiles: unmatchedFiles
             };
+            ConfigManager.saveCalculationResults(calculationResults);
+
+            return calculationResults;
         } catch (error) {
             console.error('計算エラー:', error);
             return {

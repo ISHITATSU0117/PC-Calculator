@@ -363,13 +363,21 @@
                     return;
                 }
 
-                // 計算実行
-                const result = await Calculator.calculate();
-
-                if (result.success) {
-                    displayResults(result.bibData, result.sections);
+                // キャッシュされた計算結果を取得
+                const cachedResult = ConfigManager.getCalculationResults();
+                
+                if (cachedResult && cachedResult.success) {
+                    // キャッシュされた結果を表示
+                    displayResults(cachedResult.bibData, cachedResult.sections);
                 } else {
-                    showError(`計算エラー: ${result.error}`);
+                    // キャッシュがない場合は計算を実行
+                    const result = await Calculator.calculate();
+
+                    if (result.success) {
+                        displayResults(result.bibData, result.sections);
+                    } else {
+                        showError(`計算エラー: ${result.error}`);
+                    }
                 }
             } catch (error) {
                 showError(`エラーが発生しました: ${error.message}`);
