@@ -168,15 +168,32 @@
         }
 
         .filter-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
             margin-bottom: 20px;
             padding: 20px;
             background: #f8f9fa;
             border-radius: 8px;
             border: 2px solid #e0e0e0;
+        }
+
+        .filter-buttons-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .filter-inputs-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-input-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .filter-label {
@@ -190,7 +207,7 @@
             border: 2px solid #1976d2;
             border-radius: 6px;
             font-size: 16px;
-            width: 200px;
+            width: 150px;
             outline: none;
             transition: border-color 0.3s;
         }
@@ -240,11 +257,41 @@
             transform: translateY(1px);
         }
 
+        .add-button, .remove-button {
+            padding: 8px 16px;
+            background: #43a047;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-button:hover {
+            background: #388e3c;
+        }
+
+        .remove-button {
+            background: #e53935;
+        }
+
+        .remove-button:hover {
+            background: #c62828;
+        }
+
         .filter-status {
             font-size: 14px;
             color: #1976d2;
             font-weight: 600;
-            margin-left: 10px;
+            text-align: center;
+            margin-top: 10px;
         }
 
         @media print {
@@ -270,17 +317,23 @@
         </header>
 
         <div class="filter-container">
-            <label for="bibFilter" class="filter-label">🔍 ゼッケン番号:</label>
-            <input 
-                type="number" 
-                id="bibFilter" 
-                class="filter-input" 
-                placeholder="番号を入力"
-                min="1"
-            >
-            <button id="filterButton" class="filter-button">フィルター</button>
-            <button id="clearButton" class="clear-button">クリア</button>
-            <span id="filterStatus" class="filter-status"></span>
+            <div class="filter-buttons-row">
+                <button id="filterButton" class="filter-button">フィルター</button>
+                <button id="clearButton" class="clear-button">全表示</button>
+            </div>
+            <div id="filterInputsContainer" class="filter-inputs-container">
+                <div class="filter-input-row">
+                    <label class="filter-label">🔍 ゼッケン番号:</label>
+                    <input 
+                        type="number" 
+                        class="filter-input bib-filter-input" 
+                        placeholder="番号を入力"
+                        min="1"
+                    >
+                    <button class="add-button" onclick="addFilterInput()">+</button>
+                </div>
+            </div>
+            <div id="filterStatus" class="filter-status"></div>
         </div>
 
         <div class="results-container">
@@ -429,34 +482,77 @@
         function setupFilter() {
             const filterButton = document.getElementById('filterButton');
             const clearButton = document.getElementById('clearButton');
-            const filterInput = document.getElementById('bibFilter');
             const filterStatus = document.getElementById('filterStatus');
 
             // フィルターボタンのクリックイベント
             filterButton.addEventListener('click', () => {
-                const filterValue = filterInput.value.trim();
-                if (!filterValue) {
+                const filterValues = getFilterValues();
+                if (filterValues.length === 0) {
                     filterStatus.textContent = '番号を入力してください';
                     return;
                 }
-                applyFilter(filterValue);
+                applyFilter(filterValues);
             });
 
-            // クリアボタンのクリックイベント
+            // 全表示ボタンのクリックイベント（入力欄はクリアしない）
             clearButton.addEventListener('click', () => {
                 clearFilter();
-                filterInput.value = '';
             });
 
             // Enterキーでフィルター実行
-            filterInput.addEventListener('keypress', (e) => {
+            document.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    filterButton.click();
+                    const target = e.target;
+                    if (target.classList.contains('bib-filter-input')) {
+                        filterButton.click();
+                    }
                 }
             });
         }
 
-        function applyFilter(bibNumber) {
+        // すべての入力欄から値を取得
+        function getFilterValues() {
+            const inputs = document.querySelectorAll('.bib-filter-input');
+            const values = [];
+            inputs.forEach(input => {
+                const value = input.value.trim();
+                if (value) {
+                    values.push(value);
+                }
+            });
+            return values;
+        }
+
+        // フィルター入力欄を追加
+        function addFilterInput() {
+            const container = document.getElementById('filterInputsContainer');
+            const newRow = document.createElement('div');
+            newRow.className = 'filter-input-row';
+            newRow.innerHTML = `
+                <label class="filter-label">🔍 ゼッケン番号:</label>
+                <input 
+                    type="number" 
+                    class="filter-input bib-filter-input" 
+                    placeholder="番号を入力"
+                    min="1"
+                >
+                <button class="add-button" onclick="addFilterInput()">+</button>
+                <button class="remove-button" onclick="removeFilterInput(this)">×</button>
+            `;
+            container.appendChild(newRow);
+        }
+
+        // フィルター入力欄を削除
+        function removeFilterInput(button) {
+            const row = button.parentElement;
+            const container = document.getElementById('filterInputsContainer');
+            // 最低1つの入力欄は残す
+            if (container.children.length > 1) {
+                container.removeChild(row);
+            }
+        }
+
+        function applyFilter(bibNumbers) {
             const table = document.querySelector('#resultsTable table');
             const filterStatus = document.getElementById('filterStatus');
             
@@ -471,11 +567,15 @@
             let visibleCount = 0;
             rows.forEach(row => {
                 const bibCell = row.querySelector('.bib-number');
-                if (bibCell && bibCell.textContent.trim() === bibNumber) {
-                    row.style.display = '';
-                    visibleCount++;
-                } else {
-                    row.style.display = 'none';
+                if (bibCell) {
+                    const bibNumber = bibCell.textContent.trim();
+                    // 複数の番号のいずれかに一致すれば表示
+                    if (bibNumbers.includes(bibNumber)) {
+                        row.style.display = '';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
                 }
             });
 
@@ -502,7 +602,7 @@
                 row.style.display = '';
             });
 
-            filterStatus.textContent = '';
+            filterStatus.textContent = '全件表示中';
         }
 
         // 定期的に再読み込み（オプション）
