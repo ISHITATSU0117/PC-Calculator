@@ -319,7 +319,7 @@
         <div class="filter-container">
             <div class="filter-buttons-row">
                 <button id="filterButton" class="filter-button">フィルター</button>
-                <button id="clearButton" class="clear-button">全表示</button>
+                <button id="displayAllButton" class="clear-button">全表示</button>
             </div>
             <div id="filterInputsContainer" class="filter-inputs-container">
                 <div class="filter-input-row">
@@ -481,8 +481,9 @@
         // フィルター機能
         function setupFilter() {
             const filterButton = document.getElementById('filterButton');
-            const clearButton = document.getElementById('clearButton');
+            const displayAllButton = document.getElementById('displayAllButton');
             const filterStatus = document.getElementById('filterStatus');
+            const filterInputsContainer = document.getElementById('filterInputsContainer');
 
             // フィルターボタンのクリックイベント
             filterButton.addEventListener('click', () => {
@@ -495,17 +496,14 @@
             });
 
             // 全表示ボタンのクリックイベント（入力欄はクリアしない）
-            clearButton.addEventListener('click', () => {
+            displayAllButton.addEventListener('click', () => {
                 clearFilter();
             });
 
-            // Enterキーでフィルター実行
-            document.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    const target = e.target;
-                    if (target.classList.contains('bib-filter-input')) {
-                        filterButton.click();
-                    }
+            // Enterキーでフィルター実行 (フィルター入力欄内でのみ)
+            filterInputsContainer.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && e.target.classList.contains('bib-filter-input')) {
+                    filterButton.click();
                 }
             });
 
@@ -528,6 +526,7 @@
         }
 
         // すべての入力欄から値を取得
+        // Note: 値は文字列として返されます（テーブル内のゼッケン番号も文字列として表示されるため）
         function getFilterValues() {
             const inputs = document.querySelectorAll('.bib-filter-input');
             const values = [];
