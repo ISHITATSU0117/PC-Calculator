@@ -330,7 +330,7 @@
                         placeholder="番号を入力"
                         min="1"
                     >
-                    <button class="add-button" onclick="addFilterInput()">+</button>
+                    <button class="add-button">+</button>
                 </div>
             </div>
             <div id="filterStatus" class="filter-status"></div>
@@ -508,6 +508,23 @@
                     }
                 }
             });
+
+            // 初期の+ボタンにイベントリスナーを追加
+            setupAddButtonListeners();
+        }
+
+        // +ボタンと×ボタンのイベントリスナーをセットアップ
+        function setupAddButtonListeners() {
+            const container = document.getElementById('filterInputsContainer');
+            
+            // イベント委譲を使用して動的に追加されるボタンにも対応
+            container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-button')) {
+                    addFilterInput();
+                } else if (e.target.classList.contains('remove-button')) {
+                    removeFilterInput(e.target);
+                }
+            });
         }
 
         // すべての入力欄から値を取得
@@ -523,12 +540,9 @@
             return values;
         }
 
-        // フィルター入力欄を追加
-        function addFilterInput() {
-            const container = document.getElementById('filterInputsContainer');
-            const newRow = document.createElement('div');
-            newRow.className = 'filter-input-row';
-            newRow.innerHTML = `
+        // フィルター入力行のHTMLを生成
+        function createFilterInputRowHTML() {
+            return `
                 <label class="filter-label">🔍 ゼッケン番号:</label>
                 <input 
                     type="number" 
@@ -536,9 +550,17 @@
                     placeholder="番号を入力"
                     min="1"
                 >
-                <button class="add-button" onclick="addFilterInput()">+</button>
-                <button class="remove-button" onclick="removeFilterInput(this)">×</button>
+                <button class="add-button">+</button>
+                <button class="remove-button">×</button>
             `;
+        }
+
+        // フィルター入力欄を追加
+        function addFilterInput() {
+            const container = document.getElementById('filterInputsContainer');
+            const newRow = document.createElement('div');
+            newRow.className = 'filter-input-row';
+            newRow.innerHTML = createFilterInputRowHTML();
             container.appendChild(newRow);
         }
 
@@ -568,9 +590,9 @@
             rows.forEach(row => {
                 const bibCell = row.querySelector('.bib-number');
                 if (bibCell) {
-                    const bibNumber = bibCell.textContent.trim();
+                    const cellBibNumber = bibCell.textContent.trim();
                     // 複数の番号のいずれかに一致すれば表示
-                    if (bibNumbers.includes(bibNumber)) {
+                    if (bibNumbers.includes(cellBibNumber)) {
                         row.style.display = '';
                         visibleCount++;
                     } else {
