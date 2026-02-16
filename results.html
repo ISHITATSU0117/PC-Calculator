@@ -320,7 +320,6 @@
             <div class="filter-buttons-row">
                 <button id="filterButton" class="filter-button">フィルター</button>
                 <button id="displayAllButton" class="clear-button">全表示</button>
-                <button id="recalculateButton" class="filter-button">🔄 再計算</button>
             </div>
             <div id="filterInputsContainer" class="filter-inputs-container">
                 <div class="filter-input-row">
@@ -352,50 +351,8 @@
         // ページ読み込み時に自動的に結果を表示
         document.addEventListener('DOMContentLoaded', () => {
             setupFilter(); // フィルター機能を初期化
-            setupRecalculateButton(); // 再計算ボタンを初期化
             loadAndDisplayResults();
         });
-
-        // 再計算ボタンの設定
-        function setupRecalculateButton() {
-            const recalculateButton = document.getElementById('recalculateButton');
-            recalculateButton.addEventListener('click', async () => {
-                recalculateButton.disabled = true;
-                recalculateButton.textContent = '🔄 計算中...';
-                await forceRecalculate();
-                recalculateButton.disabled = false;
-                recalculateButton.textContent = '🔄 再計算';
-            });
-        }
-
-        // 強制的に再計算を実行
-        async function forceRecalculate() {
-            try {
-                // 設定チェック
-                if (!ConfigManager.isConfigured()) {
-                    showError('GitHub設定が完了していません。管理者に連絡してください。');
-                    return;
-                }
-
-                // ローディング表示
-                document.getElementById('resultsTable').innerHTML = 
-                    '<div class="loading"><div class="spinner"></div><div class="loading-text">データを再計算中...</div></div>';
-
-                // 計算実行
-                const result = await Calculator.calculate();
-
-                if (result.success) {
-                    displayResults(result.bibData, result.sections);
-                } else {
-                    showError(`計算エラー: ${result.error}`);
-                }
-            } catch (error) {
-                showError(`エラーが発生しました: ${error.message}`);
-            } finally {
-                // 計算完了後または失敗時に最終計算時刻を表示
-                displayLastCalculationTime();
-            }
-        }
 
         // 結果を読み込んで表示
         async function loadAndDisplayResults() {
@@ -406,37 +363,41 @@
                     return;
                 }
 
-                // キャッシュされた計算結果を取得
-                const cachedResult = ConfigManager.getCalculationResults();
+                // GitHubから計算結果を取得
+                const serverResult = await GitHubAPI.getCalculationResults();
                 
-                if (cachedResult && cachedResult.success) {
-                    // キャッシュされた結果を表示
-                    displayResults(cachedResult.bibData, cachedResult.sections);
+                if (serverResult && serverResult.success) {
+                    // サーバーから取得した結果を表示
+                    displayResults(serverResult.bibData, serverResult.sections);
+                    // サーバー保存時刻を表示
+                    displayLastCalculationTime(serverResult.savedAt);
                 } else {
-                    // キャッシュがない場合は計算を実行
-                    const result = await Calculator.calculate();
-
-                    if (result.success) {
-                        displayResults(result.bibData, result.sections);
+                    // サーバーに結果がない場合はローカルストレージをチェック
+                    const cachedResult = ConfigManager.getCalculationResults();
+                    
+                    if (cachedResult && cachedResult.success) {
+                        // ローカルキャッシュを表示
+                        displayResults(cachedResult.bibData, cachedResult.sections);
+                        displayLastCalculationTime();
+                        // メッセージを表示
+                        showInfo('サーバーに計算結果がありません。ローカルキャッシュを表示しています。');
                     } else {
-                        showError(`計算エラー: ${result.error}`);
+                        // データがない場合
+                        showError('計算結果がありません。管理者に計算を実行してもらってください。');
                     }
                 }
             } catch (error) {
                 showError(`エラーが発生しました: ${error.message}`);
-            } finally {
-                // 計算完了後または失敗時に最終計算時刻を表示
-                displayLastCalculationTime();
             }
         }
 
         // 最終計算時刻を表示
-        function displayLastCalculationTime() {
-            const lastCalc = ConfigManager.getLastCalculation();
+        function displayLastCalculationTime(savedAt) {
             const display = document.getElementById('lastUpdateDisplay');
             
-            if (lastCalc) {
-                const date = new Date(lastCalc);
+            // サーバー保存時刻が渡された場合はそれを使用
+            if (savedAt) {
+                const date = new Date(savedAt);
                 const formatted = date.toLocaleString('ja-JP', {
                     year: 'numeric',
                     month: '2-digit',
@@ -447,8 +408,32 @@
                 });
                 display.textContent = `計算実行時刻: ${formatted}`;
             } else {
-                display.textContent = '計算実行時刻: 未計算';
+                // ローカルストレージの時刻を使用
+                const lastCalc = ConfigManager.getLastCalculation();
+                if (lastCalc) {
+                    const date = new Date(lastCalc);
+                    const formatted = date.toLocaleString('ja-JP', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                    });
+                    display.textContent = `計算実行時刻: ${formatted} (ローカル)`;
+                } else {
+                    display.textContent = '計算実行時刻: 未計算';
+                }
             }
+        }
+
+        // 情報メッセージを表示
+        function showInfo(message) {
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'info-message';
+            infoDiv.textContent = message;
+            const container = document.querySelector('.results-container');
+            container.insertBefore(infoDiv, container.firstChild);
         }
 
         // 結果を表示
