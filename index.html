@@ -435,6 +435,22 @@
                     message += '\n重複しているゼッケンの時刻は表示されません。';
                 }
                 
+                // section.csvに設定されていないファイルがある場合
+                if (result.unmatchedFiles && result.unmatchedFiles.length > 0) {
+                    statusType = 'error';
+                    if (hasErrors) {
+                        message += '\n\n';
+                    } else {
+                        message = '';
+                        hasErrors = true;
+                    }
+                    message += '⚠️ エラー: section.csvに設定されていない区間のCSVファイルがあります\n\n';
+                    result.unmatchedFiles.forEach(file => {
+                        message += `• ${file}\n`;
+                    });
+                    message += '\nこれらのファイルは結果に表示されません。section.csvに区間を追加してください。';
+                }
+                
                 // エラーがない場合は成功メッセージ
                 if (!hasErrors) {
                     message = `計算完了: ${result.fileCount}ファイル、${result.bibData.length}ゼッケン`;
