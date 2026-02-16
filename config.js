@@ -14,7 +14,8 @@ const CONFIG = {
     // ローカルストレージキー
     STORAGE_KEYS: {
         GITHUB_TOKEN: 'github_token',
-        LAST_CALCULATION: 'last_calculation_time'
+        LAST_CALCULATION: 'last_calculation_time',
+        CALCULATION_RESULTS: 'calculation_results'
     }
 };
 
@@ -56,5 +57,34 @@ const ConfigManager = {
     // 最終計算時刻を取得
     getLastCalculation() {
         return localStorage.getItem(CONFIG.STORAGE_KEYS.LAST_CALCULATION);
+    },
+    
+    // 計算結果を保存
+    saveCalculationResults(results) {
+        try {
+            const data = JSON.stringify(results);
+            localStorage.setItem(CONFIG.STORAGE_KEYS.CALCULATION_RESULTS, data);
+        } catch (error) {
+            if (error.name === 'QuotaExceededError') {
+                console.error('計算結果の保存エラー: ストレージ容量が不足しています', error);
+            } else {
+                console.error('計算結果の保存エラー:', error);
+            }
+        }
+    },
+    
+    // 計算結果を取得
+    getCalculationResults() {
+        try {
+            const data = localStorage.getItem(CONFIG.STORAGE_KEYS.CALCULATION_RESULTS);
+            return data ? JSON.parse(data) : null;
+        } catch (error) {
+            if (error instanceof SyntaxError) {
+                console.error('計算結果の取得エラー: JSONパースに失敗しました', error);
+            } else {
+                console.error('計算結果の取得エラー:', error);
+            }
+            return null;
+        }
     }
 };

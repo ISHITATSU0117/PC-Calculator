@@ -363,29 +363,41 @@
                     return;
                 }
 
-                // 計算実行
-                const result = await Calculator.calculate();
-
-                if (result.success) {
-                    displayResults(result.bibData, result.sections);
+                // GitHubから計算結果を取得
+                const serverResult = await GitHubAPI.getCalculationResults();
+                
+                if (serverResult && serverResult.success) {
+                    // サーバーから取得した結果を表示
+                    displayResults(serverResult.bibData, serverResult.sections);
+                    // サーバー保存時刻を表示
+                    displayLastCalculationTime(serverResult.savedAt);
                 } else {
-                    showError(`計算エラー: ${result.error}`);
+                    // サーバーに結果がない場合はローカルストレージをチェック
+                    const cachedResult = ConfigManager.getCalculationResults();
+                    
+                    if (cachedResult && cachedResult.success) {
+                        // ローカルキャッシュを表示
+                        displayResults(cachedResult.bibData, cachedResult.sections);
+                        displayLastCalculationTime();
+                        // メッセージを表示
+                        showInfo('サーバーに計算結果がありません。ローカルキャッシュを表示しています。');
+                    } else {
+                        // データがない場合
+                        showError('計算結果がありません。管理者に計算を実行してもらってください。');
+                    }
                 }
             } catch (error) {
                 showError(`エラーが発生しました: ${error.message}`);
-            } finally {
-                // 計算完了後または失敗時に最終計算時刻を表示
-                displayLastCalculationTime();
             }
         }
 
         // 最終計算時刻を表示
-        function displayLastCalculationTime() {
-            const lastCalc = ConfigManager.getLastCalculation();
+        function displayLastCalculationTime(savedAt) {
             const display = document.getElementById('lastUpdateDisplay');
             
-            if (lastCalc) {
-                const date = new Date(lastCalc);
+            // サーバー保存時刻が渡された場合はそれを使用
+            if (savedAt) {
+                const date = new Date(savedAt);
                 const formatted = date.toLocaleString('ja-JP', {
                     year: 'numeric',
                     month: '2-digit',
@@ -396,8 +408,36 @@
                 });
                 display.textContent = `計算実行時刻: ${formatted}`;
             } else {
-                display.textContent = '計算実行時刻: 未計算';
+                // ローカルストレージの時刻を使用
+                const lastCalc = ConfigManager.getLastCalculation();
+                if (lastCalc) {
+                    const date = new Date(lastCalc);
+                    const formatted = date.toLocaleString('ja-JP', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
+                    });
+                    display.textContent = `計算実行時刻: ${formatted} (ローカル)`;
+                } else {
+                    display.textContent = '計算実行時刻: 未計算';
+                }
             }
+        }
+
+        // 情報メッセージを表示
+        function showInfo(message) {
+            const container = document.querySelector('.results-container');
+            if (!container) {
+                console.error('results-containerが見つかりません');
+                return;
+            }
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'info-message';
+            infoDiv.textContent = message;
+            container.insertBefore(infoDiv, container.firstChild);
         }
 
         // 結果を表示

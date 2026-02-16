@@ -397,5 +397,93 @@ const GitHubAPI = {
             console.error('アップロードエラー:', error);
             throw error;
         }
+    },
+
+    // 計算結果をGitHubに保存
+    async saveCalculationResults(results) {
+        const config = ConfigManager.load();
+        if (!config.token) {
+            throw new Error('GitHub Personal Access Tokenが設定されていません');
+        }
+        
+        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.settingDir}/results.json`;
+        const headers = this.getHeaders(config.token);
+        headers['Content-Type'] = 'application/json';
+        
+        // 既存ファイルのSHAを取得（更新の場合に必要）
+        let sha = null;
+        try {
+            const existingUrl = `${this.getBaseUrl(config.owner, config.repo)}/${config.settingDir}/results.json?ref=${config.branch}`;
+            const existingResponse = await fetch(existingUrl, { headers: this.getHeaders(config.token) });
+            if (existingResponse.ok) {
+                const existingData = await existingResponse.json();
+                sha = existingData.sha;
+            }
+        } catch (error) {
+            // ファイルが存在しない場合は新規作成
+        }
+        
+        // 結果にタイムスタンプを追加
+        const resultsWithTimestamp = {
+            ...results,
+            savedAt: new Date().toISOString()
+        };
+        
+        const content = JSON.stringify(resultsWithTimestamp, null, 2);
+        const body = {
+            message: 'Save calculation results',
+            // UTF-8をBase64にエンコード（既存のuploadSectionSettingsと同じパターン）
+            content: btoa(unescape(encodeURIComponent(content))),
+            branch: config.branch
+        };
+        
+        if (sha) {
+            body.sha = sha;  // 更新の場合はSHAが必要
+        }
+        
+        try {
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: headers,
+                body: JSON.stringify(body)
+            });
+            
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`結果の保存に失敗: ${errorData.message || response.status}`);
+            }
+            
+            return await response.json();
+        } catch (error) {
+            console.error('結果の保存エラー:', error);
+            throw error;
+        }
+    },
+
+    // GitHubから計算結果を取得
+    async getCalculationResults() {
+        const config = ConfigManager.load();
+        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.settingDir}/results.json?ref=${config.branch}`;
+        const headers = this.getHeaders(config.token);
+        
+        try {
+            const response = await fetch(url, { headers });
+            
+            if (!response.ok) {
+                if (response.status === 404) {
+                    // ファイルが存在しない場合はnullを返す
+                    return null;
+                }
+                throw new Error(`HTTPエラー: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            // Base64をUTF-8にデコード（既存のgetCSVContent等と同じパターン）
+            const content = decodeURIComponent(escape(atob(data.content)));
+            return JSON.parse(content);
+        } catch (error) {
+            console.error('結果の取得エラー:', error);
+            return null;
+        }
     }
 };

@@ -508,8 +508,9 @@ const Calculator = {
 
             // 最終計算時刻を保存
             ConfigManager.saveLastCalculation();
-
-            return {
+            
+            // 計算結果を保存
+            const calculationResults = {
                 success: true,
                 bibData: bibData,
                 sections: sections,
@@ -519,6 +520,20 @@ const Calculator = {
                 sectionSettings: sectionSettings,
                 unmatchedFiles: unmatchedFiles
             };
+            
+            // localStorageに保存（オフライン閲覧用のフォールバック）
+            ConfigManager.saveCalculationResults(calculationResults);
+            
+            // GitHubに保存（サーバー側保存）
+            try {
+                await GitHubAPI.saveCalculationResults(calculationResults);
+                console.log('計算結果をGitHubに保存しました');
+            } catch (error) {
+                console.warn('GitHubへの保存に失敗しました。ローカルには保存されています。', error);
+                // GitHubへの保存が失敗してもローカルには保存されているので続行
+            }
+
+            return calculationResults;
         } catch (error) {
             console.error('計算エラー:', error);
             return {
