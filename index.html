@@ -453,7 +453,10 @@
                 
                 // エラーがない場合は成功メッセージ
                 if (!hasErrors) {
-                    message = `計算完了: ${result.fileCount}ファイル、${result.bibData.length}ゼッケン`;
+                    message = `✅ 計算完了: ${result.fileCount}ファイル、${result.bibData.length}ゼッケン\n\n結果はサーバー（GitHub）に保存されました。\nユーザーはresults.htmlから結果を閲覧できます。`;
+                } else {
+                    // エラーがある場合も保存は完了したことを通知
+                    message += '\n\n計算結果はサーバー（GitHub）に保存されました。';
                 }
                 
                 showStatus('calcStatus', message, statusType);
