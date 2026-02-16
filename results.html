@@ -429,10 +429,14 @@
 
         // 情報メッセージを表示
         function showInfo(message) {
+            const container = document.querySelector('.results-container');
+            if (!container) {
+                console.error('results-containerが見つかりません');
+                return;
+            }
             const infoDiv = document.createElement('div');
             infoDiv.className = 'info-message';
             infoDiv.textContent = message;
-            const container = document.querySelector('.results-container');
             container.insertBefore(infoDiv, container.firstChild);
         }
 

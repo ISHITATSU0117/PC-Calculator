@@ -432,7 +432,8 @@ const GitHubAPI = {
         const content = JSON.stringify(resultsWithTimestamp, null, 2);
         const body = {
             message: 'Save calculation results',
-            content: btoa(unescape(encodeURIComponent(content))),  // UTF-8をBase64にエンコード
+            // UTF-8をBase64にエンコード（既存のuploadSectionSettingsと同じパターン）
+            content: btoa(unescape(encodeURIComponent(content))),
             branch: config.branch
         };
         
@@ -477,6 +478,7 @@ const GitHubAPI = {
             }
             
             const data = await response.json();
+            // Base64をUTF-8にデコード（既存のgetCSVContent等と同じパターン）
             const content = decodeURIComponent(escape(atob(data.content)));
             return JSON.parse(content);
         } catch (error) {
