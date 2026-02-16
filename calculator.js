@@ -171,7 +171,7 @@ const Calculator = {
             });
 
             // section.csvに設定されていないファイルを記録
-            // ファイル内のすべての区間がsection.csvに設定されていない場合のみエラー
+            // ファイル内のいずれかの区間がsection.csvに設定されていれば、ファイルは使用される
             if (!matched) {
                 unmatchedFiles.push(filename);
             }
@@ -356,7 +356,7 @@ const Calculator = {
                             firstSectionData.startTime && lastSectionData.goalTime) {
                             const startSeconds = this.timeToSeconds(firstSectionData.startTime);
                             const goalSeconds = this.timeToSeconds(lastSectionData.goalTime);
-                            if (startSeconds !== null && goalSeconds !== null) {
+                            if (startSeconds !== null && goalSeconds !== null && sectionData) {
                                 // PCGの場合、startTimeとgoalTimeを設定
                                 sectionData.startTime = firstSectionData.startTime;
                                 sectionData.goalTime = lastSectionData.goalTime;
