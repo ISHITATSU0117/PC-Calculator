@@ -138,6 +138,7 @@ const Calculator = {
             } else {
                 // 通常のPCセクション
                 // PC1, PC2などから番号を抽出
+                // CO (CheckOut) セクションも同様に処理される
                 const match = sectionName.match(/^(PC|CO)(\d+)$/i);
                 if (match) {
                     sections.push({
@@ -336,7 +337,7 @@ const Calculator = {
     calculateDurations(bibData, sections) {
         bibData.forEach(bib => {
             sections.forEach(section => {
-                const sectionData = bib.sections[section.section];
+                let sectionData = bib.sections[section.section];
                 
                 // PCGセクションの場合は特別な計算
                 if (section.isPCG) {
@@ -356,7 +357,16 @@ const Calculator = {
                             firstSectionData.startTime && lastSectionData.goalTime) {
                             const startSeconds = this.timeToSeconds(firstSectionData.startTime);
                             const goalSeconds = this.timeToSeconds(lastSectionData.goalTime);
-                            if (startSeconds !== null && goalSeconds !== null && sectionData) {
+                            if (startSeconds !== null && goalSeconds !== null) {
+                                // sectionDataが存在しない場合は初期化
+                                if (!sectionData) {
+                                    bib.sections[section.section] = {
+                                        startTime: null,
+                                        goalTime: null,
+                                        duration: null
+                                    };
+                                    sectionData = bib.sections[section.section];
+                                }
                                 // PCGの場合、startTimeとgoalTimeを設定
                                 sectionData.startTime = firstSectionData.startTime;
                                 sectionData.goalTime = lastSectionData.goalTime;
