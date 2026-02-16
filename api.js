@@ -291,6 +291,61 @@ const GitHubAPI = {
         }
     },
 
+    // セクション設定の詳細を取得（group列を含む）
+    async getSectionConfig() {
+        const config = ConfigManager.load();
+        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.settingDir}/section.csv?ref=${config.branch}`;
+        const headers = this.getHeaders(config.token);
+        
+        try {
+            const response = await fetch(url, { headers });
+            
+            if (!response.ok) {
+                if (response.status === 404) {
+                    // ファイルが存在しない場合は空配列を返す
+                    return [];
+                }
+                throw new Error(`HTTPエラー: ${response.status}`);
+            }
+            
+            const fileData = await response.json();
+            
+            // Base64デコード
+            const content = atob(fileData.content.replace(/\n/g, ''));
+            
+            // CSVをパースして配列に変換
+            const lines = content.trim().split('\n');
+            const sections = [];
+            
+            // ヘッダーをスキップして各行を処理
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+                
+                const parts = line.split(',');
+                if (parts.length >= 3) {
+                    const section = parts[0].trim();
+                    const time = parseFloat(parts[1].trim());
+                    const group = parseInt(parts[2].trim());
+                    
+                    if (section && !isNaN(time) && !isNaN(group)) {
+                        sections.push({
+                            section: section,
+                            time: time,
+                            group: group
+                        });
+                    }
+                }
+            }
+            
+            return sections;
+        } catch (error) {
+            console.error('セクション設定取得エラー:', error);
+            // エラーの場合は空配列を返す
+            return [];
+        }
+    },
+
     // セクション設定ファイルをアップロード（作成または更新）
     async uploadSectionSettings(content) {
         const config = ConfigManager.load();

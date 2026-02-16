@@ -76,7 +76,7 @@ const Calculator = {
         return results;
     },
 
-    // 区間情報を構築
+    // 区間情報を構築（旧方式：ファイル名ベース）
     buildSections(parsedData) {
         const sectionMap = new Map();
 
@@ -113,6 +113,70 @@ const Calculator = {
         });
 
         return sections;
+    },
+
+    // 区間情報を構築（新方式：section.csvベース）
+    buildSectionsFromConfig(sectionConfig, parsedData) {
+        const sections = [];
+        const unmatchedFiles = [];
+
+        // section.csvの各行から区間情報を構築
+        for (const config of sectionConfig) {
+            const sectionName = config.section;
+            
+            // PCGセクションの場合は特別処理
+            if (sectionName.startsWith('PCG')) {
+                sections.push({
+                    category: 'PCG',
+                    number: config.group,
+                    section: sectionName,
+                    group: config.group,
+                    startFile: null,
+                    goalFile: null,
+                    isPCG: true
+                });
+            } else {
+                // 通常のPCセクション
+                // PC1, PC2などから番号を抽出
+                const match = sectionName.match(/^(PC|CO)(\d+)$/i);
+                if (match) {
+                    sections.push({
+                        category: match[1].toUpperCase(),
+                        number: parseInt(match[2]),
+                        section: sectionName,
+                        group: config.group,
+                        startFile: null,
+                        goalFile: null,
+                        isPCG: false
+                    });
+                }
+            }
+        }
+
+        // CSVファイルから各区間のSTART/GOALファイルを特定
+        for (const filename of Object.keys(parsedData)) {
+            const fileInfo = this.parseFileName(filename);
+            let matched = false;
+
+            fileInfo.forEach(info => {
+                const matchingSection = sections.find(s => s.section === info.section);
+                if (matchingSection) {
+                    matched = true;
+                    if (info.type === 'START') {
+                        matchingSection.startFile = filename;
+                    } else if (info.type === 'GOAL') {
+                        matchingSection.goalFile = filename;
+                    }
+                }
+            });
+
+            // section.csvに設定されていないファイルを記録
+            if (!matched) {
+                unmatchedFiles.push(filename);
+            }
+        }
+
+        return { sections, unmatchedFiles };
     },
 
     // ファイル名の区間重複をチェック
@@ -272,7 +336,35 @@ const Calculator = {
         bibData.forEach(bib => {
             sections.forEach(section => {
                 const sectionData = bib.sections[section.section];
-                if (sectionData && sectionData.startTime && sectionData.goalTime) {
+                
+                // PCGセクションの場合は特別な計算
+                if (section.isPCG) {
+                    // 同じグループ内の最初と最後のPC区間を見つける
+                    const groupSections = sections.filter(s => 
+                        !s.isPCG && s.group === section.group
+                    ).sort((a, b) => a.number - b.number);
+                    
+                    if (groupSections.length >= 2) {
+                        const firstSection = groupSections[0];
+                        const lastSection = groupSections[groupSections.length - 1];
+                        
+                        const firstSectionData = bib.sections[firstSection.section];
+                        const lastSectionData = bib.sections[lastSection.section];
+                        
+                        if (firstSectionData && lastSectionData && 
+                            firstSectionData.startTime && lastSectionData.goalTime) {
+                            const startSeconds = this.timeToSeconds(firstSectionData.startTime);
+                            const goalSeconds = this.timeToSeconds(lastSectionData.goalTime);
+                            if (startSeconds !== null && goalSeconds !== null) {
+                                // PCGの場合、startTimeとgoalTimeを設定
+                                sectionData.startTime = firstSectionData.startTime;
+                                sectionData.goalTime = lastSectionData.goalTime;
+                                sectionData.duration = (goalSeconds - startSeconds).toFixed(2);
+                            }
+                        }
+                    }
+                } else if (sectionData && sectionData.startTime && sectionData.goalTime) {
+                    // 通常のPC/COセクション
                     const startSeconds = this.timeToSeconds(sectionData.startTime);
                     const goalSeconds = this.timeToSeconds(sectionData.goalTime);
                     if (startSeconds !== null && goalSeconds !== null) {
@@ -358,7 +450,8 @@ const Calculator = {
                     bibData: [],
                     sections: [],
                     overlaps: [],
-                    bibNumberDuplicates: []
+                    bibNumberDuplicates: [],
+                    unmatchedFiles: []
                 };
             }
 
@@ -368,11 +461,24 @@ const Calculator = {
                 parsedData[filename] = this.parseCSV(filename, content);
             }
 
+            // セクション設定を取得
+            const sectionConfig = await GitHubAPI.getSectionConfig();
+            
+            let sections, unmatchedFiles;
+            
+            if (sectionConfig.length > 0) {
+                // section.csvが存在する場合：新方式でセクション構築
+                const result = this.buildSectionsFromConfig(sectionConfig, parsedData);
+                sections = result.sections;
+                unmatchedFiles = result.unmatchedFiles;
+            } else {
+                // section.csvが存在しない場合：旧方式（ファイル名ベース）
+                sections = this.buildSections(parsedData);
+                unmatchedFiles = [];
+            }
+
             // 区間の重複をチェック
             const overlaps = this.checkOverlap(parsedData);
-
-            // 区間情報を構築
-            const sections = this.buildSections(parsedData);
 
             // ゼッケンごとのデータを構築（重複情報も含む）
             const { bibData, bibNumberDuplicates } = this.buildBibData(parsedData, sections, overlaps);
@@ -380,7 +486,7 @@ const Calculator = {
             // 通過時間を計算
             this.calculateDurations(bibData, sections);
 
-            // セクション設定を取得
+            // セクション設定（時間）を取得
             const sectionSettings = await GitHubAPI.getSectionSettings();
 
             // 差分を計算
@@ -396,7 +502,8 @@ const Calculator = {
                 fileCount: Object.keys(csvData).length,
                 overlaps: overlaps,
                 bibNumberDuplicates: bibNumberDuplicates,
-                sectionSettings: sectionSettings
+                sectionSettings: sectionSettings,
+                unmatchedFiles: unmatchedFiles
             };
         } catch (error) {
             console.error('計算エラー:', error);
@@ -406,7 +513,8 @@ const Calculator = {
                 bibData: [],
                 sections: [],
                 overlaps: [],
-                bibNumberDuplicates: []
+                bibNumberDuplicates: [],
+                unmatchedFiles: []
             };
         }
     }
