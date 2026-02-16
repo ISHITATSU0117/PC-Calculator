@@ -320,6 +320,7 @@
             <div class="filter-buttons-row">
                 <button id="filterButton" class="filter-button">フィルター</button>
                 <button id="displayAllButton" class="clear-button">全表示</button>
+                <button id="recalculateButton" class="filter-button">🔄 再計算</button>
             </div>
             <div id="filterInputsContainer" class="filter-inputs-container">
                 <div class="filter-input-row">
@@ -351,8 +352,50 @@
         // ページ読み込み時に自動的に結果を表示
         document.addEventListener('DOMContentLoaded', () => {
             setupFilter(); // フィルター機能を初期化
+            setupRecalculateButton(); // 再計算ボタンを初期化
             loadAndDisplayResults();
         });
+
+        // 再計算ボタンの設定
+        function setupRecalculateButton() {
+            const recalculateButton = document.getElementById('recalculateButton');
+            recalculateButton.addEventListener('click', async () => {
+                recalculateButton.disabled = true;
+                recalculateButton.textContent = '🔄 計算中...';
+                await forceRecalculate();
+                recalculateButton.disabled = false;
+                recalculateButton.textContent = '🔄 再計算';
+            });
+        }
+
+        // 強制的に再計算を実行
+        async function forceRecalculate() {
+            try {
+                // 設定チェック
+                if (!ConfigManager.isConfigured()) {
+                    showError('GitHub設定が完了していません。管理者に連絡してください。');
+                    return;
+                }
+
+                // ローディング表示
+                document.getElementById('resultsTable').innerHTML = 
+                    '<div class="loading"><div class="spinner"></div><div class="loading-text">データを再計算中...</div></div>';
+
+                // 計算実行
+                const result = await Calculator.calculate();
+
+                if (result.success) {
+                    displayResults(result.bibData, result.sections);
+                } else {
+                    showError(`計算エラー: ${result.error}`);
+                }
+            } catch (error) {
+                showError(`エラーが発生しました: ${error.message}`);
+            } finally {
+                // 計算完了後または失敗時に最終計算時刻を表示
+                displayLastCalculationTime();
+            }
+        }
 
         // 結果を読み込んで表示
         async function loadAndDisplayResults() {
