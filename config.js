@@ -65,7 +65,11 @@ const ConfigManager = {
             const data = JSON.stringify(results);
             localStorage.setItem(CONFIG.STORAGE_KEYS.CALCULATION_RESULTS, data);
         } catch (error) {
-            console.error('計算結果の保存エラー:', error);
+            if (error.name === 'QuotaExceededError') {
+                console.error('計算結果の保存エラー: ストレージ容量が不足しています', error);
+            } else {
+                console.error('計算結果の保存エラー:', error);
+            }
         }
     },
     
@@ -75,7 +79,11 @@ const ConfigManager = {
             const data = localStorage.getItem(CONFIG.STORAGE_KEYS.CALCULATION_RESULTS);
             return data ? JSON.parse(data) : null;
         } catch (error) {
-            console.error('計算結果の取得エラー:', error);
+            if (error instanceof SyntaxError) {
+                console.error('計算結果の取得エラー: JSONパースに失敗しました', error);
+            } else {
+                console.error('計算結果の取得エラー:', error);
+            }
             return null;
         }
     }
