@@ -1,0 +1,130 @@
+# URL References in PC-Calculator
+
+このファイルは、PC-CalculatorプロジェクトでURL変更時に更新が必要なファイルと場所をリストします。
+
+## 現在のベースURL
+```
+https://ishitatsu0117.github.io/PC-Calculator/
+```
+
+## 更新が必要なファイル
+
+### 1. README.md
+- 行 80: セットアップ手順のサンプルURL
+- 行 85: 管理画面アクセスのURL
+- 行 119: 結果ページの直接アクセスURL
+- 行 308: デプロイ確認のURL
+
+### 2. DEPLOYMENT.md
+- 行 38: GitHub Actions URL
+- 行 46: デプロイ後の確認URL
+- 行 77: 正しいURL例
+- 行 98: git cloneコマンドのURL
+- 行 153: GitHub Pagesの公開URL
+
+### 3. QUICK_START_JA.md
+- 行 21: Actions確認URL
+- 行 25: デプロイ後のURL
+- 行 60: Actions確認URL（チェックリスト）
+- 行 62: 正しいURL確認（チェックリスト）
+- 行 67: Actionsエラーログ確認URL
+- 行 75: git cloneコマンドのURL
+
+### 4. HOW_TO_MERGE_PR_JA.md
+- 行 18: リポジトリURL
+- 行 208: デプロイ後のURL
+
+### 5. config.js
+- 行 5-6: GitHubデフォルトオーナーとリポジトリ名
+  ```javascript
+  DEFAULT_GITHUB_OWNER: 'ishitatsu0117',  // デフォルト値（自動検出あり）
+  DEFAULT_GITHUB_REPO: 'PC-Calculator',
+  ```
+  
+  **注意**: 
+  - **GitHubユーザー名の変更は自動検出されます**（config.js更新不要）
+  - GitHub Pages標準URL（`username.github.io`）を使用している場合、ユーザー名はURLから自動的に抽出されます
+  - カスタムドメイン使用時のみ、この値を手動で更新する必要があります
+  - 詳細は [GITHUB_USERNAME_CHANGE.md](GITHUB_USERNAME_CHANGE.md) を参照
+
+## URL変更時の推奨手順
+
+### 1. カスタムドメインを使用する場合
+上記ファイルの `https://ishitatsu0117.github.io/PC-Calculator/` を
+新しいドメイン（例: `https://www.example.com/`）に置き換える
+
+### 2. リポジトリ名を変更する場合
+1. config.jsのGITHUB_REPOを更新
+2. 上記ファイルのURLを新しいリポジトリ名に置き換える
+   例: `https://ishitatsu0117.github.io/<新しいリポジトリ名>/`
+
+## 一括置換コマンド例
+
+### Linuxの場合:
+```bash
+# カスタムドメインへの変更
+find . -type f \( -name "*.md" -o -name "*.js" \) \
+  -exec sed -i 's|https://ishitatsu0117.github.io/PC-Calculator/|https://www.example.com/|g' {} \;
+
+# リポジトリ名の変更
+find . -type f \( -name "*.md" -o -name "*.js" \) \
+  -exec sed -i 's|PC-Calculator|NewRepoName|g' {} \;
+```
+
+### macOSの場合:
+```bash
+# カスタムドメインへの変更
+find . -type f \( -name "*.md" -o -name "*.js" \) \
+  -exec sed -i '' 's|https://ishitatsu0117.github.io/PC-Calculator/|https://www.example.com/|g' {} \;
+
+# リポジトリ名の変更
+find . -type f \( -name "*.md" -o -name "*.js" \) \
+  -exec sed -i '' 's|PC-Calculator|NewRepoName|g' {} \;
+```
+
+### Windowsの場合 (PowerShell):
+```powershell
+# カスタムドメインへの変更
+Get-ChildItem -Recurse -Include *.md,*.js | 
+  ForEach-Object {
+    (Get-Content $_.FullName -Encoding UTF8) -replace 'https://ishitatsu0117.github.io/PC-Calculator/', 'https://www.example.com/' |
+    Set-Content $_.FullName -Encoding UTF8
+  }
+
+# リポジトリ名の変更
+Get-ChildItem -Recurse -Include *.md,*.js | 
+  ForEach-Object {
+    (Get-Content $_.FullName -Encoding UTF8) -replace 'PC-Calculator', 'NewRepoName' |
+    Set-Content $_.FullName -Encoding UTF8
+  }
+```
+
+## 注意事項
+
+1. **必ずバックアップを取る**: 一括置換前に変更をコミットするか、ブランチを作成してください
+2. **置換後の確認**: すべてのURLが正しく変更されているか確認してください
+3. **テスト**: 変更後、すべてのページが正しく動作するかテストしてください
+
+## 検証コマンド
+
+変更後、すべてのURLが更新されたか確認:
+
+```bash
+# 古いURLが残っていないか確認（複数のバリエーションをチェック）
+grep -rE "(https?://)?ishitatsu0117\.github\.io/PC-Calculator/?|PC-Calculator" . --include="*.md" --include="*.js"
+
+# 特定パターンで古いURLを検索
+grep -r "ishitatsu0117.github.io/PC-Calculator" . --include="*.md" --include="*.js"
+
+# 新しいURLが正しく設定されているか確認（カスタムドメインの場合）
+# 注: www.example.com を実際のドメイン名に置き換えてください
+grep -r "www.example.com" . --include="*.md" --include="*.js"
+
+# リポジトリ名が正しく変更されているか確認（リポジトリ名変更の場合）
+# 注: NewRepoName を実際の新しいリポジトリ名に置き換えてください
+grep -r "NewRepoName" . --include="*.md" --include="*.js"
+```
+
+---
+
+このファイルは内部参照用です。プロジェクトには含まれますが、エンドユーザー向けドキュメントではありません。

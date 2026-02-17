@@ -1,9 +1,9 @@
 // アプリケーション設定
 
 const CONFIG = {
-    // GitHub設定（固定値）
-    GITHUB_OWNER: 'ishitatsu0117',  // 固定値
-    GITHUB_REPO: 'PC-Calculator',   // 固定値
+    // GitHub設定のデフォルト値（フォールバック用）
+    DEFAULT_GITHUB_OWNER: 'ishitatsu0117',  // デフォルト値（自動検出失敗時のフォールバック）
+    DEFAULT_GITHUB_REPO: 'PC-Calculator',   // デフォルト値
     GITHUB_BRANCH: 'main',          // 固定値
     CSV_DIRECTORY: 'csv',           // 固定値
     SETTING_DIRECTORY: 'setting',   // 固定値
@@ -14,8 +14,42 @@ const CONFIG = {
     // ローカルストレージキー
     STORAGE_KEYS: {
         GITHUB_TOKEN: 'github_token',
+        GITHUB_OWNER: 'github_owner',  // カスタムオーナー設定用
+        GITHUB_REPO: 'github_repo',    // カスタムリポジトリ設定用
         LAST_CALCULATION: 'last_calculation_time',
         CALCULATION_RESULTS: 'calculation_results'
+    },
+    
+    // GitHub Pages URLからオーナー名を自動検出
+    detectGitHubOwner() {
+        const hostname = window.location.hostname;
+        
+        // GitHub Pagesの標準URL形式: username.github.io
+        const githubPagesPattern = /^([a-zA-Z0-9-]+)\.github\.io$/i;
+        const match = hostname.match(githubPagesPattern);
+        
+        if (match) {
+            return match[1].toLowerCase();
+        }
+        
+        // カスタムドメインまたはローカル環境の場合はnullを返す
+        return null;
+    },
+    
+    // GitHub Pages URLからリポジトリ名を自動検出
+    detectGitHubRepo() {
+        const pathname = window.location.pathname;
+        
+        // GitHub Pagesのプロジェクトサイト形式: /repository-name/
+        // パス名から最初のセグメントを取得
+        const pathSegments = pathname.split('/').filter(segment => segment.length > 0);
+        
+        if (pathSegments.length > 0) {
+            return pathSegments[0];
+        }
+        
+        // ルートパスの場合はnullを返す
+        return null;
     }
 };
 
@@ -23,29 +57,72 @@ const CONFIG = {
 const ConfigManager = {
     // 設定を読み込み
     load() {
+        // ローカルストレージから保存された設定を取得
+        const savedOwner = localStorage.getItem(CONFIG.STORAGE_KEYS.GITHUB_OWNER);
+        const savedRepo = localStorage.getItem(CONFIG.STORAGE_KEYS.GITHUB_REPO);
+        
+        // オーナー名の決定優先順位:
+        // 1. ローカルストレージに保存された値
+        // 2. URLから自動検出した値
+        // 3. デフォルト値
+        let owner = savedOwner;
+        if (!owner) {
+            const detectedOwner = CONFIG.detectGitHubOwner();
+            owner = detectedOwner || CONFIG.DEFAULT_GITHUB_OWNER;
+        }
+        
+        // リポジトリ名の決定優先順位:
+        // 1. ローカルストレージに保存された値
+        // 2. URLから自動検出した値
+        // 3. デフォルト値
+        let repo = savedRepo;
+        if (!repo) {
+            const detectedRepo = CONFIG.detectGitHubRepo();
+            repo = detectedRepo || CONFIG.DEFAULT_GITHUB_REPO;
+        }
+        
         const stored = {
             token: localStorage.getItem(CONFIG.STORAGE_KEYS.GITHUB_TOKEN) || '',
-            owner: CONFIG.GITHUB_OWNER,  // 固定値を使用
-            repo: CONFIG.GITHUB_REPO,    // 固定値を使用
-            branch: CONFIG.GITHUB_BRANCH, // 固定値を使用
-            csvDir: CONFIG.CSV_DIRECTORY,  // 固定値を使用
-            settingDir: CONFIG.SETTING_DIRECTORY  // 固定値を使用
+            owner: owner,
+            repo: repo,
+            branch: CONFIG.GITHUB_BRANCH,
+            csvDir: CONFIG.CSV_DIRECTORY,
+            settingDir: CONFIG.SETTING_DIRECTORY
         };
         return stored;
     },
     
-    // 設定を保存（トークンのみ）
+    // 設定を保存
     save(config) {
         if (config.token !== undefined) {
             localStorage.setItem(CONFIG.STORAGE_KEYS.GITHUB_TOKEN, config.token);
         }
-        // owner, repo, branch, csvDirは固定値のため保存しない
+        if (config.owner !== undefined) {
+            localStorage.setItem(CONFIG.STORAGE_KEYS.GITHUB_OWNER, config.owner);
+        }
+        if (config.repo !== undefined) {
+            localStorage.setItem(CONFIG.STORAGE_KEYS.GITHUB_REPO, config.repo);
+        }
     },
     
     // 設定が完了しているか確認
     isConfigured() {
         const config = this.load();
         return config.owner && config.repo;
+    },
+    
+    // 検出された設定情報を取得（デバッグ用）
+    getDetectionInfo() {
+        return {
+            detectedOwner: CONFIG.detectGitHubOwner(),
+            detectedRepo: CONFIG.detectGitHubRepo(),
+            savedOwner: localStorage.getItem(CONFIG.STORAGE_KEYS.GITHUB_OWNER),
+            savedRepo: localStorage.getItem(CONFIG.STORAGE_KEYS.GITHUB_REPO),
+            defaultOwner: CONFIG.DEFAULT_GITHUB_OWNER,
+            defaultRepo: CONFIG.DEFAULT_GITHUB_REPO,
+            currentOwner: this.load().owner,
+            currentRepo: this.load().repo
+        };
     },
     
     // 最終計算時刻を保存
