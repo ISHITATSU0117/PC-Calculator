@@ -2,6 +2,8 @@
 
 このドキュメントでは、PC-CalculatorアプリケーションのURLを変更する方法を説明します。
 
+> **📝 注**: URL変更時に更新が必要なファイルの詳細リストは [.url-references](.url-references) を参照してください。
+
 ## 現在のURL
 
 デフォルトのGitHub Pages URL:
@@ -51,6 +53,20 @@ https://ishitatsu0117.github.io/PC-Calculator/
    - `QUICK_START_JA.md`
    - `HOW_TO_MERGE_PR_JA.md`
 
+   **手動で変更する場合:**
+   各ファイルを開いて、URLを置換してください。
+   
+   **一括変更する場合:**
+   ```bash
+   # Linux/macOSの場合
+   find . -type f \( -name "*.md" \) \
+     -exec sed -i 's|https://ishitatsu0117.github.io/PC-Calculator/|https://www.example.com/|g' {} \;
+   
+   # macOSの場合（sedの-iオプションの違い）
+   find . -type f \( -name "*.md" \) \
+     -exec sed -i '' 's|https://ishitatsu0117.github.io/PC-Calculator/|https://www.example.com/|g' {} \;
+   ```
+
    変更例:
    ```markdown
    # 変更前
@@ -59,6 +75,8 @@ https://ishitatsu0117.github.io/PC-Calculator/
    # 変更後
    https://www.example.com/
    ```
+   
+   詳細は [.url-references](.url-references) を参照してください。
 
 ### 方法2: リポジトリ名を変更する
 
@@ -92,6 +110,17 @@ https://ishitatsu0117.github.io/PC-Calculator/
    - `DEPLOYMENT.md`
    - `QUICK_START_JA.md`
    - `HOW_TO_MERGE_PR_JA.md`
+
+   **一括変更する場合:**
+   ```bash
+   # Linux/macOSの場合
+   find . -type f \( -name "*.md" \) \
+     -exec sed -i 's|PC-Calculator|<新しいリポジトリ名>|g' {} \;
+   
+   # macOSの場合（sedの-iオプションの違い）
+   find . -type f \( -name "*.md" \) \
+     -exec sed -i '' 's|PC-Calculator|<新しいリポジトリ名>|g' {} \;
+   ```
 
    変更例:
    ```markdown
