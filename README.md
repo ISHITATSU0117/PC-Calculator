@@ -313,6 +313,10 @@ Personal Access Token（PAT）のセキュリティ
 
 このアプリケーションのURLを変更したい場合（カスタムドメイン使用やリポジトリ名変更など）は、[URL_CONFIGURATION.md](URL_CONFIGURATION.md) を参照してください。
 
+## 👤 GitHubユーザー名の変更
+
+GitHubユーザー名を変更した場合でも、このアプリケーションは**自動的に対応**します。詳細は [GITHUB_USERNAME_CHANGE.md](GITHUB_USERNAME_CHANGE.md) を参照してください。
+
 ## 📄 ライセンス
 
 このプロジェクトはMITライセンスの下で公開されています。
