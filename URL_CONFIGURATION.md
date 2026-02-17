@@ -2,7 +2,9 @@
 
 このドキュメントでは、PC-CalculatorアプリケーションのURLを変更する方法を説明します。
 
-> **📝 注**: URL変更時に更新が必要なファイルの詳細リストは [.url-references](.url-references) を参照してください。
+> **📝 注**: 
+> - URL変更時に更新が必要なファイルの詳細リストは [.url-references](.url-references) を参照してください。
+> - **GitHubユーザー名の変更**については、[GITHUB_USERNAME_CHANGE.md](GITHUB_USERNAME_CHANGE.md) を参照してください（自動対応します）。
 
 ## 現在のURL
 

@@ -35,11 +35,17 @@ https://ishitatsu0117.github.io/PC-Calculator/
 - 行 208: デプロイ後のURL
 
 ### 5. config.js
-- 行 5-6: GitHubオーナーとリポジトリ名（リポジトリ名変更時のみ）
+- 行 5-6: GitHubデフォルトオーナーとリポジトリ名
   ```javascript
-  GITHUB_OWNER: 'ishitatsu0117',
-  GITHUB_REPO: 'PC-Calculator',
+  DEFAULT_GITHUB_OWNER: 'ishitatsu0117',  // デフォルト値（自動検出あり）
+  DEFAULT_GITHUB_REPO: 'PC-Calculator',
   ```
+  
+  **注意**: 
+  - **GitHubユーザー名の変更は自動検出されます**（config.js更新不要）
+  - GitHub Pages標準URL（`username.github.io`）を使用している場合、ユーザー名はURLから自動的に抽出されます
+  - カスタムドメイン使用時のみ、この値を手動で更新する必要があります
+  - 詳細は [GITHUB_USERNAME_CHANGE.md](GITHUB_USERNAME_CHANGE.md) を参照
 
 ## URL変更時の推奨手順
 
