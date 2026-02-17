@@ -81,15 +81,15 @@ find . -type f \( -name "*.md" -o -name "*.js" \) \
 # カスタムドメインへの変更
 Get-ChildItem -Recurse -Include *.md,*.js | 
   ForEach-Object {
-    (Get-Content $_.FullName) -replace 'https://ishitatsu0117.github.io/PC-Calculator/', 'https://www.example.com/' |
-    Set-Content $_.FullName
+    (Get-Content $_.FullName -Encoding UTF8) -replace 'https://ishitatsu0117.github.io/PC-Calculator/', 'https://www.example.com/' |
+    Set-Content $_.FullName -Encoding UTF8
   }
 
 # リポジトリ名の変更
 Get-ChildItem -Recurse -Include *.md,*.js | 
   ForEach-Object {
-    (Get-Content $_.FullName) -replace 'PC-Calculator', 'NewRepoName' |
-    Set-Content $_.FullName
+    (Get-Content $_.FullName -Encoding UTF8) -replace 'PC-Calculator', 'NewRepoName' |
+    Set-Content $_.FullName -Encoding UTF8
   }
 ```
 
@@ -104,11 +104,19 @@ Get-ChildItem -Recurse -Include *.md,*.js |
 変更後、すべてのURLが更新されたか確認:
 
 ```bash
-# 古いURLが残っていないか確認
+# 古いURLが残っていないか確認（複数のバリエーションをチェック）
+grep -rE "(https?://)?ishitatsu0117\.github\.io/PC-Calculator/?|PC-Calculator" . --include="*.md" --include="*.js"
+
+# 特定パターンで古いURLを検索
 grep -r "ishitatsu0117.github.io/PC-Calculator" . --include="*.md" --include="*.js"
 
-# 新しいURLが正しく設定されているか確認
+# 新しいURLが正しく設定されているか確認（カスタムドメインの場合）
+# 注: www.example.com を実際のドメイン名に置き換えてください
 grep -r "www.example.com" . --include="*.md" --include="*.js"
+
+# リポジトリ名が正しく変更されているか確認（リポジトリ名変更の場合）
+# 注: NewRepoName を実際の新しいリポジトリ名に置き換えてください
+grep -r "NewRepoName" . --include="*.md" --include="*.js"
 ```
 
 ---

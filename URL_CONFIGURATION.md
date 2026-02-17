@@ -158,9 +158,11 @@ https://ishitatsu0117.github.io/PC-Calculator/
 **DNS設定の確認:**
 ```bash
 # DNSの確認（Linuxの場合）
+# 注: www.example.com を実際のドメイン名に置き換えてください
 dig www.example.com
 
 # Windows の場合
+# 注: www.example.com を実際のドメイン名に置き換えてください
 nslookup www.example.com
 ```
 
