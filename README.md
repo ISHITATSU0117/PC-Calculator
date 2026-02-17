@@ -309,6 +309,10 @@ Personal Access Token（PAT）のセキュリティ
 
 **詳細なデプロイメントガイド**: [DEPLOYMENT.md](DEPLOYMENT.md) を参照してください。
 
+## 🔗 URL設定
+
+このアプリケーションのURLを変更したい場合（カスタムドメイン使用やリポジトリ名変更など）は、[URL_CONFIGURATION.md](URL_CONFIGURATION.md) を参照してください。
+
 ## 📄 ライセンス
 
 このプロジェクトはMITライセンスの下で公開されています。
