@@ -306,9 +306,9 @@
             updateBulkActions();
 
             // 設定チェック
-            if (!ConfigManager.isConfigured()) {
-                showStatus('GitHub設定が完了していません', 'error');
-                listDiv.innerHTML = '<div class="empty-state"><div class="empty-icon">⚙️</div><div class="empty-text">GitHub設定が必要です</div><div class="empty-hint">管理画面で設定してください</div></div>';
+            if (!ConfigManager.isDataRepoConfigured()) {
+                showStatus('データ保存用リポジトリが設定されていません', 'error');
+                listDiv.innerHTML = '<div class="empty-state"><div class="empty-icon">⚙️</div><div class="empty-text">データ保存用リポジトリの設定が必要です</div><div class="empty-hint">管理画面の「GitHub設定」でデータ保存用リポジトリ名を設定してください</div></div>';
                 return;
             }
 
