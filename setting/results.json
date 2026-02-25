@@ -5,39 +5,39 @@
       "bibNumber": "61",
       "sections": {
         "PC1": {
-          "startTime": "14:55:50.92",
-          "goalTime": "14:56:16.16",
-          "duration": "25.24",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.24"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:56:16.16",
-          "goalTime": "14:56:35.99",
-          "duration": "19.83",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.83"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:56:35.99",
-          "goalTime": "14:56:47.25",
-          "duration": "11.26",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.74"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:56:47.25",
-          "goalTime": "14:57:20.50",
-          "duration": "33.25",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "21.25"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:57:20.50",
-          "goalTime": "14:57:36.47",
-          "duration": "15.97",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.97"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -54,11 +54,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:55:50.92",
-          "goalTime": "14:58:06.47",
-          "duration": "135.55",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "43.55"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -234,39 +234,39 @@
       "bibNumber": "59",
       "sections": {
         "PC1": {
-          "startTime": "14:55:04.53",
-          "goalTime": "14:55:45.09",
-          "duration": "40.56",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "25.56"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:55:45.09",
-          "goalTime": "14:55:48.26",
-          "duration": "3.17",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "-7.83"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:55:48.26",
-          "goalTime": "14:56:00.31",
-          "duration": "12.05",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.95"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:56:00.31",
-          "goalTime": "14:56:31.79",
-          "duration": "31.48",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.48"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:56:31.79",
-          "goalTime": "14:56:47.16",
-          "duration": "15.37",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.37"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -283,11 +283,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:55:04.53",
-          "goalTime": "14:57:17.16",
-          "duration": "132.63",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "40.63"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -463,39 +463,39 @@
       "bibNumber": "58",
       "sections": {
         "PC1": {
-          "startTime": "14:54:29.24",
-          "goalTime": "14:54:54.24",
-          "duration": "25.00",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.00"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:54:54.24",
-          "goalTime": "14:55:13.51",
-          "duration": "19.27",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.27"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:55:13.51",
-          "goalTime": "14:55:25.65",
-          "duration": "12.14",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.86"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:55:25.65",
-          "goalTime": "14:55:57.44",
-          "duration": "31.79",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.79"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:55:57.44",
-          "goalTime": "14:56:13.91",
-          "duration": "16.47",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.47"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -512,11 +512,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:54:29.24",
-          "goalTime": "14:56:43.91",
-          "duration": "134.67",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.67"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -692,39 +692,39 @@
       "bibNumber": "57",
       "sections": {
         "PC1": {
-          "startTime": "15:02:20.21",
-          "goalTime": "15:02:46.94",
-          "duration": "26.73",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "11.73"
+          "difference": null
         },
         "PC2": {
-          "startTime": "15:02:46.94",
-          "goalTime": "15:03:04.79",
-          "duration": "17.85",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.85"
+          "difference": null
         },
         "PC3": {
-          "startTime": "15:03:04.79",
-          "goalTime": "15:03:17.84",
-          "duration": "13.05",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-6.95"
+          "difference": null
         },
         "PC4": {
-          "startTime": "15:03:17.84",
-          "goalTime": "15:03:51.78",
-          "duration": "33.94",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "21.94"
+          "difference": null
         },
         "PC5": {
-          "startTime": "15:03:51.78",
-          "goalTime": "15:04:07.56",
-          "duration": "15.78",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.78"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -741,11 +741,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "15:02:20.21",
-          "goalTime": "15:04:37.56",
-          "duration": "137.35",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "45.35"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -921,39 +921,39 @@
       "bibNumber": "56",
       "sections": {
         "PC1": {
-          "startTime": "14:53:54.45",
-          "goalTime": "14:54:19.48",
-          "duration": "25.03",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.03"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:54:19.48",
-          "goalTime": "14:54:39.17",
-          "duration": "19.69",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.69"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:54:39.17",
-          "goalTime": "14:54:51.07",
-          "duration": "11.90",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.10"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:54:51.07",
-          "goalTime": "14:55:23.74",
-          "duration": "32.67",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "20.67"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:55:23.74",
-          "goalTime": "14:55:39.04",
-          "duration": "15.30",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.30"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -970,11 +970,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:53:54.45",
-          "goalTime": "14:56:09.04",
-          "duration": "134.59",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.59"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -1150,39 +1150,39 @@
       "bibNumber": "55",
       "sections": {
         "PC1": {
-          "startTime": "15:03:31.67",
-          "goalTime": "15:03:56.63",
-          "duration": "24.96",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.96"
+          "difference": null
         },
         "PC2": {
-          "startTime": "15:03:56.63",
-          "goalTime": "15:04:15.42",
-          "duration": "18.79",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.79"
+          "difference": null
         },
         "PC3": {
-          "startTime": "15:04:15.42",
-          "goalTime": "15:04:27.20",
-          "duration": "11.78",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.22"
+          "difference": null
         },
         "PC4": {
-          "startTime": "15:04:27.20",
-          "goalTime": "15:04:58.97",
-          "duration": "31.77",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.77"
+          "difference": null
         },
         "PC5": {
-          "startTime": "15:04:58.97",
-          "goalTime": "15:05:14.74",
-          "duration": "15.77",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.77"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -1199,11 +1199,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "15:03:31.67",
-          "goalTime": "15:05:44.74",
-          "duration": "133.07",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.07"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -1379,39 +1379,39 @@
       "bibNumber": "54",
       "sections": {
         "PC1": {
-          "startTime": "14:53:20.47",
-          "goalTime": "14:53:46.97",
-          "duration": "26.50",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "11.50"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:53:46.97",
-          "goalTime": "14:54:04.91",
-          "duration": "17.94",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.94"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:54:04.91",
-          "goalTime": "14:54:16.86",
-          "duration": "11.95",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.05"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:54:16.86",
-          "goalTime": "14:54:50.13",
-          "duration": "33.27",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "21.27"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:54:50.13",
-          "goalTime": "14:55:05.41",
-          "duration": "15.28",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.28"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -1428,11 +1428,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:53:20.47",
-          "goalTime": "14:55:35.41",
-          "duration": "134.94",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.94"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -1608,7 +1608,7 @@
       "bibNumber": "53",
       "sections": {
         "PC1": {
-          "startTime": "14:50:55.71",
+          "startTime": null,
           "goalTime": null,
           "duration": null,
           "settingTime": 15,
@@ -1616,31 +1616,31 @@
         },
         "PC2": {
           "startTime": null,
-          "goalTime": "14:51:46.32",
+          "goalTime": null,
           "duration": null,
           "settingTime": 11,
           "difference": null
         },
         "PC3": {
-          "startTime": "14:51:46.32",
-          "goalTime": "14:52:00.64",
-          "duration": "14.32",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-5.68"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:52:00.64",
-          "goalTime": "14:52:32.71",
-          "duration": "32.07",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "20.07"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:52:32.71",
-          "goalTime": "14:52:49.10",
-          "duration": "16.39",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.39"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -1657,11 +1657,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:50:55.71",
-          "goalTime": "14:53:19.10",
-          "duration": "143.39",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "51.39"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -1837,39 +1837,39 @@
       "bibNumber": "52",
       "sections": {
         "PC1": {
-          "startTime": "14:50:18.31",
-          "goalTime": "14:50:45.32",
-          "duration": "27.01",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "12.01"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:50:45.32",
-          "goalTime": "14:51:04.86",
-          "duration": "19.54",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.54"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:51:04.86",
-          "goalTime": "14:51:19.31",
-          "duration": "14.45",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-5.55"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:51:19.31",
-          "goalTime": "14:51:55.12",
-          "duration": "35.81",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "23.81"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:51:55.12",
-          "goalTime": "14:52:13.32",
-          "duration": "18.20",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "8.20"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -1886,11 +1886,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:50:18.31",
-          "goalTime": "14:52:43.32",
-          "duration": "145.01",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "53.01"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -2066,39 +2066,39 @@
       "bibNumber": "51",
       "sections": {
         "PC1": {
-          "startTime": "14:52:45.01",
-          "goalTime": "14:53:09.60",
-          "duration": "24.59",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.59"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:53:09.60",
-          "goalTime": "14:53:28.02",
-          "duration": "18.42",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.42"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:53:28.02",
-          "goalTime": "14:53:39.80",
-          "duration": "11.78",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.22"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:53:39.80",
-          "goalTime": "14:54:11.59",
-          "duration": "31.79",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.79"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:54:11.59",
-          "goalTime": "14:54:27.20",
-          "duration": "15.61",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.61"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -2115,11 +2115,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:52:45.01",
-          "goalTime": "14:54:57.20",
-          "duration": "132.19",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "40.19"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -2295,39 +2295,39 @@
       "bibNumber": "48",
       "sections": {
         "PC1": {
-          "startTime": "14:51:41.54",
-          "goalTime": "14:52:13.25",
-          "duration": "31.71",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "16.71"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:52:13.25",
-          "goalTime": "14:52:32.62",
-          "duration": "19.37",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.37"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:52:32.62",
-          "goalTime": "14:52:44.62",
-          "duration": "12.00",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.00"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:52:44.62",
-          "goalTime": "14:53:16.20",
-          "duration": "31.58",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.58"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:53:16.20",
-          "goalTime": "14:53:32.06",
-          "duration": "15.86",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.86"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -2344,11 +2344,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:51:41.54",
-          "goalTime": "14:54:02.06",
-          "duration": "140.52",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "48.52"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -2524,39 +2524,39 @@
       "bibNumber": "47",
       "sections": {
         "PC1": {
-          "startTime": "14:59:32.24",
-          "goalTime": "14:59:58.09",
-          "duration": "25.85",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.85"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:59:58.09",
-          "goalTime": "15:00:15.97",
-          "duration": "17.88",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.88"
+          "difference": null
         },
         "PC3": {
-          "startTime": "15:00:15.97",
-          "goalTime": "15:00:27.97",
-          "duration": "12.00",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.00"
+          "difference": null
         },
         "PC4": {
-          "startTime": "15:00:27.97",
-          "goalTime": "15:00:59.63",
-          "duration": "31.66",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.66"
+          "difference": null
         },
         "PC5": {
-          "startTime": "15:00:59.63",
-          "goalTime": "15:01:16.90",
-          "duration": "17.27",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "7.27"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -2573,11 +2573,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:59:32.24",
-          "goalTime": "15:01:46.90",
-          "duration": "134.66",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.66"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -2753,39 +2753,39 @@
       "bibNumber": "46",
       "sections": {
         "PC1": {
-          "startTime": "14:48:36.73",
-          "goalTime": "14:49:02.02",
-          "duration": "25.29",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.29"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:49:02.02",
-          "goalTime": "14:49:21.05",
-          "duration": "19.03",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.03"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:49:21.05",
-          "goalTime": "14:49:32.87",
-          "duration": "11.82",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.18"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:49:32.87",
-          "goalTime": "14:50:04.88",
-          "duration": "32.01",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "20.01"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:50:04.88",
-          "goalTime": "14:50:20.72",
-          "duration": "15.84",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.84"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -2802,11 +2802,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:48:36.73",
-          "goalTime": "14:50:50.72",
-          "duration": "133.99",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.99"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -2982,39 +2982,39 @@
       "bibNumber": "45",
       "sections": {
         "PC1": {
-          "startTime": "14:48:03.14",
-          "goalTime": "14:48:28.27",
-          "duration": "25.13",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.13"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:48:28.27",
-          "goalTime": "14:48:47.35",
-          "duration": "19.08",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.08"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:48:47.35",
-          "goalTime": "14:48:59.52",
-          "duration": "12.17",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.83"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:48:59.52",
-          "goalTime": "14:49:31.37",
-          "duration": "31.85",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.85"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:49:31.37",
-          "goalTime": "14:49:48.04",
-          "duration": "16.67",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.67"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -3031,11 +3031,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:48:03.14",
-          "goalTime": "14:50:18.04",
-          "duration": "134.90",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.90"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -3211,39 +3211,39 @@
       "bibNumber": "44",
       "sections": {
         "PC1": {
-          "startTime": "14:58:14.03",
-          "goalTime": "14:58:42.86",
-          "duration": "28.83",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "13.83"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:58:42.86",
-          "goalTime": "14:59:00.36",
-          "duration": "17.50",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.50"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:59:00.36",
-          "goalTime": "14:59:12.36",
-          "duration": "12.00",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.00"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:59:12.36",
-          "goalTime": "14:59:43.59",
-          "duration": "31.23",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.23"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:59:43.59",
-          "goalTime": "15:00:00.23",
-          "duration": "16.64",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.64"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -3260,11 +3260,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:58:14.03",
-          "goalTime": "15:00:30.23",
-          "duration": "136.20",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "44.20"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -3440,39 +3440,39 @@
       "bibNumber": "43",
       "sections": {
         "PC1": {
-          "startTime": "15:00:35.86",
-          "goalTime": "15:01:04.40",
-          "duration": "28.54",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "13.54"
+          "difference": null
         },
         "PC2": {
-          "startTime": "15:01:04.40",
-          "goalTime": "15:01:21.76",
-          "duration": "17.36",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.36"
+          "difference": null
         },
         "PC3": {
-          "startTime": "15:01:21.76",
-          "goalTime": "15:01:33.38",
-          "duration": "11.62",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.38"
+          "difference": null
         },
         "PC4": {
-          "startTime": "15:01:33.38",
-          "goalTime": "15:02:05.07",
-          "duration": "31.69",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.69"
+          "difference": null
         },
         "PC5": {
-          "startTime": "15:02:05.07",
-          "goalTime": "15:02:19.73",
-          "duration": "14.66",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "4.66"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -3489,11 +3489,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "15:00:35.86",
-          "goalTime": "15:02:49.73",
-          "duration": "133.87",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.87"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -3669,39 +3669,39 @@
       "bibNumber": "41",
       "sections": {
         "PC1": {
-          "startTime": "15:00:03.36",
-          "goalTime": "15:00:29.47",
-          "duration": "26.11",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "11.11"
+          "difference": null
         },
         "PC2": {
-          "startTime": "15:00:29.47",
-          "goalTime": "15:00:48.18",
-          "duration": "18.71",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.71"
+          "difference": null
         },
         "PC3": {
-          "startTime": "15:00:48.18",
-          "goalTime": "15:00:59.14",
-          "duration": "10.96",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-9.04"
+          "difference": null
         },
         "PC4": {
-          "startTime": "15:00:59.14",
-          "goalTime": "15:01:31.33",
-          "duration": "32.19",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "20.19"
+          "difference": null
         },
         "PC5": {
-          "startTime": "15:01:31.33",
-          "goalTime": "15:01:46.85",
-          "duration": "15.52",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.52"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -3718,11 +3718,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "15:00:03.36",
-          "goalTime": "15:02:16.85",
-          "duration": "133.49",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.49"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -3898,39 +3898,39 @@
       "bibNumber": "39",
       "sections": {
         "PC1": {
-          "startTime": "14:47:30.36",
-          "goalTime": "14:47:55.49",
-          "duration": "25.13",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.13"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:47:55.49",
-          "goalTime": "14:48:14.17",
-          "duration": "18.68",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.68"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:48:14.17",
-          "goalTime": "14:48:25.96",
-          "duration": "11.79",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.21"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:48:25.96",
-          "goalTime": "14:48:57.46",
-          "duration": "31.50",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.50"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:48:57.46",
-          "goalTime": "14:49:14.29",
-          "duration": "16.83",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.83"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -3947,11 +3947,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:47:30.36",
-          "goalTime": "14:49:44.29",
-          "duration": "133.93",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.93"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -4127,39 +4127,39 @@
       "bibNumber": "38",
       "sections": {
         "PC1": {
-          "startTime": "14:49:47.43",
-          "goalTime": "14:50:12.34",
-          "duration": "24.91",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.91"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:50:12.34",
-          "goalTime": "14:50:31.01",
-          "duration": "18.67",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.67"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:50:31.01",
-          "goalTime": "14:50:42.95",
-          "duration": "11.94",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.06"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:50:42.95",
-          "goalTime": "14:51:14.87",
-          "duration": "31.92",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.92"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:51:14.87",
-          "goalTime": "14:51:30.61",
-          "duration": "15.74",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.74"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -4176,11 +4176,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:49:47.43",
-          "goalTime": "14:52:00.61",
-          "duration": "133.18",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.18"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -4356,39 +4356,39 @@
       "bibNumber": "37",
       "sections": {
         "PC1": {
-          "startTime": "14:46:58.30",
-          "goalTime": "14:47:23.55",
-          "duration": "25.25",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.25"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:47:23.55",
-          "goalTime": "14:47:42.16",
-          "duration": "18.61",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.61"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:47:42.16",
-          "goalTime": "14:47:54.03",
-          "duration": "11.87",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.13"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:47:54.03",
-          "goalTime": "14:48:26.02",
-          "duration": "31.99",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.99"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:48:26.02",
-          "goalTime": "14:48:41.99",
-          "duration": "15.97",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.97"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -4405,11 +4405,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:46:58.30",
-          "goalTime": "14:49:11.99",
-          "duration": "133.69",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.69"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -4585,39 +4585,39 @@
       "bibNumber": "36",
       "sections": {
         "PC1": {
-          "startTime": "14:45:52.16",
-          "goalTime": "14:46:17.38",
-          "duration": "25.22",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.22"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:46:17.38",
-          "goalTime": "14:46:36.46",
-          "duration": "19.08",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.08"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:46:36.46",
-          "goalTime": "14:46:48.67",
-          "duration": "12.21",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.79"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:46:48.67",
-          "goalTime": "14:47:20.85",
-          "duration": "32.18",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "20.18"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:47:20.85",
-          "goalTime": "14:47:35.92",
-          "duration": "15.07",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.07"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -4634,11 +4634,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:45:52.16",
-          "goalTime": "14:48:05.92",
-          "duration": "133.76",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.76"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -4814,39 +4814,39 @@
       "bibNumber": "35",
       "sections": {
         "PC1": {
-          "startTime": "14:45:03.48",
-          "goalTime": "14:45:29.26",
-          "duration": "25.78",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.78"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:45:29.26",
-          "goalTime": "14:45:49.65",
-          "duration": "20.39",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "9.39"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:45:49.65",
-          "goalTime": "14:46:02.07",
-          "duration": "12.42",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.58"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:46:02.07",
-          "goalTime": "14:46:33.91",
-          "duration": "31.84",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.84"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:46:33.91",
-          "goalTime": "14:46:49.92",
-          "duration": "16.01",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.01"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -4863,11 +4863,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:45:03.48",
-          "goalTime": "14:47:19.92",
-          "duration": "136.44",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "44.44"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -5043,39 +5043,39 @@
       "bibNumber": "34",
       "sections": {
         "PC1": {
-          "startTime": "14:58:58.16",
-          "goalTime": "14:59:24.19",
-          "duration": "26.03",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "11.03"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:59:24.19",
-          "goalTime": "14:59:41.16",
-          "duration": "16.97",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "5.97"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:59:41.16",
-          "goalTime": "14:59:54.06",
-          "duration": "12.90",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.10"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:59:54.06",
-          "goalTime": "15:00:26.00",
-          "duration": "31.94",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.94"
+          "difference": null
         },
         "PC5": {
-          "startTime": "15:00:26.00",
-          "goalTime": "15:00:42.03",
-          "duration": "16.03",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.03"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -5092,11 +5092,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:58:58.16",
-          "goalTime": "15:01:12.03",
-          "duration": "133.87",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.87"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -5272,39 +5272,39 @@
       "bibNumber": "33",
       "sections": {
         "PC1": {
-          "startTime": "14:43:58.73",
-          "goalTime": "14:44:23.55",
-          "duration": "24.82",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.82"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:44:23.55",
-          "goalTime": "14:44:41.51",
-          "duration": "17.96",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.96"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:44:41.51",
-          "goalTime": "14:44:53.21",
-          "duration": "11.70",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.30"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:44:53.21",
-          "goalTime": "14:45:24.08",
-          "duration": "30.87",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "18.87"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:45:24.08",
-          "goalTime": "14:45:40.54",
-          "duration": "16.46",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.46"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -5321,11 +5321,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:43:58.73",
-          "goalTime": "14:46:10.54",
-          "duration": "131.81",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "39.81"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -5501,39 +5501,39 @@
       "bibNumber": "32",
       "sections": {
         "PC1": {
-          "startTime": "15:02:59.48",
-          "goalTime": "15:03:24.43",
-          "duration": "24.95",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.95"
+          "difference": null
         },
         "PC2": {
-          "startTime": "15:03:24.43",
-          "goalTime": "15:03:43.34",
-          "duration": "18.91",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.91"
+          "difference": null
         },
         "PC3": {
-          "startTime": "15:03:43.34",
-          "goalTime": "15:03:55.95",
-          "duration": "12.61",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.39"
+          "difference": null
         },
         "PC4": {
-          "startTime": "15:03:55.95",
-          "goalTime": "15:04:27.95",
-          "duration": "32.00",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "20.00"
+          "difference": null
         },
         "PC5": {
-          "startTime": "15:04:27.95",
-          "goalTime": "15:04:44.12",
-          "duration": "16.17",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.17"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -5550,11 +5550,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "15:02:59.48",
-          "goalTime": "15:05:14.12",
-          "duration": "134.64",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.64"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -5730,39 +5730,39 @@
       "bibNumber": "29",
       "sections": {
         "PC1": {
-          "startTime": "14:42:16.86",
-          "goalTime": "14:42:41.73",
-          "duration": "24.87",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.87"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:42:41.73",
-          "goalTime": "14:43:00.71",
-          "duration": "18.98",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.98"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:43:00.71",
-          "goalTime": "14:43:12.69",
-          "duration": "11.98",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.02"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:43:12.69",
-          "goalTime": "14:43:44.67",
-          "duration": "31.98",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.98"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:43:44.67",
-          "goalTime": "14:44:00.71",
-          "duration": "16.04",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.04"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -5779,11 +5779,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:42:16.86",
-          "goalTime": "14:44:30.71",
-          "duration": "133.85",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.85"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -5959,39 +5959,39 @@
       "bibNumber": "28",
       "sections": {
         "PC1": {
-          "startTime": "14:43:26.67",
-          "goalTime": "14:43:50.86",
-          "duration": "24.19",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.19"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:43:50.86",
-          "goalTime": "14:44:09.83",
-          "duration": "18.97",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.97"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:44:09.83",
-          "goalTime": "14:44:21.14",
-          "duration": "11.31",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.69"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:44:21.14",
-          "goalTime": "14:44:52.87",
-          "duration": "31.73",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.73"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:44:52.87",
-          "goalTime": "14:45:08.15",
-          "duration": "15.28",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.28"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -6008,11 +6008,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:43:26.67",
-          "goalTime": "14:45:38.15",
-          "duration": "131.48",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "39.48"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -6188,39 +6188,39 @@
       "bibNumber": "27",
       "sections": {
         "PC1": {
-          "startTime": "14:46:24.11",
-          "goalTime": "14:46:49.05",
-          "duration": "24.94",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.94"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:46:49.05",
-          "goalTime": "14:47:07.56",
-          "duration": "18.51",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.51"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:47:07.56",
-          "goalTime": "14:47:21.08",
-          "duration": "13.52",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-6.48"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:47:21.08",
-          "goalTime": "14:47:52.15",
-          "duration": "31.07",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.07"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:47:52.15",
-          "goalTime": "14:48:07.84",
-          "duration": "15.69",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.69"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -6237,11 +6237,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:46:24.11",
-          "goalTime": "14:48:37.84",
-          "duration": "133.73",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.73"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -6417,39 +6417,39 @@
       "bibNumber": "26",
       "sections": {
         "PC1": {
-          "startTime": "14:41:15.41",
-          "goalTime": "14:41:39.83",
-          "duration": "24.42",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.42"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:41:39.83",
-          "goalTime": "14:41:57.70",
-          "duration": "17.87",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.87"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:41:57.70",
-          "goalTime": "14:42:09.20",
-          "duration": "11.50",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.50"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:42:09.20",
-          "goalTime": "14:42:40.50",
-          "duration": "31.30",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.30"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:42:40.50",
-          "goalTime": "14:42:55.93",
-          "duration": "15.43",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.43"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -6466,11 +6466,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:41:15.41",
-          "goalTime": "14:43:25.93",
-          "duration": "130.52",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "38.52"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -6646,39 +6646,39 @@
       "bibNumber": "25",
       "sections": {
         "PC1": {
-          "startTime": "14:44:30.48",
-          "goalTime": "14:44:55.67",
-          "duration": "25.19",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.19"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:44:55.67",
-          "goalTime": "14:45:14.53",
-          "duration": "18.86",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.86"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:45:14.53",
-          "goalTime": "14:45:26.45",
-          "duration": "11.92",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.08"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:45:26.45",
-          "goalTime": "14:45:58.14",
-          "duration": "31.69",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.69"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:45:58.14",
-          "goalTime": "14:46:14.35",
-          "duration": "16.21",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.21"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -6695,11 +6695,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:44:30.48",
-          "goalTime": "14:46:44.35",
-          "duration": "133.87",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.87"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -6875,39 +6875,39 @@
       "bibNumber": "24",
       "sections": {
         "PC1": {
-          "startTime": "14:39:18.35",
-          "goalTime": "14:39:44.19",
-          "duration": "25.84",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.84"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:39:44.19",
-          "goalTime": "14:40:02.62",
-          "duration": "18.43",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.43"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:40:02.62",
-          "goalTime": "14:40:14.39",
-          "duration": "11.77",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.23"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:40:14.39",
-          "goalTime": "14:40:45.34",
-          "duration": "30.95",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "18.95"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:40:45.34",
-          "goalTime": "14:41:00.83",
-          "duration": "15.49",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.49"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -6924,11 +6924,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:39:18.35",
-          "goalTime": "14:41:30.83",
-          "duration": "132.48",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "40.48"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -7104,39 +7104,39 @@
       "bibNumber": "22",
       "sections": {
         "PC1": {
-          "startTime": "14:49:10.72",
-          "goalTime": "14:49:36.12",
-          "duration": "25.40",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.40"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:49:36.12",
-          "goalTime": "14:49:53.80",
-          "duration": "17.68",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.68"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:49:53.80",
-          "goalTime": "14:50:06.10",
-          "duration": "12.30",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.70"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:50:06.10",
-          "goalTime": "14:50:37.58",
-          "duration": "31.48",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.48"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:50:37.58",
-          "goalTime": "14:50:52.39",
-          "duration": "14.81",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "4.81"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -7153,11 +7153,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:49:10.72",
-          "goalTime": "14:51:22.39",
-          "duration": "131.67",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "39.67"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -7333,39 +7333,39 @@
       "bibNumber": "21",
       "sections": {
         "PC1": {
-          "startTime": "14:39:53.97",
-          "goalTime": "14:40:18.44",
-          "duration": "24.47",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.47"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:40:18.44",
-          "goalTime": "14:40:36.07",
-          "duration": "17.63",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.63"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:40:36.07",
-          "goalTime": "14:40:49.01",
-          "duration": "12.94",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.06"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:40:49.01",
-          "goalTime": "14:41:21.20",
-          "duration": "32.19",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "20.19"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:41:21.20",
-          "goalTime": "14:41:37.02",
-          "duration": "15.82",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.82"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -7382,11 +7382,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:39:53.97",
-          "goalTime": "14:42:07.02",
-          "duration": "133.05",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.05"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -7562,39 +7562,39 @@
       "bibNumber": "19",
       "sections": {
         "PC1": {
-          "startTime": "14:40:28.10",
-          "goalTime": "14:40:53.99",
-          "duration": "25.89",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.89"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:40:53.99",
-          "goalTime": "14:41:11.79",
-          "duration": "17.80",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.80"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:41:11.79",
-          "goalTime": "14:41:23.33",
-          "duration": "11.54",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.46"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:41:23.33",
-          "goalTime": "14:41:54.86",
-          "duration": "31.53",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.53"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:41:54.86",
-          "goalTime": "14:42:10.69",
-          "duration": "15.83",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.83"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -7611,11 +7611,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:40:28.10",
-          "goalTime": "14:42:40.69",
-          "duration": "132.59",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "40.59"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -7791,39 +7791,39 @@
       "bibNumber": "18",
       "sections": {
         "PC1": {
-          "startTime": "14:42:56.19",
-          "goalTime": "14:43:21.07",
-          "duration": "24.88",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.88"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:43:21.07",
-          "goalTime": "14:43:40.05",
-          "duration": "18.98",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.98"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:43:40.05",
-          "goalTime": "14:43:52.07",
-          "duration": "12.02",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.98"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:43:52.07",
-          "goalTime": "14:44:24.11",
-          "duration": "32.04",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "20.04"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:44:24.11",
-          "goalTime": "14:44:40.18",
-          "duration": "16.07",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.07"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -7840,11 +7840,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:42:56.19",
-          "goalTime": "14:45:10.18",
-          "duration": "133.99",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.99"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -8020,39 +8020,39 @@
       "bibNumber": "17",
       "sections": {
         "PC1": {
-          "startTime": "14:38:46.29",
-          "goalTime": "14:39:11.46",
-          "duration": "25.17",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.17"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:39:11.46",
-          "goalTime": "14:39:30.48",
-          "duration": "19.02",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.02"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:39:30.48",
-          "goalTime": "14:39:42.16",
-          "duration": "11.68",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.32"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:39:42.16",
-          "goalTime": "14:40:14.13",
-          "duration": "31.97",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.97"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:40:14.13",
-          "goalTime": "14:40:30.34",
-          "duration": "16.21",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.21"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -8069,11 +8069,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:38:46.29",
-          "goalTime": "14:41:00.34",
-          "duration": "134.05",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.05"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -8249,39 +8249,39 @@
       "bibNumber": "16",
       "sections": {
         "PC1": {
-          "startTime": "14:38:07.82",
-          "goalTime": "14:38:32.85",
-          "duration": "25.03",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.03"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:38:32.85",
-          "goalTime": "14:38:51.52",
-          "duration": "18.67",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.67"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:38:51.52",
-          "goalTime": "14:39:03.65",
-          "duration": "12.13",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.87"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:39:03.65",
-          "goalTime": "14:39:35.57",
-          "duration": "31.92",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.92"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:39:35.57",
-          "goalTime": "14:39:51.43",
-          "duration": "15.86",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.86"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -8298,11 +8298,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:38:07.82",
-          "goalTime": "14:40:21.43",
-          "duration": "133.61",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.61"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -8478,39 +8478,39 @@
       "bibNumber": "15",
       "sections": {
         "PC1": {
-          "startTime": "14:37:27.94",
-          "goalTime": "14:37:53.05",
-          "duration": "25.11",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.11"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:37:53.05",
-          "goalTime": "14:38:12.02",
-          "duration": "18.97",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.97"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:38:12.02",
-          "goalTime": "14:38:24.13",
-          "duration": "12.11",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.89"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:38:24.13",
-          "goalTime": "14:38:56.03",
-          "duration": "31.90",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.90"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:38:56.03",
-          "goalTime": "14:39:11.86",
-          "duration": "15.83",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.83"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -8527,11 +8527,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:37:27.94",
-          "goalTime": "14:39:41.86",
-          "duration": "133.92",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.92"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -8707,39 +8707,39 @@
       "bibNumber": "14",
       "sections": {
         "PC1": {
-          "startTime": "14:36:55.30",
-          "goalTime": "14:37:20.22",
-          "duration": "24.92",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.92"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:37:20.22",
-          "goalTime": "14:37:39.19",
-          "duration": "18.97",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.97"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:37:39.19",
-          "goalTime": "14:37:51.19",
-          "duration": "12.00",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.00"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:37:51.19",
-          "goalTime": "14:38:23.28",
-          "duration": "32.09",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "20.09"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:38:23.28",
-          "goalTime": "14:38:39.29",
-          "duration": "16.01",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.01"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -8756,11 +8756,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:36:55.30",
-          "goalTime": "14:39:09.29",
-          "duration": "133.99",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.99"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -8936,39 +8936,39 @@
       "bibNumber": "12",
       "sections": {
         "PC1": {
-          "startTime": "15:04:14.51",
-          "goalTime": "15:04:40.31",
-          "duration": "25.80",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.80"
+          "difference": null
         },
         "PC2": {
-          "startTime": "15:04:40.31",
-          "goalTime": "15:04:58.26",
-          "duration": "17.95",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "6.95"
+          "difference": null
         },
         "PC3": {
-          "startTime": "15:04:58.26",
-          "goalTime": "15:05:10.99",
-          "duration": "12.73",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.27"
+          "difference": null
         },
         "PC4": {
-          "startTime": "15:05:10.99",
-          "goalTime": "15:05:44.49",
-          "duration": "33.50",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "21.50"
+          "difference": null
         },
         "PC5": {
-          "startTime": "15:05:44.49",
-          "goalTime": "15:06:02.20",
-          "duration": "17.71",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "7.71"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -8985,11 +8985,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "15:04:14.51",
-          "goalTime": "15:06:32.20",
-          "duration": "137.69",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "45.69"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -9165,39 +9165,39 @@
       "bibNumber": "11",
       "sections": {
         "PC1": {
-          "startTime": "14:36:24.45",
-          "goalTime": "14:36:49.21",
-          "duration": "24.76",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "9.76"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:36:49.21",
-          "goalTime": "14:37:08.13",
-          "duration": "18.92",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.92"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:37:08.13",
-          "goalTime": "14:37:20.15",
-          "duration": "12.02",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.98"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:37:20.15",
-          "goalTime": "14:37:51.81",
-          "duration": "31.66",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.66"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:37:51.81",
-          "goalTime": "14:38:07.75",
-          "duration": "15.94",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.94"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -9214,11 +9214,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:36:24.45",
-          "goalTime": "14:38:37.75",
-          "duration": "133.30",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.30"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -9394,39 +9394,39 @@
       "bibNumber": "9",
       "sections": {
         "PC1": {
-          "startTime": "14:35:39.08",
-          "goalTime": "14:36:04.24",
-          "duration": "25.16",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.16"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:36:04.24",
-          "goalTime": "14:36:23.39",
-          "duration": "19.15",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.15"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:36:23.39",
-          "goalTime": "14:36:35.44",
-          "duration": "12.05",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.95"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:36:35.44",
-          "goalTime": "14:37:07.40",
-          "duration": "31.96",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.96"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:37:07.40",
-          "goalTime": "14:37:23.51",
-          "duration": "16.11",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.11"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -9443,11 +9443,240 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:35:39.08",
-          "goalTime": "14:37:53.51",
-          "duration": "134.43",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.43"
+          "difference": null
+        },
+        "PC8": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 10,
+          "difference": null
+        },
+        "PC9": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 14,
+          "difference": null
+        },
+        "PC10": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PC11": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 8,
+          "difference": null
+        },
+        "PC12": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 17,
+          "difference": null
+        },
+        "PC13": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PC14": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PCG2": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 85,
+          "difference": null
+        },
+        "PC15": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 15,
+          "difference": null
+        },
+        "PC16": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PC17": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 17,
+          "difference": null
+        },
+        "PC18": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 8,
+          "difference": null
+        },
+        "PC19": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PC20": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 14,
+          "difference": null
+        },
+        "PC21": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 11,
+          "difference": null
+        },
+        "PCG3": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 89,
+          "difference": null
+        },
+        "PC22": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 15,
+          "difference": null
+        },
+        "PC23": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PC24": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 10,
+          "difference": null
+        },
+        "PC25": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PC26": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 20,
+          "difference": null
+        },
+        "PC27": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 11,
+          "difference": null
+        },
+        "PC28": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 15,
+          "difference": null
+        },
+        "PCG4": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 95,
+          "difference": null
+        }
+      }
+    },
+    {
+      "bibNumber": "8",
+      "sections": {
+        "PC1": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 15,
+          "difference": null
+        },
+        "PC2": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 11,
+          "difference": null
+        },
+        "PC3": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 20,
+          "difference": null
+        },
+        "PC4": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PC5": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 10,
+          "difference": null
+        },
+        "PC6": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PC7": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 12,
+          "difference": null
+        },
+        "PCG1": {
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
+          "settingTime": 92,
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -9623,39 +9852,39 @@
       "bibNumber": "7",
       "sections": {
         "PC1": {
-          "startTime": "14:35:05.88",
-          "goalTime": "14:35:31.54",
-          "duration": "25.66",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.66"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:35:31.54",
-          "goalTime": "14:35:49.97",
-          "duration": "18.43",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.43"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:35:49.97",
-          "goalTime": "14:36:02.73",
-          "duration": "12.76",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.24"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:36:02.73",
-          "goalTime": "14:36:34.47",
-          "duration": "31.74",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.74"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:36:34.47",
-          "goalTime": "14:36:50.64",
-          "duration": "16.17",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.17"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -9672,11 +9901,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:35:05.88",
-          "goalTime": "14:37:20.64",
-          "duration": "134.76",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.76"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -9852,39 +10081,39 @@
       "bibNumber": "6",
       "sections": {
         "PC1": {
-          "startTime": "14:41:44.80",
-          "goalTime": "14:42:10.02",
-          "duration": "25.22",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.22"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:42:10.02",
-          "goalTime": "14:42:28.10",
-          "duration": "18.08",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.08"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:42:28.10",
-          "goalTime": "14:42:40.36",
-          "duration": "12.26",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.74"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:42:40.36",
-          "goalTime": "14:43:11.73",
-          "duration": "31.37",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.37"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:43:11.73",
-          "goalTime": "14:43:27.37",
-          "duration": "15.64",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.64"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -9901,11 +10130,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:41:44.80",
-          "goalTime": "14:43:57.37",
-          "duration": "132.57",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "40.57"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -10081,39 +10310,39 @@
       "bibNumber": "5",
       "sections": {
         "PC1": {
-          "startTime": "14:34:32.13",
-          "goalTime": "14:34:57.25",
-          "duration": "25.12",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.12"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:34:57.25",
-          "goalTime": "14:35:16.20",
-          "duration": "18.95",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.95"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:35:16.20",
-          "goalTime": "14:35:28.18",
-          "duration": "11.98",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.02"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:35:28.18",
-          "goalTime": "14:36:00.11",
-          "duration": "31.93",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.93"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:36:00.11",
-          "goalTime": "14:36:16.19",
-          "duration": "16.08",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "6.08"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -10130,11 +10359,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:34:32.13",
-          "goalTime": "14:36:46.19",
-          "duration": "134.06",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.06"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -10310,39 +10539,39 @@
       "bibNumber": "2",
       "sections": {
         "PC1": {
-          "startTime": "14:33:53.65",
-          "goalTime": "14:34:18.70",
-          "duration": "25.05",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.05"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:34:18.70",
-          "goalTime": "14:34:37.76",
-          "duration": "19.06",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "8.06"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:34:37.76",
-          "goalTime": "14:34:49.72",
-          "duration": "11.96",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-8.04"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:34:49.72",
-          "goalTime": "14:35:21.62",
-          "duration": "31.90",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.90"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:35:21.62",
-          "goalTime": "14:35:37.61",
-          "duration": "15.99",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.99"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -10359,11 +10588,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:33:53.65",
-          "goalTime": "14:36:07.61",
-          "duration": "133.96",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "41.96"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -10539,39 +10768,39 @@
       "bibNumber": "1",
       "sections": {
         "PC1": {
-          "startTime": "14:27:56.28",
-          "goalTime": "14:28:21.30",
-          "duration": "25.02",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 15,
-          "difference": "10.02"
+          "difference": null
         },
         "PC2": {
-          "startTime": "14:28:21.30",
-          "goalTime": "14:28:40.26",
-          "duration": "18.96",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 11,
-          "difference": "7.96"
+          "difference": null
         },
         "PC3": {
-          "startTime": "14:28:40.26",
-          "goalTime": "14:28:52.35",
-          "duration": "12.09",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 20,
-          "difference": "-7.91"
+          "difference": null
         },
         "PC4": {
-          "startTime": "14:28:52.35",
-          "goalTime": "14:29:24.34",
-          "duration": "31.99",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 12,
-          "difference": "19.99"
+          "difference": null
         },
         "PC5": {
-          "startTime": "14:29:24.34",
-          "goalTime": "14:29:40.32",
-          "duration": "15.98",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 10,
-          "difference": "5.98"
+          "difference": null
         },
         "PC6": {
           "startTime": null,
@@ -10588,11 +10817,11 @@
           "difference": null
         },
         "PCG1": {
-          "startTime": "14:27:56.28",
-          "goalTime": "14:30:10.32",
-          "duration": "134.04",
+          "startTime": null,
+          "goalTime": null,
+          "duration": null,
           "settingTime": 92,
-          "difference": "42.04"
+          "difference": null
         },
         "PC8": {
           "startTime": null,
@@ -10771,8 +11000,8 @@
       "number": 1,
       "section": "PC1",
       "group": 1,
-      "startFile": "PC1START.csv",
-      "goalFile": "PC1GOAL_PC2START.csv",
+      "startFile": null,
+      "goalFile": null,
       "isPCG": false
     },
     {
@@ -10780,8 +11009,8 @@
       "number": 2,
       "section": "PC2",
       "group": 1,
-      "startFile": "PC1GOAL_PC2START.csv",
-      "goalFile": "PC2GOAL_PC3START.csv",
+      "startFile": null,
+      "goalFile": null,
       "isPCG": false
     },
     {
@@ -10789,8 +11018,8 @@
       "number": 3,
       "section": "PC3",
       "group": 1,
-      "startFile": "PC2GOAL_PC3START.csv",
-      "goalFile": "PC3GOAL_PC4START.csv",
+      "startFile": null,
+      "goalFile": null,
       "isPCG": false
     },
     {
@@ -10798,8 +11027,8 @@
       "number": 4,
       "section": "PC4",
       "group": 1,
-      "startFile": "PC3GOAL_PC4START.csv",
-      "goalFile": "PC4GOAL_PC5START.csv",
+      "startFile": null,
+      "goalFile": null,
       "isPCG": false
     },
     {
@@ -10807,8 +11036,8 @@
       "number": 5,
       "section": "PC5",
       "group": 1,
-      "startFile": "PC4GOAL_PC5START.csv",
-      "goalFile": "PC5GOAL.csv",
+      "startFile": null,
+      "goalFile": null,
       "isPCG": false
     },
     {
@@ -10843,7 +11072,7 @@
       "number": 8,
       "section": "PC8",
       "group": 2,
-      "startFile": null,
+      "startFile": "PC8START.csv",
       "goalFile": null,
       "isPCG": false
     },
@@ -11055,10 +11284,20 @@
       "isPCG": true
     }
   ],
-  "fileCount": 7,
+  "fileCount": 2,
   "overlaps": [],
-  "bibNumberDuplicates": [],
+  "bibNumberDuplicates": [
+    {
+      "section": "PC8",
+      "type": "START",
+      "bibNumber": "8",
+      "files": [
+        "PC8START.csv",
+        "PC8START.csv"
+      ]
+    }
+  ],
   "sectionSettings": {},
   "unmatchedFiles": [],
-  "savedAt": "2026-02-16T08:59:32.913Z"
+  "savedAt": "2026-02-25T09:02:05.760Z"
 }
