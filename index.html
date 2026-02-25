@@ -344,7 +344,27 @@
             loadConfigToForm();
             checkAutoRefreshStatus();
             initializeConfigSection();
+            checkDataRepoConfig();
         });
+
+        // データ保存用リポジトリが未設定の場合に警告を表示
+        function checkDataRepoConfig() {
+            if (!ConfigManager.isDataRepoConfigured()) {
+                showStatus('configStatus', '⚠️ データ保存用リポジトリ名が未設定です。上の「GitHub設定」を開いてデータ保存用リポジトリ名を入力し、保存してください。', 'warning');
+                // 設定セクションを自動展開
+                const configForm = document.getElementById('configForm');
+                const toggleIcon = document.getElementById('toggleIcon');
+                const height = configForm.scrollHeight;
+                configForm.style.maxHeight = height + 'px';
+                configForm.classList.remove('collapsed');
+                toggleIcon.classList.remove('collapsed');
+                setTimeout(() => {
+                    if (!configForm.classList.contains('collapsed')) {
+                        configForm.style.maxHeight = 'none';
+                    }
+                }, 300);
+            }
+        }
 
         // 設定セクションの初期化（最初は折りたたむ）
         function initializeConfigSection() {
@@ -401,7 +421,12 @@
             };
 
             ConfigManager.save(config);
-            showStatus('configStatus', '設定を保存しました', 'success');
+            const saved = ConfigManager.load();
+            if (saved.dataRepo) {
+                showStatus('configStatus', `✅ 設定を保存しました（データリポジトリ: ${saved.dataOwner}/${saved.dataRepo}）`, 'success');
+            } else {
+                showStatus('configStatus', '⚠️ 設定を保存しましたが、データ保存用リポジトリ名が入力されていません', 'warning');
+            }
         }
 
         // 手動計算実行

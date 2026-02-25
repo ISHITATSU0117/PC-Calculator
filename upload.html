@@ -291,13 +291,13 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             // 設定チェック
-            if (!ConfigManager.isConfigured()) {
-                showStatus('GitHub設定が完了していません。管理画面で設定してください。', 'warning');
-            }
-
-            const config = ConfigManager.load();
-            if (!config.token) {
-                showStatus('Personal Access Tokenが設定されていません。アップロードには認証が必要です。', 'warning');
+            if (!ConfigManager.isDataRepoConfigured()) {
+                showStatus('データ保存用リポジトリが設定されていません。管理画面の「GitHub設定」でデータ保存用リポジトリ名を設定してください。', 'warning');
+            } else {
+                const config = ConfigManager.load();
+                if (!config.token) {
+                    showStatus('Personal Access Tokenが設定されていません。アップロードには認証が必要です。', 'warning');
+                }
             }
 
             // ファイル選択イベント
@@ -386,8 +386,8 @@
             if (selectedFiles.length === 0) return;
 
             // 設定チェック
-            if (!ConfigManager.isConfigured()) {
-                showStatus('GitHub設定が完了していません', 'error');
+            if (!ConfigManager.isDataRepoConfigured()) {
+                showStatus('データ保存用リポジトリが設定されていません', 'error');
                 return;
             }
 
