@@ -20,11 +20,11 @@ const GitHubAPI = {
     // CSVファイル一覧を取得
     async listCSVFiles() {
         const config = ConfigManager.load();
-        if (!config.owner || !config.repo) {
-            throw new Error('GitHub設定が完了していません');
+        if (!config.dataOwner || !config.dataRepo) {
+            throw new Error('データ保存用リポジトリの設定が完了していません');
         }
         
-        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.csvDir}?ref=${config.branch}`;
+        const url = `${this.getBaseUrl(config.dataOwner, config.dataRepo)}/${config.csvDir}?ref=${config.branch}`;
         const headers = this.getHeaders(config.token);
         
         try {
@@ -68,7 +68,7 @@ const GitHubAPI = {
             const filesWithCommits = await Promise.all(
                 csvFiles.map(async (file) => {
                     try {
-                        const commitUrl = `https://api.github.com/repos/${config.owner}/${config.repo}/commits?path=${config.csvDir}/${file.name}&page=1&per_page=1`;
+                        const commitUrl = `https://api.github.com/repos/${config.dataOwner}/${config.dataRepo}/commits?path=${config.csvDir}/${file.name}&page=1&per_page=1`;
                         const commitResponse = await fetch(commitUrl, { headers });
                         
                         if (commitResponse.ok) {
@@ -94,7 +94,7 @@ const GitHubAPI = {
     // CSVファイルの内容を取得
     async getCSVContent(fileName) {
         const config = ConfigManager.load();
-        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.csvDir}/${fileName}?ref=${config.branch}`;
+        const url = `${this.getBaseUrl(config.dataOwner, config.dataRepo)}/${config.csvDir}/${fileName}?ref=${config.branch}`;
         const headers = this.getHeaders(config.token);
         
         try {
@@ -144,7 +144,7 @@ const GitHubAPI = {
             throw new Error('GitHub Personal Access Tokenが設定されていません');
         }
         
-        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.csvDir}/${fileName}`;
+        const url = `${this.getBaseUrl(config.dataOwner, config.dataRepo)}/${config.csvDir}/${fileName}`;
         const headers = this.getHeaders(config.token);
         headers['Content-Type'] = 'application/json';
         
@@ -193,7 +193,7 @@ const GitHubAPI = {
             throw new Error('GitHub Personal Access Tokenが設定されていません');
         }
         
-        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.csvDir}/${fileName}`;
+        const url = `${this.getBaseUrl(config.dataOwner, config.dataRepo)}/${config.csvDir}/${fileName}`;
         const headers = this.getHeaders(config.token);
         headers['Content-Type'] = 'application/json';
         
@@ -225,7 +225,7 @@ const GitHubAPI = {
     // ファイル情報を取得（SHAとメタデータ）
     async getFileInfo(fileName) {
         const config = ConfigManager.load();
-        const url = `${this.getBaseUrl(config.owner, config.repo)}/${config.csvDir}/${fileName}`;
+        const url = `${this.getBaseUrl(config.dataOwner, config.dataRepo)}/${config.csvDir}/${fileName}`;
         const headers = this.getHeaders(config.token);
         
         try {

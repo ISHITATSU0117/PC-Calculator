@@ -276,6 +276,14 @@
                     <label>Personal Access Token（アップロード・削除に必要）</label>
                     <input type="password" id="githubToken" placeholder="ghp_...">
                 </div>
+                <div class="form-group">
+                    <label>データ保存用リポジトリ オーナー名（未入力の場合は制御用リポジトリのオーナーを使用）</label>
+                    <input type="text" id="dataGithubOwner" placeholder="例: username">
+                </div>
+                <div class="form-group">
+                    <label>データ保存用リポジトリ名（CSVファイルを保存する別リポジトリ）</label>
+                    <input type="text" id="dataGithubRepo" placeholder="例: csv-data">
+                </div>
                 <button onclick="saveConfig()">💾 設定を保存</button>
             </div>
             <div id="configStatus"></div>
@@ -380,12 +388,16 @@
         function loadConfigToForm() {
             const config = ConfigManager.load();
             document.getElementById('githubToken').value = config.token || '';
+            document.getElementById('dataGithubOwner').value = localStorage.getItem(CONFIG.STORAGE_KEYS.DATA_GITHUB_OWNER) || '';
+            document.getElementById('dataGithubRepo').value = config.dataRepo || '';
         }
 
         // 設定を保存
         function saveConfig() {
             const config = {
-                token: document.getElementById('githubToken').value.trim()
+                token: document.getElementById('githubToken').value.trim(),
+                dataOwner: document.getElementById('dataGithubOwner').value.trim(),
+                dataRepo: document.getElementById('dataGithubRepo').value.trim()
             };
 
             ConfigManager.save(config);
